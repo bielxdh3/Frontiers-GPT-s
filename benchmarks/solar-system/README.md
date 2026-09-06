@@ -30,9 +30,9 @@ It therefore stresses several capabilities at once:
 | --- | --- | --- | --- | --- |
 | **Original** | GPT-5.6 Sun Max | [`sun-original.md`](./prompts/sun-original.md) | `67eb9fc51f…` | Historical baseline |
 | **Frontier V2 rebuild** | GPT-5.6 Sun Max | `frontier-v2.md` | `93d43ae62f…` | Same model, much stronger prompt |
-| **Frontier V2 challenger** | GPT-6 Astra Max | `frontier-v2.md` | pending | Same V2 input, different frontier model |
+| **Frontier V2 challenger** | GPT-6 Astra Max | `frontier-v2.md` | `fca2ef51b4…` | Same V2 input, different frontier model |
 
-The exact Frontier V2 prompt has not yet been recovered into this repository. It will be archived verbatim before the V2-vs-V2 comparison is considered complete.
+All three project snapshots are now vendored into this repository. The exact Frontier V2 prompt has not yet been recovered here; it will be archived verbatim before the V2-vs-V2 scoring is considered complete.
 
 ## Why the original Sun run is kept
 
@@ -43,6 +43,12 @@ The original run is useful for more than nostalgia. It creates a control point f
 The original project was a React/TypeScript/Three.js experience with procedural planets, camera travel, exploration/relative scale modes, time controls, search, object data, comparison mode, guided tour, responsive behavior and a WebGL fallback.
 
 The rebuild takes a dramatically different implementation route: a dependency-free local browser application with procedural Canvas rendering, a larger body catalog, UTC time semantics, approximate JPL planetary elements, a bounded Kepler solver, scale/measurement tools, tours, activities, bilingual UI, exports, accessibility features and extensive browser QA artifacts.
+
+## Astra challenger snapshot
+
+The Astra run is also a full local observatory rather than a thin demo. Its archived project describes Portuguese/English interaction, 3D exploration, physical comparison tools, laboratories, five tours and twelve activities. It separates educational approximate positions from scale/measurement behavior and documents implementation plus validation in dedicated files.
+
+The source commit imported into this hub is `fca2ef51b43dc1c7a91050fca3476dc6fbf7d3f5`.
 
 That makes the archive capable of answering **two different comparisons**:
 

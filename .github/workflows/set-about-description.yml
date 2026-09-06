@@ -1,0 +1,21 @@
+name: Set repository About description
+
+on:
+  push:
+    paths:
+      - .github/workflows/set-about-description.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  set-description:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update repository description
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method PATCH "repos/${GITHUB_REPOSITORY}" \
+            -f description='Hub unificado de benchmarks de modelos frontier, com prompts exatos, snapshots completos, evidências e comparações reproduzíveis.'

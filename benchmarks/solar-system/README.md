@@ -8,6 +8,28 @@
 
 </div>
 
+## Live experiences
+
+<div align="center">
+
+### ⚔️ Main benchmark
+
+<a href="https://gpt-5.6-sun-v2.biel.dev.br"><strong>☀️ Open GPT-5.6 Sun Max — V2</strong></a>
+&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+<a href="https://gpt-6-astra.biel.dev.br"><strong>✦ Open GPT-6 Astra Max</strong></a>
+
+<sub>Direct Frontier V2 comparison — same master prompt.</sub>
+
+</div>
+
+<details>
+<summary>Historical first version</summary>
+
+The original GPT-5.6 Sun Max build is preserved only as the historical baseline:  
+[GPT-5.6 Sun Max — V1](https://gpt-5.6-sun-v1.biel.dev.br)
+
+</details>
+
 ---
 
 ## What this benchmark tests

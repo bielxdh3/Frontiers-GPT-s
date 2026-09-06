@@ -1,0 +1,15 @@
+import { mkdir,writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+process.env.PLAYWRIGHT_BROWSERS_PATH=resolve('.tooling/browsers');
+process.env.TEMP=process.env.TMP=resolve('.tooling/temp');
+const { chromium }=await import('playwright');
+await mkdir('test-results',{recursive:true});
+const browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader'],downloadsPath:resolve('test-results')});
+const page=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
+await page.goto('http://127.0.0.1:4173',{waitUntil:'networkidle'});
+await page.waitForTimeout(2200);
+console.log(JSON.stringify({errors,snapshot:await page.evaluate(()=>window.observatory?.snapshot()),buttons:await page.locator('button').count()},null,2));
+await page.screenshot({path:'test-results/overview.png'});
+await writeFile('test-results/initial.json',JSON.stringify({errors,snapshot:await page.evaluate(()=>window.observatory?.snapshot())},null,2));
+await browser.close();

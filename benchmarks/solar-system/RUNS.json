@@ -10,7 +10,7 @@
       "source_commit": "67eb9fc51feb40ba4befddefde904bf6a6306016",
       "prompt": "prompts/sun-original.md",
       "target_path": "runs/gpt-5.6-sun-max/original",
-      "status": "ready-for-import"
+      "status": "imported"
     },
     {
       "id": "gpt-5.6-sun-max-frontier-v2",
@@ -20,7 +20,7 @@
       "source_commit": "93d43ae62f615a37672c0d1936912160d0475ca1",
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/gpt-5.6-sun-max/rebuild",
-      "status": "ready-for-import",
+      "status": "imported",
       "notes": "Exact frontier-v2 prompt text is still pending archival."
     },
     {
@@ -28,11 +28,11 @@
       "model": "GPT-6 Astra Max",
       "role": "frontier-run",
       "source_repository": "bielxdh3/GPT6-ASTRA-MAX-SOLAR-SYSTEM",
-      "source_commit": null,
+      "source_commit": "fca2ef51b43dc1c7a91050fca3476dc6fbf7d3f5",
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/gpt-6-astra-max/frontier-v2",
-      "status": "awaiting-upstream-commit",
-      "notes": "Repository was empty when the unified benchmark hub was initialized."
+      "status": "imported",
+      "notes": "Vendored from the pinned upstream main commit recorded here."
     }
   ]
 }

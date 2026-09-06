@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#05070c">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Observatório 3D interativo e educativo do Sistema Solar.">
+  <title>Observatório do Sistema Solar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-scene">Pular para a cena</a>
+
+  <div id="app" class="app" data-quality="high" data-presentation="natural">
+    <div class="scene-shell" id="main-scene">
+      <canvas id="space-canvas" aria-label="Cena tridimensional interativa do Sistema Solar" tabindex="0"></canvas>
+      <div id="canvas-fallback" class="canvas-fallback" hidden>
+        <div>
+          <span class="eyebrow">Modo de recuperação</span>
+          <h2>A visualização gráfica não pôde iniciar</h2>
+          <p>O catálogo, as comparações, os dados e as atividades continuam disponíveis pelos painéis.</p>
+          <button class="button primary" data-action="retry-renderer">Tentar novamente</button>
+        </div>
+      </div>
+      <div class="vignette" aria-hidden="true"></div>
+    </div>
+
+    <header class="topbar glass" aria-label="Comandos principais">
+      <button class="brand button-plain" data-action="overview" aria-label="Voltar à visão geral">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-copy">
+          <strong data-i18n="brand">Observatório</strong>
+          <small data-i18n="brandSub">Sistema Solar</small>
+        </span>
+      </button>
+
+      <nav class="mode-tabs" aria-label="Áreas do observatório">
+        <button class="mode-tab active" data-section="explore" data-i18n="explore">Explorar</button>
+        <button class="mode-tab" data-section="learn" data-i18n="learn">Aprender</button>
+        <button class="mode-tab" data-section="tools" data-i18n="tools">Ferramentas</button>
+      </nav>
+
+      <div class="top-actions">
+        <button class="icon-button" data-action="command" aria-label="Pesquisar e abrir comandos" title="Pesquisar (Ctrl+K)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+          <span class="wide-label" data-i18n="search">Buscar</span>
+          <kbd>⌘K</kbd>
+        </button>
+        <button class="icon-button" data-action="toggle-ui" aria-label="Ocultar interface" title="Vista sem distrações">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"></path></svg>
+        </button>
+        <button class="icon-button" data-action="settings" aria-label="Abrir configurações" title="Configurações">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.2h-4v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.5V3h4v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.2v4h-.2a1.7 1.7 0 0 0-1.5 1Z"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="scene-status" aria-label="Estado da simulação">
+      <button class="status-chip selected-chip" data-action="open-inspector">
+        <span class="status-dot" id="selected-dot"></span>
+        <span id="selected-status">Terra</span>
+      </button>
+      <button class="status-chip" data-action="scale-info"><span id="scale-status">Escala de exploração</span><span class="chip-info">i</span></button>
+      <button class="status-chip optional-chip" data-action="frame-info"><span id="frame-status">Referencial: Sol</span></button>
+      <span class="status-chip subtle optional-chip" id="accuracy-status">≈ JPL 1800–2050</span>
+    </section>
+
+    <aside id="navigator" class="panel navigator glass" aria-label="Navegador de objetos">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow" data-i18n="catalog">Catálogo celeste</span>
+          <h2 data-i18n="whereTo">Para onde vamos?</h2>
+        </div>
+        <button class="icon-button compact" data-action="close-navigator" aria-label="Recolher navegador">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <label class="search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <span class="sr-only" data-i18n="searchObjects">Buscar objetos</span>
+        <input id="navigator-search" type="search" autocomplete="off" placeholder="Buscar Terra, Saturno…">
+        <kbd>/</kbd>
+      </label>
+      <div class="filter-row" role="group" aria-label="Filtros do catálogo">
+        <button class="filter-pill active" data-filter="all" data-i18n="all">Todos</button>
+        <button class="filter-pill" data-filter="favorites" data-i18n="favorites">Favoritos</button>
+        <button class="filter-pill" data-filter="visited" data-i18n="visited">Visitados</button>
+      </div>
+      <div id="object-list" class="object-list" tabindex="-1"></div>
+      <div id="catalog-empty" class="empty-state" hidden>
+        <div class="empty-orbit" aria-hidden="true"><i></i></div>
+        <strong data-i18n="nothingFound">Nenhum mundo encontrado</strong>
+        <p data-i18n="tryAnother">Tente outro nome ou limpe os filtros.</p>
+        <button class="button secondary" data-action="clear-search" data-i18n="clearSearch">Limpar busca</button>
+      </div>
+    </aside>
+
+    <button id="navigator-restore" class="edge-trigger left" data-action="open-navigator" aria-label="Abrir navegador" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+      <span data-i18n="catalog">Catálogo</span>
+    </button>
+
+    <aside id="inspector" class="panel inspector glass" aria-label="Inspetor do objeto selecionado">
+      <div class="panel-head inspector-head">
+        <div class="object-kicker">
+          <span id="inspector-type" class="eyebrow">Planeta rochoso</span>
+          <span id="inspector-approx" class="approx-badge">≈ modelo</span>
+        </div>
+        <button class="icon-button compact" data-action="close-inspector" aria-label="Recolher inspetor">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"></path></svg>
+        </button>
+      </div>
+      <div class="inspector-title-row">
+        <div class="object-emblem" id="object-emblem" aria-hidden="true"><i></i></div>
+        <div>
+          <h2 id="inspector-name">Terra</h2>
+          <p id="inspector-subtitle">Nosso mundo oceânico</p>
+        </div>
+        <button id="favorite-button" class="icon-button favorite-button" data-action="favorite" aria-label="Adicionar aos favoritos" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"></path></svg>
+        </button>
+      </div>
+      <div class="inspector-tabs" role="tablist" aria-label="Seções do inspetor">
+        <button role="tab" aria-selected="true" class="active" data-inspector-tab="overview" data-i18n="overview">Visão geral</button>
+        <button role="tab" aria-selected="false" data-inspector-tab="data" data-i18n="data">Dados</button>
+        <button role="tab" aria-selected="false" data-inspector-tab="system" id="system-tab" data-i18n="system">Sistema</button>
+        <button role="tab" aria-selected="false" data-inspector-tab="sources" data-i18n="sources">Fontes</button>
+      </div>
+      <div id="inspector-content" class="inspector-content"></div>
+      <div class="action-grid" aria-label="Ações do objeto">
+        <button class="button primary" data-action="focus"><span aria-hidden="true">◎</span><span data-i18n="focus">Focar</span></button>
+        <button class="button secondary" data-action="follow"><span aria-hidden="true">⌁</span><span id="follow-label" data-i18n="follow">Seguir</span></button>
+        <button class="button ghost" data-action="compare-selected"><span aria-hidden="true">◐</span><span data-i18n="compare">Comparar</span></button>
+        <button class="button ghost" data-action="measure-selected"><span aria-hidden="true">↔</span><span data-i18n="measure">Medir</span></button>
+      </div>
+    </aside>
+
+    <button id="inspector-restore" class="edge-trigger right" data-action="open-inspector" aria-label="Abrir inspetor" hidden>
+      <span id="inspector-restore-label">Terra</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"></path></svg>
+    </button>
+
+    <div class="camera-tools glass" aria-label="Controles da câmera">
+      <button class="icon-button compact" data-action="history-back" aria-label="Vista anterior" title="Vista anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"></path></svg>
+      </button>
+      <button class="icon-button compact" data-action="history-forward" aria-label="Vista seguinte" title="Vista seguinte">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+      </button>
+      <button class="icon-button compact" data-action="overview" aria-label="Visão geral" title="Visão geral">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>
+      </button>
+      <button class="icon-button compact" data-action="view-top" aria-label="Vista superior" title="Vista superior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+      </button>
+      <button class="icon-button compact" data-action="view-cinematic" aria-label="Vista cinematográfica" title="Vista cinematográfica">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4zM8 7l2-3h4l2 3"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      </button>
+      <button class="icon-button compact" data-action="help" aria-label="Ajuda e atalhos" title="Ajuda">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.7 9a2.5 2.5 0 1 1 3.7 2.2c-.9.5-1.4 1-1.4 2.1M12 17h.01"></path></svg>
+      </button>
+    </div>
+
+    <div id="orientation-map" class="orientation-map glass" aria-label="Mapa de orientação">
+      <canvas id="map-canvas" width="180" height="110" aria-hidden="true"></canvas>
+      <div class="map-caption"><span data-i18n="orientation">Orientação</span><strong id="map-scale">distância comprimida</strong></div>
+      <button data-action="overview" aria-label="Centralizar visão geral"></button>
+    </div>
+
+    <footer id="time-dock" class="time-dock glass" aria-label="Controle do tempo da simulação">
+      <div class="time-readout">
+        <button class="calendar-button button-plain" data-action="date-editor" aria-label="Editar data da simulação">
+          <span class="eyebrow"><span data-i18n="simulationTime">Tempo da simulação</span> · UTC</span>
+          <strong id="date-label">05 SET 2026</strong>
+          <span id="clock-label">00:00:00</span>
+        </button>
+      </div>
+      <div class="transport" role="group" aria-label="Reprodução do tempo">
+        <button class="icon-button transport-button" data-action="reverse" aria-label="Inverter direção" aria-pressed="false" title="Inverter direção">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12l-5-6 5-6ZM20 6v12l-10-6 10-6Z"></path></svg>
+        </button>
+        <button class="play-button" data-action="play" aria-label="Pausar simulação" aria-pressed="true">
+          <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h3v12H8zM14 6h3v12h-3z"></path></svg>
+          <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"></path></svg>
+        </button>
+        <button class="icon-button transport-button" data-action="step-day" aria-label="Avançar um dia" title="Avançar um dia">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 6 10 6-10 6ZM17 6h2v12h-2z"></path></svg>
+        </button>
+      </div>
+      <div class="speed-control">
+        <div class="speed-meta">
+          <button class="rate-button button-plain" data-action="rate-menu"><strong id="rate-label">86.400×</strong><span id="rate-human">1 dia por segundo</span></button>
+          <span id="direction-label" class="direction-badge">→ futuro</span>
+        </div>
+        <input id="speed-slider" type="range" min="0" max="8" step="0.01" value="4.94" aria-label="Velocidade da simulação">
+        <div class="speed-ticks" aria-hidden="true"><span>1×</span><span>1h/s</span><span>1d/s</span><span>30d/s</span></div>
+      </div>
+      <div class="time-actions">
+        <button class="button compact secondary" data-action="now" data-i18n="now">Agora</button>
+        <button class="button compact ghost" data-action="time-more" aria-label="Mais controles de tempo">•••</button>
+      </div>
+    </footer>
+
+    <section id="tour-hud" class="tour-hud glass" aria-live="polite" hidden></section>
+    <section id="discovery-card" class="discovery-card glass" hidden></section>
+
+    <section id="workspace" class="workspace" aria-label="Espaço de ferramentas" hidden>
+      <div class="workspace-backdrop" data-action="close-workspace"></div>
+      <div class="workspace-panel glass" role="dialog" aria-modal="true" aria-labelledby="workspace-title">
+        <header class="workspace-head">
+          <div>
+            <span id="workspace-kicker" class="eyebrow">Ferramenta</span>
+            <h2 id="workspace-title">Comparação</h2>
+          </div>
+          <button class="icon-button" data-action="close-workspace" aria-label="Fechar ferramenta">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+          </button>
+        </header>
+        <div id="workspace-content" class="workspace-content"></div>
+      </div>
+    </section>
+
+    <section id="command-palette" class="command-palette" hidden>
+      <div class="workspace-backdrop" data-action="close-command"></div>
+      <div class="command-box glass" role="dialog" aria-modal="true" aria-labelledby="command-title">
+        <h2 id="command-title" class="sr-only">Pesquisar objetos e comandos</h2>
+        <label class="command-input">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+          <input id="command-input" type="search" autocomplete="off" placeholder="Ir para um mundo ou executar um comando…">
+          <kbd>ESC</kbd>
+        </label>
+        <div id="command-results" class="command-results" role="listbox"></div>
+        <footer><span>↑↓ <span data-i18n="navigate">navegar</span></span><span>↵ <span data-i18n="open">abrir</span></span><span>esc <span data-i18n="close">fechar</span></span></footer>
+      </div>
+    </section>
+
+    <section id="welcome" class="welcome" hidden>
+      <div class="welcome-card glass" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+        <button class="icon-button welcome-close" data-action="dismiss-welcome" aria-label="Fechar boas-vindas">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+        </button>
+        <div class="welcome-visual" aria-hidden="true">
+          <div class="welcome-sun"></div><i class="welcome-orbit one"></i><i class="welcome-orbit two"></i><i class="welcome-planet earth"></i><i class="welcome-planet saturn"></i>
+        </div>
+        <span class="eyebrow">SOLAR SYSTEM OBSERVATORY</span>
+        <h1 id="welcome-title">O universo começa aqui.</h1>
+        <p>Viaje entre mundos, desacelere séculos e investigue as relações que fazem o Sistema Solar se mover.</p>
+        <div class="welcome-actions">
+          <button class="button primary" data-action="dismiss-welcome">Explorar livremente</button>
+          <button class="button secondary" data-action="start-grand-tour">Iniciar o grande tour</button>
+          <button class="button ghost" data-action="welcome-controls">Aprender os controles</button>
+        </div>
+        <small>Arraste para orbitar · role para aproximar · selecione para investigar</small>
+      </div>
+    </section>
+
+    <div id="context-menu" class="context-menu glass" role="menu" hidden></div>
+    <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <div id="scene-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  </div>
+
+  <noscript>
+    <div class="noscript">Este observatório precisa de JavaScript para calcular e desenhar as órbitas. Ative-o para explorar.</div>
+  </noscript>
+  <script src="science.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

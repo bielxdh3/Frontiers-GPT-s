@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { freshData,validateData,loadData,persist,sceneFile,escapeHTML } from '../src/storage.js';
+import { START } from '../src/data.js';
+test('roundtrip versioned local data and preserve notes as inert text',()=>{const d=freshData();d.notes.push({id:'n',title:'One note',text:'<script>alert(1)</script>',body:'earth',time:START});const v=validateData(JSON.parse(JSON.stringify(d)));assert.equal(v.notes[0].text,d.notes[0].text);assert.ok(escapeHTML(v.notes[0].text).includes('&lt;script&gt;'));});
+test('reject malicious identifiers, out-of-range dates and invalid numeric preferences',()=>{for(const mutation of [d=>d.version=2,d=>d.favorites=['bad'],d=>d.preferences.exposure=500,d=>d.preferences.scale='fake',d=>d.notes=[{id:'n',title:'bad',body:'earth',time:Infinity,text:'test'}],d=>d.viewpoints=[{id:'v',title:'bad',body:'earth',time:START,view:{target:'earth',scale:'relative',time:START,offset:[Infinity,1,1]}}]]){const d=freshData();mutation(d);assert.throws(()=>validateData(d));}});
+test('storage denied or malformed never falsely reports success',()=>{const denied={getItem(){throw Error('denied');},setItem(){throw Error('quota');}};assert.equal(loadData(denied).error,'load');assert.equal(persist(denied,freshData()),false);assert.equal(loadData({getItem:()=>'{bad'}).error,'load');});
+test('portable scene export excludes notes and other private data',()=>{const view={target:'earth',scale:'explore',offset:[2,3,4],targetOffset:[0,0,0],time:START,mode:'focus',fov:42,private:'secret',notes:['private']};const result=sceneFile(view);assert.equal(result.view.private,undefined);assert.equal(result.view.notes,undefined);assert.equal(result.kind,'observatory-scene');});

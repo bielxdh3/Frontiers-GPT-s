@@ -1,0 +1,24 @@
+{
+  "name": "solar-system-observatory",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "test": "node --test tests/model.test.js tests/storage.test.js",
+    "test:browser": "node tests/browser.mjs",
+    "test:acceptance": "node tests/acceptance.mjs",
+    "test:recovery": "node tests/recovery.mjs",
+    "test:controls": "node tests/controls.mjs"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "playwright": "1.55.0",
+    "vite": "^7.1.5"
+  }
+}

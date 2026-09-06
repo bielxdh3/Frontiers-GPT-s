@@ -1,0 +1,78 @@
+{
+  "retrieved": "2026-09-06T03:01:13.402Z",
+  "source": "JPL Horizons, geometric barycenter vectors",
+  "checkpoints": [
+    {
+      "body": "earth",
+      "command": "3",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%273%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%4010%27&START_TIME=%272000-01-01+12%3A00%27&STOP_TIME=%272000-01-02+12%3A00%27&STEP_SIZE=%271+d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&OUT_UNITS=%27AU-D%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&VEC_CORR=%27NONE%27",
+      "epoch": "2000-01-01T12:00:00 TDB",
+      "frame": "Heliocentric geometric ICRF ecliptic J2000, AU",
+      "referenceAU": [
+        -0.1771587841839055,
+        0.9672193524609504,
+        -0.000001139275508446145
+      ],
+      "nominalErrors": {
+        "longitudeArcsec": 20,
+        "latitudeArcsec": 8,
+        "radialKm": 6000
+      },
+      "observedErrors": {
+        "longitudeArcsec": 2.755890052893097,
+        "latitudeArcsec": 0.18476707744447646,
+        "radialKm": 380.2784795165062,
+        "cartesianKm": 2006.1883300853124
+      },
+      "sourceExcerpt": "*******************************************************************************\nRevised: April 12, 2021         Earth Barycenter                              3\n \n Dynamical point:\n ---------------\n The common point about which the Earth and Moon revolve (center of mass). This\n is approximately 4671 km from the center of the Earth, or about 3/4 of the way \n to the surface. See 399 for Earth center, or 301 for Moon center ephemeris.\n*******************************************************************************\n\n\n*******************************************************************************\nEphemeris / API_USER Sat Sep  5 20:01:11 2026 Pasadena, USA      / Horizons\n*******************************************************************************\nTarget body name: Earth-Moon Barycenter (3)       {source: DE441}\nCenter body name: Sun (10)                        {source: DE441}\nCenter-site name: BODY CENTER\n*******************************************************************************\nStart time      : A.D. 2000-Jan-01 12:00:00.0000 TDB\nStop  time      : A.D. 2000-Jan-02 12:00:00.0000 TDB\nStep-size       : 1440 minutes\n*******************************************************************************\nCenter geodetic : 0.0, 0.0, 0.0                   {E-lon(deg),Lat(deg),Alt(km)}\nCenter cylindric: 0.0, 0.0, 0.0                   {E-lon(deg),Dxy(km),Dz(km)}\nCenter radii    : 695700.0, 695700.0, 695700.0 km {Equator_a, b, pole_c}\nOutput units    : AU-D\nCalendar mode   : Mixed Julian/Gregorian\nOutput type     : GEOMETRIC cartesian states\nOutput format   : 2 (position and velocity)\nReference frame : Ecliptic of J2000.0\n*******************************************************************************\n            JDTDB,            Calendar Date (TDB),                      X,                      Y,                      Z,                     VX,                     VY,                     VZ,\n**************************************************************************************************************************************************************************************************\n"
+    },
+    {
+      "body": "mars",
+      "command": "4",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%274%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%4010%27&START_TIME=%272000-01-01+12%3A00%27&STOP_TIME=%272000-01-02+12%3A00%27&STEP_SIZE=%271+d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&OUT_UNITS=%27AU-D%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&VEC_CORR=%27NONE%27",
+      "epoch": "2000-01-01T12:00:00 TDB",
+      "frame": "Heliocentric geometric ICRF ecliptic J2000, AU",
+      "referenceAU": [
+        1.390715921746287,
+        -0.01341631815233992,
+        -0.03446766277585426
+      ],
+      "nominalErrors": {
+        "longitudeArcsec": 40,
+        "latitudeArcsec": 2,
+        "radialKm": 25000
+      },
+      "observedErrors": {
+        "longitudeArcsec": 3.6764181425123126,
+        "latitudeArcsec": 0.7713039909455112,
+        "radialKm": 7264.323073118925,
+        "cartesianKm": 8193.14439877582
+      },
+      "sourceExcerpt": "*******************************************************************************\n Revised: April 12, 2021        Mars Barycenter                               4\n \n Dynamical point:\n ---------------\n The common center of mass about which the Martian system (planet and\n satellites Phobos and Deimos) revolve.\n*******************************************************************************\n\n\n*******************************************************************************\nEphemeris / API_USER Sat Sep  5 20:01:12 2026 Pasadena, USA      / Horizons\n*******************************************************************************\nTarget body name: Mars Barycenter (4)             {source: DE441}\nCenter body name: Sun (10)                        {source: DE441}\nCenter-site name: BODY CENTER\n*******************************************************************************\nStart time      : A.D. 2000-Jan-01 12:00:00.0000 TDB\nStop  time      : A.D. 2000-Jan-02 12:00:00.0000 TDB\nStep-size       : 1440 minutes\n*******************************************************************************\nCenter geodetic : 0.0, 0.0, 0.0                   {E-lon(deg),Lat(deg),Alt(km)}\nCenter cylindric: 0.0, 0.0, 0.0                   {E-lon(deg),Dxy(km),Dz(km)}\nCenter radii    : 695700.0, 695700.0, 695700.0 km {Equator_a, b, pole_c}\nOutput units    : AU-D\nCalendar mode   : Mixed Julian/Gregorian\nOutput type     : GEOMETRIC cartesian states\nOutput format   : 2 (position and velocity)\nReference frame : Ecliptic of J2000.0\n*******************************************************************************\n            JDTDB,            Calendar Date (TDB),                      X,                      Y,                      Z,                     VX,                     VY,                     VZ,\n**************************************************************************************************************************************************************************************************\n"
+    },
+    {
+      "body": "jupiter",
+      "command": "5",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%275%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%4010%27&START_TIME=%272000-01-01+12%3A00%27&STOP_TIME=%272000-01-02+12%3A00%27&STEP_SIZE=%271+d%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&OUT_UNITS=%27AU-D%27&VEC_TABLE=%272%27&CSV_FORMAT=%27YES%27&VEC_CORR=%27NONE%27",
+      "epoch": "2000-01-01T12:00:00 TDB",
+      "frame": "Heliocentric geometric ICRF ecliptic J2000, AU",
+      "referenceAU": [
+        4.001177161126058,
+        2.938576106966103,
+        -0.101785276633744
+      ],
+      "nominalErrors": {
+        "longitudeArcsec": 400,
+        "latitudeArcsec": 10,
+        "radialKm": 600000
+      },
+      "observedErrors": {
+        "longitudeArcsec": 309.05864262514376,
+        "latitudeArcsec": 4.44090022012576,
+        "radialKm": 287987.14599204063,
+        "cartesianKm": 1149744.856824483
+      },
+      "sourceExcerpt": "*******************************************************************************\n Revised: April 12, 2021        Jupiter Barycenter                            5\n \n Dynamical point:\n ---------------\n The location of the center-of-mass of the Jupiter system. The point about \n which Jupiter and its satellites revolve. See 599 for Jupiter center.\n*******************************************************************************\n\n\n*******************************************************************************\nEphemeris / API_USER Sat Sep  5 20:01:13 2026 Pasadena, USA      / Horizons\n*******************************************************************************\nTarget body name: Jupiter Barycenter (5)          {source: DE441}\nCenter body name: Sun (10)                        {source: DE441}\nCenter-site name: BODY CENTER\n*******************************************************************************\nStart time      : A.D. 2000-Jan-01 12:00:00.0000 TDB\nStop  time      : A.D. 2000-Jan-02 12:00:00.0000 TDB\nStep-size       : 1440 minutes\n*******************************************************************************\nCenter geodetic : 0.0, 0.0, 0.0                   {E-lon(deg),Lat(deg),Alt(km)}\nCenter cylindric: 0.0, 0.0, 0.0                   {E-lon(deg),Dxy(km),Dz(km)}\nCenter radii    : 695700.0, 695700.0, 695700.0 km {Equator_a, b, pole_c}\nOutput units    : AU-D\nCalendar mode   : Mixed Julian/Gregorian\nOutput type     : GEOMETRIC cartesian states\nOutput format   : 2 (position and velocity)\nReference frame : Ecliptic of J2000.0\n*******************************************************************************\n            JDTDB,            Calendar Date (TDB),                      X,                      Y,                      Z,                     VX,                     VY,                     VZ,\n**************************************************************************************************************************************************************************************************\n"
+    }
+  ]
+}

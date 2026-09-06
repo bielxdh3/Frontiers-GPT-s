@@ -1,0 +1,33 @@
+import {readFile,writeFile,readdir,stat} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const json=async path=>JSON.parse(await readFile(path,'utf8'));
+const digest=async path=>({path,sha256:createHash('sha256').update(await readFile(path)).digest('hex')});
+const buildTime=(await stat('dist/index.html')).mtimeMs;
+const sourceFiles=(await readdir('src')).filter(x=>/\.(js|css)$/.test(x)).map(x=>'src/'+x);
+for(const path of sourceFiles)assert.ok((await stat(path)).mtimeMs<=buildTime,'Source newer than build: '+path);
+const suites=[];
+for(const [path,count] of [['test-results/browser.json',21],['test-results/acceptance/report.json',16],['test-results/recovery.json',4],['test-results/controls.json',7]]){
+  const report=await json(path),rows=Array.isArray(report)?report:report.report||report.results;
+  assert.equal(rows.length,count,path);assert.ok(rows.every(r=>r.status==='passed'),path);
+  for(const key of ['failures','errors','pageErrors'])assert.equal((report[key]||[]).length,0,path+' '+key);
+  const modified=(await stat(path)).mtimeMs;assert.ok(modified>=buildTime,'Report older than final build: '+path);
+  suites.push({path,passed:count,failed:0,lastModified:new Date(modified).toISOString()});
+}
+const numerical=await readFile('test-results/numerical.tap','utf8');assert.match(numerical,/# pass 19/);assert.match(numerical,/# fail 0/);
+const url='http://127.0.0.1:4173/',response=await fetch(url);assert.equal(response.status,200);
+const html=await response.text();assert.equal(html,await readFile('dist/index.html','utf8'));
+const buildAssets=[...html.matchAll(/(?:src|href)="(\/assets\/[^"\s]+)"/g)].map(x=>x[1]);
+const assets=[...buildAssets,...(await json('public/assets/manifest.json')).map(x=>x.file)];
+const served=await Promise.all(assets.map(async path=>{assert.ok(/^\/assets\/[\w.-]+$/.test(path));const r=await fetch(new URL(path,url));assert.equal(r.status,200,path);const bytes=new Uint8Array(await r.arrayBuffer());const local=new Uint8Array(await readFile(resolve('dist','.'+path)));assert.deepEqual(bytes,local,path);return {path,status:r.status,bytes:bytes.length};}));
+const perf=await json('test-results/acceptance/performance.json');
+const table=['| Vista | FPS na amostra | p95 de intervalo entre quadros |','| --- | ---: | ---: |',...perf.samples.map(x=>`| ${x.label} | ${x.isolatedTiming.fps.toFixed(1)} | ${x.isolatedTiming.p95ms.toFixed(1)} ms |`)].join('\n');
+let note=await readFile('docs/VALIDATION.md','utf8');
+note=note.replace(/<!-- PERFORMANCE_TABLE -->[\s\S]*?<!-- END_PERFORMANCE_TABLE -->/,'<!-- PERFORMANCE_TABLE -->\n'+table+'\n<!-- END_PERFORMANCE_TABLE -->');
+const result={checkedAt:new Date().toISOString(),preview:url,productionAssets:served,modelTests:{passed:19,failed:0,report:'test-results/numerical.tap'},browserSuites:suites,browserScenariosPassed:suites.reduce((n,x)=>n+x.passed,0),buildWarning:'Main JavaScript chunk exceeds 500 kB; approx. 730 kB minified / 209 kB gzip.',sourceAndBuildDigests:await Promise.all([...sourceFiles,'index.html','package.json','package-lock.json','dist/index.html',...buildAssets.map(x=>'dist'+x)].map(digest)),physicalDevicesTested:false};
+await writeFile('test-results/release.json',JSON.stringify(result,null,2));
+const summary=`**Resultado final: 19 testes numéricos/armazenamento e 48 cenários de navegador aprovados, sem erros de página reportados.** O [registro final](../test-results/release.json) vincula os relatórios posteriores ao build, os hashes dos arquivos e a conferência HTTP dos 13 recursos de produção (JS, CSS e 11 imagens).`;
+note=note.replace(/<!-- RELEASE_RESULT -->[\s\S]*?<!-- END_RELEASE_RESULT -->/,'<!-- RELEASE_RESULT -->\n'+summary+'\n<!-- END_RELEASE_RESULT -->');
+await writeFile('docs/VALIDATION.md',note);
+console.log(JSON.stringify({preview:url,modelTests:19,browserScenarios:48,servedResources:served.length,buildAssets,checkedAt:result.checkedAt},null,2));

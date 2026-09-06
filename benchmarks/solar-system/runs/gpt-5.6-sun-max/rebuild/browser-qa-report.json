@@ -1,0 +1,347 @@
+{
+  "generatedAt": "2026-09-06T01:11:41.271Z",
+  "environment": "Microsoft Edge headless, clean local state in a project-local profile",
+  "scenarios": [
+    {
+      "name": "startup-and-onboarding",
+      "data": {
+        "title": "Observatório do Sistema Solar",
+        "lang": "pt-BR",
+        "welcomeVisible": true,
+        "canvas": [
+          1440,
+          900
+        ],
+        "bodyCount": 32
+      }
+    },
+    {
+      "name": "overview",
+      "data": {
+        "selected": "Terra",
+        "date": "07 DE SET. DE 2026",
+        "rate": "86.400×",
+        "canvasVisible": true,
+        "workspaceHidden": true,
+        "navRows": 32
+      }
+    },
+    {
+      "name": "tools-dashboard",
+      "data": {
+        "title": "Ferramentas",
+        "cards": 9,
+        "visible": true
+      }
+    },
+    {
+      "name": "comparison",
+      "data": {
+        "title": "Comparar",
+        "slots": 2,
+        "rows": 7,
+        "discs": 2
+      }
+    },
+    {
+      "name": "comparison-artifacts",
+      "data": {
+        "blobs": [
+          {
+            "name": "solar-diameter-comparison.svg",
+            "size": 1147,
+            "type": "image/svg+xml"
+          },
+          {
+            "name": "solar-comparison.csv",
+            "size": 332,
+            "type": "text/csv"
+          }
+        ]
+      }
+    },
+    {
+      "name": "saturn-focus",
+      "data": {
+        "selected": "Saturno",
+        "systemTabHidden": false,
+        "followLabel": "Seguir"
+      }
+    },
+    {
+      "name": "measurement",
+      "data": {
+        "title": "Medir",
+        "observer": "Sol · Estrela",
+        "values": [
+          "1,274 bilhões km",
+          "8,515168 AU",
+          "1,18 h",
+          "21,9571°"
+        ],
+        "lineDescription": "Distância centro a centro nas coordenadas físicas do instante indicado. A linha visível cruza espaço comprimido e não determina o número.",
+        "pulseEnabled": true
+      }
+    },
+    {
+      "name": "seasons-zero-tilt",
+      "data": {
+        "metrics": [
+          "0°",
+          "12 h",
+          "ciclo normal"
+        ],
+        "hypothetical": "Experimento hipotético isolado. Alterar estes valores não modifica a Terra canônica."
+      }
+    },
+    {
+      "name": "moon-full-phase",
+      "data": {
+        "metrics": [
+          "Lua cheia",
+          "100%",
+          "ponto de virada"
+        ],
+        "note": "As fases vêm da porção iluminada vista da Terra. Eclipses são alinhamentos distintos; o diagrama de sombra é esquemático, não um serviço de previsão."
+      }
+    },
+    {
+      "name": "tour-pause-resume",
+      "data": {
+        "visible": true,
+        "heading": "Nossa estrela",
+        "progress": "Grande Tour · 1/9",
+        "selected": "Sol"
+      }
+    },
+    {
+      "name": "ring-activity",
+      "data": {
+        "completed": true,
+        "selected": "Saturno"
+      }
+    },
+    {
+      "name": "combined-scale-activity",
+      "data": {
+        "completed": true,
+        "title": "Escalas do Sistema Solar",
+        "trueScale": true
+      }
+    },
+    {
+      "name": "scientific-overlays",
+      "data": {
+        "toggles": [
+          [
+            "overlay-grid",
+            true
+          ],
+          [
+            "overlay-trails",
+            true
+          ],
+          [
+            "overlay-axes",
+            true
+          ],
+          [
+            "overlay-nodes",
+            true
+          ],
+          [
+            "overlay-velocity",
+            true
+          ]
+        ],
+        "persisted": {
+          "grid": true,
+          "trails": true,
+          "axes": true,
+          "nodes": true,
+          "velocity": true
+        }
+      }
+    },
+    {
+      "name": "calendar-j2000",
+      "data": {
+        "date": "01 DE JAN. DE 2000",
+        "clock": "12:00:00",
+        "scrubber": "946771200000"
+      }
+    },
+    {
+      "name": "english-localization",
+      "data": {
+        "lang": "en",
+        "title": "Solar System Observatory",
+        "nav": "Explore",
+        "workspaceTitle": "Settings",
+        "selected": "Saturn"
+      }
+    },
+    {
+      "name": "complete-one-orbit",
+      "data": {
+        "orbitDateBefore": "JAN 01, 2000",
+        "orbitDateAfter": "MAR 29, 2000",
+        "changed": true
+      }
+    },
+    {
+      "name": "camera-history-two-way",
+      "data": {
+        "back": true,
+        "forward": true,
+        "runtimeErrors": 0
+      }
+    },
+    {
+      "name": "keyboard-play-pause",
+      "data": {
+        "pausedBefore": true,
+        "pausedAfter": false,
+        "changed": true
+      }
+    },
+    {
+      "name": "photo-mode",
+      "data": {
+        "active": true,
+        "capture": true,
+        "share": true,
+        "scaleAnnotation": true,
+        "toolbarOverflow": false,
+        "blobs": [
+          {
+            "name": "solar-mercury-2000-03-29.png",
+            "size": 1157392,
+            "type": "image/png"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile-390x844",
+      "data": {
+        "inner": [
+          390,
+          844
+        ],
+        "scrollWidth": 390,
+        "overflow": false,
+        "visibleControls": 62,
+        "minVisibleTarget": 21.03125,
+        "timeDock": {
+          "x": 8,
+          "y": 758,
+          "width": 374,
+          "height": 78,
+          "top": 758,
+          "right": 382,
+          "bottom": 836,
+          "left": 8
+        },
+        "navigatorMobile": "absolute"
+      }
+    },
+    {
+      "name": "short-landscape",
+      "data": {
+        "inner": [
+          768,
+          480
+        ],
+        "scrollWidth": 768,
+        "scrollHeight": 480,
+        "timeBottom": 475
+      }
+    }
+  ],
+  "errors": [],
+  "assertions": [
+    {
+      "name": "catalog-has-32-bodies",
+      "ok": true
+    },
+    {
+      "name": "tools-have-9-workspaces",
+      "ok": true
+    },
+    {
+      "name": "comparison-has-physical-table",
+      "ok": true
+    },
+    {
+      "name": "comparison-exports-build-valid-blobs",
+      "ok": true
+    },
+    {
+      "name": "measurement-has-angle-and-pulse",
+      "ok": true
+    },
+    {
+      "name": "zero-tilt-gives-12-hours",
+      "ok": true
+    },
+    {
+      "name": "full-moon-is-turning-point",
+      "ok": true
+    },
+    {
+      "name": "tour-is-operable",
+      "ok": true
+    },
+    {
+      "name": "ring-activity-completes",
+      "ok": true
+    },
+    {
+      "name": "combined-scale-activity-completes",
+      "ok": true
+    },
+    {
+      "name": "all-five-overlays-persist",
+      "ok": true
+    },
+    {
+      "name": "calendar-reaches-j2000",
+      "ok": true
+    },
+    {
+      "name": "english-localization-switches",
+      "ok": true
+    },
+    {
+      "name": "complete-orbit-changes-time",
+      "ok": true
+    },
+    {
+      "name": "history-has-forward-and-back",
+      "ok": true
+    },
+    {
+      "name": "keyboard-toggle-works",
+      "ok": true
+    },
+    {
+      "name": "photo-mode-builds-png-and-has-share-annotations",
+      "ok": true
+    },
+    {
+      "name": "mobile-has-no-page-overflow",
+      "ok": true
+    },
+    {
+      "name": "short-landscape-fits-width",
+      "ok": true
+    }
+  ],
+  "summary": {
+    "scenarios": 21,
+    "assertions": 19,
+    "errors": 0,
+    "passed": true
+  }
+}

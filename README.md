@@ -5,7 +5,7 @@
 <br/>
 
 [![Benchmark](https://img.shields.io/badge/benchmark-frontier%20models-7C3AED?style=for-the-badge)](./benchmarks)
-[![Runs](https://img.shields.io/badge/runs-reproducible-2563EB?style=for-the-badge)](./benchmarks/solar-system/RUNS.json)
+[![Runs](https://img.shields.io/badge/runs-3%20snapshots%20archived-2563EB?style=for-the-badge)](./benchmarks/solar-system/RUNS.json)
 [![Method](https://img.shields.io/badge/method-generation%20first%20%2F%20evaluation%20second-DB2777?style=for-the-badge)](./docs/METHODOLOGY.md)
 
 ### One repository for serious, inspectable frontier-model comparisons.
@@ -56,7 +56,7 @@ Historical baseline built from the first Solar System prompt.
 
 - Prompt archived verbatim
 - Source commit pinned
-- Browser product implementation
+- Full project vendored into this hub
 - Kept permanently for prompt-leverage comparison
 
 **Snapshot:** `67eb9fc51f…`
@@ -71,7 +71,7 @@ The same model family gets another full attempt under the much stronger Frontier
 
 - Completely rebuilt implementation
 - Source commit pinned
-- Extensive QA artifacts in upstream output
+- Full project and QA artifacts vendored
 - Shared V2 prompt text still awaiting archival
 
 **Snapshot:** `93d43ae62f…`
@@ -84,11 +84,12 @@ The same model family gets another full attempt under the much stronger Frontier
 
 The direct frontier-model challenger intended to receive the same V2 prompt as the Sun rebuild.
 
-- Dedicated upstream repository exists
-- No output commit was present when this hub was initialized
-- Will be imported as an immutable run once available
+- Full upstream project captured
+- Source commit pinned
+- Full project vendored into this hub
+- Shared V2 prompt text still awaiting archival
 
-**Snapshot:** `pending`
+**Snapshot:** `fca2ef51b4…`
 
 </td>
 </tr>
@@ -264,7 +265,7 @@ The repository itself is designed as a compact benchmark dashboard rather than a
 - relative links so navigation survives forks and repository moves where possible;
 - evaluator templates kept out of generated run snapshots.
 
-This approach follows GitHub's own guidance that a README should make a repository easier to understand and navigate, while using supported Markdown/HTML features and relative repository assets.
+The design follows GitHub README conventions: make the repository immediately understandable, use relative assets for portable navigation, and use supported Markdown/HTML features for hierarchy rather than relying on fragile custom rendering.
 
 ---
 
@@ -276,11 +277,19 @@ This approach follows GitHub's own guidance that a README should make a reposito
 | Methodology | ✅ documented |
 | Solar System benchmark structure | ✅ established |
 | Sun Original prompt | ✅ archived verbatim |
-| Sun Original snapshot | 🔄 import pipeline |
-| Sun Rebuild snapshot | 🔄 import pipeline |
+| Sun Original snapshot | ✅ imported — `67eb9fc…` |
+| Sun Rebuild snapshot | ✅ imported — `93d43ae…` |
+| Astra Max snapshot | ✅ imported — `fca2ef51…` |
 | Frontier V2 exact prompt | ⚠️ exact text still required |
-| Astra Max upstream project | ⏳ repository exists; output commit pending |
-| V2 head-to-head scorecard | ⏳ waits for complete evidence |
+| V2 head-to-head scorecard | ⏳ waits for exact prompt + evaluation |
+
+---
+
+## Reproducible import pipeline
+
+The hub includes a GitHub Actions workflow that can rebuild the vendored run archive from pinned upstream commits. This avoids turning old repositories into permanent navigation dependencies while preserving provenance.
+
+For the current Solar System archive, the workflow successfully imported both Sun snapshots and detected/imported the Astra main snapshot in the same run.
 
 ---
 

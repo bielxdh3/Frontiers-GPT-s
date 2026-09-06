@@ -29,10 +29,22 @@ It therefore stresses several capabilities at once:
 | Generation | Model | Input | Snapshot | Role |
 | --- | --- | --- | --- | --- |
 | **Original** | GPT-5.6 Sun Max | [`sun-original.md`](./prompts/sun-original.md) | `67eb9fc51f…` | Historical baseline |
-| **Frontier V2 rebuild** | GPT-5.6 Sun Max | `frontier-v2.md` | `93d43ae62f…` | Same model, much stronger prompt |
-| **Frontier V2 challenger** | GPT-6 Astra Max | `frontier-v2.md` | `fca2ef51b4…` | Same V2 input, different frontier model |
+| **Frontier V2 rebuild** | GPT-5.6 Sun Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `93d43ae62f…` | Same model, stronger shared prompt |
+| **Frontier V2 challenger** | GPT-6 Astra Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `fca2ef51b4…` | Same V2 input, different frontier model |
 
-All three project snapshots are now vendored into this repository. The exact Frontier V2 prompt has not yet been recovered here; it will be archived verbatim before the V2-vs-V2 scoring is considered complete.
+All three project snapshots and both benchmark prompt versions are now archived in this repository.
+
+### Shared Frontier V2 input
+
+The direct Sun-rebuild-vs-Astra comparison uses the exact same `frontier-v2.md` input. The uploaded source was preserved byte-for-byte and verified before archival:
+
+```text
+SHA-256  7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65
+Size     115,983 bytes
+Lines    1,153
+```
+
+See [`prompts/README.md`](./prompts/README.md) for the integrity record.
 
 ## Why the original Sun run is kept
 
@@ -53,7 +65,31 @@ The source commit imported into this hub is `fca2ef51b43dc1c7a91050fca3476dc6fbf
 That makes the archive capable of answering **two different comparisons**:
 
 1. **Sun Original → Sun Rebuild:** prompt/specification leverage plus another generation attempt.
-2. **Sun Rebuild ↔ Astra Max:** model comparison under the same Frontier V2 prompt.
+2. **Sun Rebuild ↔ Astra Max:** model comparison under the exact same Frontier V2 prompt.
+
+## What changed between the prompts
+
+The historical prompt already asked for a polished Solar System product, but the Frontier V2 prompt expands the acceptance surface dramatically. It specifies, among other things:
+
+- strict fresh-account / instruction-isolation conditions;
+- P0/P1/P2 feature priorities and truthful fallbacks;
+- explicit user journeys and restoration behavior;
+- richer major-body art direction and catalog tiers;
+- curated moon systems, dwarf planets, asteroids, a comet and outer-system context;
+- deterministic simulation-time semantics and approximation boundaries;
+- explicit coordinate/transform separation between scientific and display space;
+- exploration, relative and dedicated scale-laboratory behavior;
+- camera/follow/reference-frame rules and interaction-conflict policy;
+- comparison, measurement, light-time, seasons, eclipses and orbit laboratories;
+- tours, educational activities, encyclopedia/glossary and mission history;
+- favorites, notes, bookmarks, saved viewpoints and portable local data;
+- photography, optional sensory features and capability fallbacks;
+- complete PT-BR/English localization requirements;
+- accessibility, keyboard, mobile and reduced-motion requirements;
+- numerical, browser, performance and resource validation;
+- an explicit feature acceptance matrix and definition of done.
+
+That difference is exactly why the original and rebuild are preserved as distinct experiments rather than treating the rebuild as a simple replacement.
 
 ## Snapshot policy
 
@@ -95,15 +131,15 @@ The model is not required to build a high-precision N-body ephemeris. It is requ
 
 ## Reproducibility
 
-Every run must ultimately have all of the following:
+Every run has or is paired with:
 
 - exact prompt text;
 - exact upstream commit SHA;
 - vendored project snapshot;
 - model label / run label;
-- evaluation evidence;
-- evaluator scorecard;
-- explicit caveats for anything that could not be reproduced.
+- explicit provenance metadata;
+- evaluator scorecard and evidence structure;
+- caveats for anything the later evaluation cannot reproduce.
 
 The machine-readable provenance lives in [`RUNS.json`](./RUNS.json).
 

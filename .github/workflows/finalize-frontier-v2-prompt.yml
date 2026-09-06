@@ -66,3 +66,5 @@ jobs:
           git add -A .import benchmarks/solar-system/prompts/frontier-v2.md
           git commit -m "Archive exact Frontier V2 Solar System prompt"
           git push
+
+# Re-run marker: all eight transport chunks staged.

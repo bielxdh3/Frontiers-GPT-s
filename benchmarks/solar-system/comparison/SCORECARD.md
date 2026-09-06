@@ -1,14 +1,14 @@
 # Solar System benchmark scorecard
 
-> Status: evaluation template. Do not fill scores until all intended frontier runs and their exact shared prompt are archived.
+> Status: all three project snapshots are archived. Numerical scoring waits only for the exact shared Frontier V2 prompt to be added and for the evaluation pass itself.
 
 ## Runs
 
 | Run | Snapshot | Prompt | Evaluation state |
 | --- | --- | --- | --- |
-| GPT-5.6 Sun Max — Original | `67eb9fc…` | `sun-original.md` | Historical baseline |
-| GPT-5.6 Sun Max — Rebuild | `93d43ae…` | `frontier-v2.md` | Awaiting exact prompt archive |
-| GPT-6 Astra Max | pending | `frontier-v2.md` | Awaiting upstream output |
+| GPT-5.6 Sun Max — Original | `67eb9fc…` | `sun-original.md` | Historical baseline archived |
+| GPT-5.6 Sun Max — Rebuild | `93d43ae…` | `frontier-v2.md` | Snapshot archived; exact V2 prompt pending |
+| GPT-6 Astra Max | `fca2ef51…` | `frontier-v2.md` | Snapshot archived; exact V2 prompt pending |
 
 ## Weighted score
 
@@ -104,4 +104,4 @@
 
 ## Final ranking
 
-Pending complete evidence and the Astra snapshot.
+Pending the exact shared Frontier V2 prompt and the evidence-backed evaluation pass.

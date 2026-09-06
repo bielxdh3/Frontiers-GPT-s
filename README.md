@@ -72,7 +72,7 @@ The same model family gets another full attempt under the much stronger Frontier
 - Completely rebuilt implementation
 - Source commit pinned
 - Full project and QA artifacts vendored
-- Shared V2 prompt text still awaiting archival
+- Exact shared V2 prompt archived and integrity verified
 
 **Snapshot:** `93d43ae62f…`
 
@@ -82,12 +82,12 @@ The same model family gets another full attempt under the much stronger Frontier
 ### ✦ GPT-6 Astra Max
 **Frontier V2 challenger**
 
-The direct frontier-model challenger intended to receive the same V2 prompt as the Sun rebuild.
+The direct frontier-model challenger using the same V2 prompt as the Sun rebuild.
 
 - Full upstream project captured
 - Source commit pinned
 - Full project vendored into this hub
-- Shared V2 prompt text still awaiting archival
+- Exact shared V2 prompt archived and integrity verified
 
 **Snapshot:** `fca2ef51b4…`
 
@@ -139,15 +139,32 @@ This comparison asks how much a model's output can improve when the specificatio
 ### B. Frontier model comparison
 
 ```text
-                     same Frontier V2 prompt
-                    ↙                       ↘
+                     exact same Frontier V2 prompt
+                    ↙                             ↘
        GPT-5.6 Sun Max                     GPT-6 Astra Max
               rebuild                         challenger
 ```
 
-This is the cleaner model-vs-model comparison because the intended input is shared.
+This is the cleaner model-vs-model comparison because the input is shared and now archived byte-for-byte.
 
 The repository does **not** pretend these two experiments are the same thing.
+
+---
+
+## Shared Frontier V2 prompt integrity
+
+The direct frontier comparison is grounded in the exact uploaded master prompt:
+
+| Property | Verified value |
+| --- | --- |
+| File | [`benchmarks/solar-system/prompts/frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md) |
+| SHA-256 | `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65` |
+| Size | `115,983 bytes` |
+| Lines | `1,153` |
+| Used by | GPT-5.6 Sun Max rebuild + GPT-6 Astra Max |
+| Verification | byte count + line count + SHA-256 passed in GitHub Actions |
+
+The file is not a reconstruction, summary or cleaned-up variant. It is the exact supplied benchmark input.
 
 ---
 
@@ -168,8 +185,9 @@ Frontiers-GPT-s/
         ├── RUNS.json                 ← machine-readable provenance
         │
         ├── prompts/
+        │   ├── README.md             ← prompt integrity + provenance
         │   ├── sun-original.md       ← exact historical input
-        │   └── frontier-v2.md        ← exact shared V2 input when recovered
+        │   └── frontier-v2.md        ← exact shared V2 input, verified
         │
         ├── runs/
         │   ├── gpt-5.6-sun-max/
@@ -204,7 +222,7 @@ A run is considered fully archived only when it has:
 | **Scorecard** | makes the comparison criteria explicit |
 | **Caveats** | prevents missing evidence from becoming fake certainty |
 
-Machine-readable run provenance is stored in [`RUNS.json`](./benchmarks/solar-system/RUNS.json).
+Machine-readable run and prompt provenance is stored in [`RUNS.json`](./benchmarks/solar-system/RUNS.json).
 
 ---
 
@@ -223,7 +241,7 @@ The default rubric is intentionally product-heavy:
 | **Code / architecture** | 10 | Is the implementation understandable and maintainable? |
 | **Accessibility / responsive behavior** | 5 | Does it work beyond a desktop mouse-only happy path? |
 
-The full rules live in [`docs/METHODOLOGY.md`](./docs/METHODOLOGY.md).
+The full rules live in [`docs/METHODOLOGY.md`](./docs/METHODOLOGY.md). The Solar System scorecard also expands these dimensions into the specific acceptance surface demanded by the 1,153-line Frontier V2 brief.
 
 ### Scores are not enough
 
@@ -277,15 +295,17 @@ The design follows GitHub README conventions: make the repository immediately un
 | Methodology | ✅ documented |
 | Solar System benchmark structure | ✅ established |
 | Sun Original prompt | ✅ archived verbatim |
+| Frontier V2 shared prompt | ✅ archived + SHA-256 verified |
 | Sun Original snapshot | ✅ imported — `67eb9fc…` |
 | Sun Rebuild snapshot | ✅ imported — `93d43ae…` |
 | Astra Max snapshot | ✅ imported — `fca2ef51…` |
-| Frontier V2 exact prompt | ⚠️ exact text still required |
-| V2 head-to-head scorecard | ⏳ waits for exact prompt + evaluation |
+| Prompt/run provenance | ✅ complete |
+| V2 head-to-head scorecard | ✅ prepared; evaluation values pending |
+| Final ranking | ⏳ requires evidence-backed evaluation |
 
 ---
 
-## Reproducible import pipeline
+## Reproducible snapshot import pipeline
 
 The hub includes a GitHub Actions workflow that can rebuild the vendored run archive from pinned upstream commits. This avoids turning old repositories into permanent navigation dependencies while preserving provenance.
 

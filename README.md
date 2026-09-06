@@ -327,19 +327,19 @@ The design follows GitHub README conventions: make the repository immediately un
 
 ---
 
-## Reproducible snapshot import pipeline
+## Self-contained archive
 
-The hub includes a GitHub Actions workflow that can rebuild the vendored run archive from pinned upstream commits. This avoids turning old repositories into permanent navigation dependencies while preserving provenance.
+**Frontiers GPTs is now fully self-contained.** Every Solar System prompt and every evaluated project snapshot required by this benchmark is stored directly in this repository. There are no submodules, import jobs, runtime fetches, or repository-to-repository dependencies.
 
-For the current Solar System archive, the workflow successfully imported both Sun snapshots and detected/imported the Astra main snapshot in the same run.
+The original repository names and commit SHAs are retained only as historical provenance. Deleting those legacy repositories does not remove or alter the archived benchmark runs here.
 
 ---
 
-## Legacy upstreams
+## Historical provenance
 
-The first runs originated in dedicated repositories before the unified archive existed. They remain useful as provenance sources, but **Frontiers GPTs is the canonical benchmark hub going forward**.
+The first runs originally lived in dedicated repositories before this unified archive existed. Their names and pinned commit SHAs are preserved in `RUNS.json` only as historical provenance; **Frontiers GPTs is the canonical and complete archive**.
 
-A historical ChatGPT-hosted preview also existed for the original Sun run. Its long-term availability is not assumed; the Git snapshot is the durable record.
+Those legacy GitHub repositories are not required for browsing, evaluating, preserving, or extending this benchmark and may be removed without affecting the copies stored here. The public `biel.dev.br` experiences are presentation links, not archive dependencies.
 
 ---
 

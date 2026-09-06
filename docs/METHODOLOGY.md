@@ -69,7 +69,7 @@ An older run may remain valuable even after a stronger rebuild exists. Historica
 ## 9. Repository hygiene
 
 - keep generated runs separate from evaluator-authored files;
-- preserve source commit IDs;
+- preserve historical source commit IDs while keeping the archived run self-contained;
 - do not edit a model's files merely to make the archive prettier;
 - put screenshots and scorecards in evaluation directories, not inside the model snapshot unless they were originally produced by that model;
 - record missing information explicitly.

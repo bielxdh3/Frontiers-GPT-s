@@ -36,11 +36,11 @@ Branches remain available for normal repository work: staging a migration, revie
 
 ## Run folders are immutable snapshots
 
-A run folder is a vendored copy of the model output at a pinned upstream commit. Evaluator-authored notes do not belong inside that snapshot. This keeps the boundary between **what the model produced** and **what the evaluator concluded** obvious.
+A run folder is a self-contained vendored copy of the model output captured from a pinned historical commit. It does not depend on the original repository continuing to exist. Evaluator-authored notes do not belong inside that snapshot. This keeps the boundary between **what the model produced** and **what the evaluator concluded** obvious.
 
 ## Provenance
 
-`RUNS.json` records the upstream repository, commit, model label, role and prompt reference for every imported run. A human-readable explanation lives in the benchmark README.
+`RUNS.json` records the legacy source repository name and commit as historical provenance, alongside the model label, role, prompt reference and local archived path. These provenance fields are descriptive only: no benchmark operation depends on those repositories. A human-readable explanation lives in the benchmark README.
 
 ## Adding future benchmarks
 

@@ -1,6 +1,6 @@
 {
   "benchmark": "solar-system",
-  "schema_version": 2,
+  "schema_version": 3,
   "prompts": {
     "sun-original": {
       "path": "prompts/sun-original.md",
@@ -20,33 +20,38 @@
       "id": "gpt-5.6-sun-max-original",
       "model": "GPT-5.6 Sun Max",
       "role": "historical-baseline",
-      "source_repository": "bielxdh3/GPT5.6-SUN-MAX-SOLAR-SYSTEM",
       "source_commit": "67eb9fc51feb40ba4befddefde904bf6a6306016",
       "prompt": "prompts/sun-original.md",
       "target_path": "runs/gpt-5.6-sun-max/original",
-      "status": "imported"
+      "status": "imported",
+      "legacy_source_repository": "bielxdh3/GPT5.6-SUN-MAX-SOLAR-SYSTEM",
+      "archive_status": "self-contained"
     },
     {
       "id": "gpt-5.6-sun-max-frontier-v2",
       "model": "GPT-5.6 Sun Max",
       "role": "frontier-rebuild",
-      "source_repository": "bielxdh3/GPT5.6-SUN-MAX-SOLAR-SYSTEM",
       "source_commit": "93d43ae62f615a37672c0d1936912160d0475ca1",
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/gpt-5.6-sun-max/rebuild",
       "status": "imported",
-      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark."
+      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
+      "legacy_source_repository": "bielxdh3/GPT5.6-SUN-MAX-SOLAR-SYSTEM",
+      "archive_status": "self-contained"
     },
     {
       "id": "gpt-6-astra-max-frontier-v2",
       "model": "GPT-6 Astra Max",
       "role": "frontier-run",
-      "source_repository": "bielxdh3/GPT6-ASTRA-MAX-SOLAR-SYSTEM",
       "source_commit": "fca2ef51b43dc1c7a91050fca3476dc6fbf7d3f5",
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/gpt-6-astra-max/frontier-v2",
       "status": "imported",
-      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark."
+      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
+      "legacy_source_repository": "bielxdh3/GPT6-ASTRA-MAX-SOLAR-SYSTEM",
+      "archive_status": "self-contained"
     }
-  ]
+  ],
+  "repository_mode": "self-contained",
+  "external_source_dependency": false
 }

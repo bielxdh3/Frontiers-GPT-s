@@ -128,6 +128,10 @@ runs/
 
 Evaluator material lives separately in `comparison/`.
 
+### Self-contained archive
+
+These run folders are complete vendored snapshots stored directly in `Frontiers-GPT-s`. They are not submodules and do not fetch content from the original repositories. The legacy repository names and commit SHAs are retained only to document where each snapshot originated.
+
 ## Evaluation
 
 The shared scorecard uses eight weighted dimensions:

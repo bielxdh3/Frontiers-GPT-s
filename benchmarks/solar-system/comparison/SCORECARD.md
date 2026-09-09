@@ -1,32 +1,40 @@
 # Solar System benchmark scorecard
 
-> Status: benchmark inputs and all five project snapshots are fully archived. The remaining work is the evidence-backed evaluation itself.
+> Status: the four current Frontier V2 contenders are fully archived. Evaluation values remain pending until the evidence-backed pass is complete.
 
-## Runs
+## Current arena
 
-| Run | Snapshot | Prompt | Evaluation state |
-| --- | --- | --- | --- |
-| GPT-5.6 Sun Max — Original | `67eb9fc…` | [`sun-original.md`](../prompts/sun-original.md) | Historical baseline archived |
-| GPT-5.6 Sun Max — Rebuild | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
-| GPT-6 Astra Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
-| Grok 4.6 | archive `5d77eeb509…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
-| Fable | `7e079669e41b…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
+| Model | Effort | Snapshot | Prompt | Evaluation state |
+| --- | --- | --- | --- | --- |
+| GPT-5.6 Sun Max | Max | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
+| GPT-6 Astra Max | Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
+| Grok 4.6 | **XHIGH** | archive `5d77eeb509…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
+| Fable 5.1 | **Max** | `7e079669e41b…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
 
-The four Frontier V2 runs use the same archived prompt. Its SHA-256 is `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
+The four current runs use the exact same archived prompt. SHA-256: `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
 
-## Weighted score
+Reasoning labels are recorded as run metadata and are not normalized across vendors. Grok 4.6 is the XHIGH run; Fable 5.1 is the Max run.
 
-| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max | Grok 4.6 | Fable |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Feature completeness | 20 | — | — | — | — | — |
-| Interaction / UX | 15 | — | — | — | — | — |
-| Visual execution | 15 | — | — | — | — | — |
-| Scientific / simulation fidelity | 15 | — | — | — | — | — |
-| Robustness | 10 | — | — | — | — | — |
-| Performance | 10 | — | — | — | — | — |
-| Code / architecture | 10 | — | — | — | — | — |
-| Accessibility / responsive behavior | 5 | — | — | — | — | — |
-| **Total** | **100** | **—** | **—** | **—** | **—** | **—** |
+<details>
+<summary><strong>Historical baseline</strong></summary>
+
+GPT-5.6 Sun Max V1 (`67eb9fc…`) is preserved for prompt-leverage analysis, but it is excluded from the current weighted Frontier V2 arena because it used `sun-original.md`.
+
+</details>
+
+## Weighted score — current Frontier V2 arena
+
+| Dimension | Weight | Sun Max V2 | Astra Max | Grok 4.6 XHIGH | Fable 5.1 Max |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Feature completeness | 20 | — | — | — | — |
+| Interaction / UX | 15 | — | — | — | — |
+| Visual execution | 15 | — | — | — | — |
+| Scientific / simulation fidelity | 15 | — | — | — | — |
+| Robustness | 10 | — | — | — | — |
+| Performance | 10 | — | — | — | — |
+| Code / architecture | 10 | — | — | — | — |
+| Accessibility / responsive behavior | 5 | — | — | — | — |
+| **Total** | **100** | **—** | **—** | **—** | **—** |
 
 ## Evidence checklist
 
@@ -85,7 +93,7 @@ The four Frontier V2 runs use the same archived prompt. Its SHA-256 is `7c2833a0
 
 ## Prompt-specific acceptance expansion
 
-The Frontier V2 prompt is much broader than the original baseline. The detailed evaluator should additionally verify the explicit areas defined by the prompt, including:
+The Frontier V2 evaluator should additionally verify:
 
 - curated moons, dwarf planets, small bodies, asteroid belt, Kuiper Belt and outer-system context;
 - deterministic clock semantics, date validity boundaries and approximate orbital model transparency;
@@ -96,20 +104,13 @@ The Frontier V2 prompt is much broader than the original baseline. The detailed 
 - glossary/encyclopedia, favorites, journal, bookmarks and saved viewpoints;
 - photography/capture behavior and local export/import boundaries;
 - Portuguese/English localization, keyboard ownership, reduced motion and responsive layouts;
-- loading/recovery paths, resource behavior and the integrated restoration scenarios specified by the prompt.
+- loading/recovery paths, resource behavior and integrated restoration scenarios.
 
-A feature receives credit only when the requested behavior is actually present and supported by appropriate evidence.
+A feature receives credit only when the requested behavior is actually present and supported by evidence.
 
 ## Qualitative verdict
 
-### GPT-5.6 Sun Max — Original
-**Strengths:** pending evaluation
-
-**Weaknesses:** pending evaluation
-
-**Critical defects:** pending evaluation
-
-### GPT-5.6 Sun Max — Rebuild
+### GPT-5.6 Sun Max — V2
 **Strengths:** pending evaluation
 
 **Weaknesses:** pending evaluation
@@ -123,14 +124,14 @@ A feature receives credit only when the requested behavior is actually present a
 
 **Critical defects:** pending evaluation
 
-### Grok 4.6
+### Grok 4.6 — XHIGH
 **Strengths:** pending evaluation
 
 **Weaknesses:** pending evaluation
 
 **Critical defects:** pending evaluation
 
-### Fable
+### Fable 5.1 — Max
 **Strengths:** pending evaluation
 
 **Weaknesses:** pending evaluation
@@ -139,4 +140,4 @@ A feature receives credit only when the requested behavior is actually present a
 
 ## Final ranking
 
-Pending the complete evidence-backed evaluation pass. Benchmark provenance is complete; no input or snapshot is currently missing.
+Pending the complete evidence-backed evaluation pass. The current arena is Sun Max V2 vs Astra Max vs Grok 4.6 XHIGH vs Fable 5.1 Max.

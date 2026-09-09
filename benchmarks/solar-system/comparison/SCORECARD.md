@@ -1,6 +1,6 @@
 # Solar System benchmark scorecard
 
-> Status: benchmark inputs and all three project snapshots are fully archived. The remaining work is the evidence-backed evaluation itself.
+> Status: benchmark inputs and all four project snapshots are fully archived. The remaining work is the evidence-backed evaluation itself.
 
 ## Runs
 
@@ -9,22 +9,23 @@
 | GPT-5.6 Sun Max — Original | `67eb9fc…` | [`sun-original.md`](../prompts/sun-original.md) | Historical baseline archived |
 | GPT-5.6 Sun Max — Rebuild | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
 | GPT-6 Astra Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
+| Grok 4.6 | archive `5d77eeb509…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |
 
-The two Frontier V2 runs use the same archived prompt. Its SHA-256 is `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
+The three Frontier V2 runs use the same archived prompt. Its SHA-256 is `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
 
 ## Weighted score
 
-| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max |
-| --- | ---: | ---: | ---: | ---: |
-| Feature completeness | 20 | — | — | — |
-| Interaction / UX | 15 | — | — | — |
-| Visual execution | 15 | — | — | — |
-| Scientific / simulation fidelity | 15 | — | — | — |
-| Robustness | 10 | — | — | — |
-| Performance | 10 | — | — | — |
-| Code / architecture | 10 | — | — | — |
-| Accessibility / responsive behavior | 5 | — | — | — |
-| **Total** | **100** | **—** | **—** | **—** |
+| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max  Grok 4.6 |
+| --- | ---: | ---: | ---: | ---:  ---: |
+| Feature completeness | 20 | — | — | —  — |
+| Interaction / UX | 15 | — | — | —  — |
+| Visual execution | 15 | — | — | —  — |
+| Scientific / simulation fidelity | 15 | — | — | —  — |
+| Robustness | 10 | — | — | —  — |
+| Performance | 10 | — | — | —  — |
+| Code / architecture | 10 | — | — | —  — |
+| Accessibility / responsive behavior | 5 | — | — | —  — |
+| **Total** | **100** | **—** | **—** | **—**  — |
 
 ## Evidence checklist
 
@@ -115,6 +116,13 @@ A feature receives credit only when the requested behavior is actually present a
 **Critical defects:** pending evaluation
 
 ### GPT-6 Astra Max
+**Strengths:** pending evaluation
+
+**Weaknesses:** pending evaluation
+
+**Critical defects:** pending evaluation
+
+### Grok 4.6
 **Strengths:** pending evaluation
 
 **Weaknesses:** pending evaluation

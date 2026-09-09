@@ -22,7 +22,9 @@ Frontiers-GPT-s/
       │  ├─ gpt-5.6-sun-max/
       │  │  ├─ original/
       │  │  └─ rebuild/
-      │  └─ gpt-6-astra-max/
+      │  ├─ gpt-6-astra-max/
+      │  │  └─ frontier-v2/
+      │  └─ grok-4.6/
       │     └─ frontier-v2/
       └─ comparison/
          └─ SCORECARD.md
@@ -36,11 +38,11 @@ Branches remain available for normal repository work: staging a migration, revie
 
 ## Run folders are immutable snapshots
 
-A run folder is a self-contained vendored copy of the model output captured from a pinned historical commit. It does not depend on the original repository continuing to exist. Evaluator-authored notes do not belong inside that snapshot. This keeps the boundary between **what the model produced** and **what the evaluator concluded** obvious.
+A run folder is a self-contained vendored copy of the model output captured from pinned source provenance: a Git commit when available, or a verified source archive when Git metadata is absent. It does not depend on the original repository continuing to exist. Evaluator-authored notes do not belong inside that snapshot. This keeps the boundary between **what the model produced** and **what the evaluator concluded** obvious.
 
 ## Provenance
 
-`RUNS.json` records the legacy source repository name and commit as historical provenance, alongside the model label, role, prompt reference and local archived path. These provenance fields are descriptive only: no benchmark operation depends on those repositories. A human-readable explanation lives in the benchmark README.
+`RUNS.json` records the strongest verifiable source provenance available — repository/commit when supplied, or source-archive SHA-256 when Git metadata is absent — alongside the model label, role, prompt reference and local archived path. These provenance fields are descriptive only: no benchmark operation depends on those repositories. A human-readable explanation lives in the benchmark README.
 
 ## Adding future benchmarks
 

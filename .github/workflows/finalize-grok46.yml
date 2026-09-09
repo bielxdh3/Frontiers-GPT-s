@@ -1,0 +1,257 @@
+name: Finalize Grok 4.6 Frontier V2
+
+on:
+  push:
+    branches:
+      - add-grok-4.6-solar-system
+    paths:
+      - .github/workflows/finalize-grok46.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: add-grok-4.6-solar-system
+          fetch-depth: 0
+
+      - name: Restore and verify missing source files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .grok-final/part-00.b64 .grok-final/rem-*.b64 > /tmp/grok-missing.b64
+          echo "6e00a199a3a2a3ba6f3f6378ed13d80438d95380dcaa4aafbbe2a1897ed8445e  /tmp/grok-missing.b64" | sha256sum -c -
+          base64 -d /tmp/grok-missing.b64 > /tmp/grok-missing.tgz
+          echo "851c5298ed25664c591bcfe4e35fc96065a54b3a2d5c422d59603263015141a7  /tmp/grok-missing.tgz" | sha256sum -c -
+          tar -xzf /tmp/grok-missing.tgz -C benchmarks/solar-system/runs/grok-4.6/frontier-v2
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          root = Path('benchmarks/solar-system/runs/grok-4.6/frontier-v2')
+          files = sorted(p for p in root.rglob('*') if p.is_file())
+          assert len(files) == 36, f'expected 36 source files, got {len(files)}'
+          lines = []
+          for p in files:
+              rel = p.relative_to(root).as_posix()
+              lines.append(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {rel}\n")
+          digest = hashlib.sha256(''.join(lines).encode()).hexdigest()
+          expected = 'c8b3212e46e4ee1f309e818e03ac89c32510ea914aa48054eacb80426ea52e0e'
+          print('snapshot manifest sha256:', digest)
+          assert digest == expected, (digest, expected)
+          PY
+
+      - name: Update benchmark metadata and documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          ARCHIVE = '5d77eeb509e147e40701fa7a72d7009c1a81ed3eca8f0c992d3dd6fa454cd1aa'
+          PROMPT = '7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65'
+
+          def rep(text, old, new, label, count=1):
+              found = text.count(old)
+              assert found >= count, f'{label}: expected at least {count}, found {found}'
+              return text.replace(old, new, count)
+
+          # RUNS.json
+          p = Path('benchmarks/solar-system/RUNS.json')
+          data = json.loads(p.read_text())
+          data['schema_version'] = 4
+          assert not any(r.get('id') == 'grok-4.6-frontier-v2' for r in data['runs'])
+          data['runs'].append({
+              'id': 'grok-4.6-frontier-v2',
+              'model': 'Grok 4.6',
+              'role': 'frontier-run',
+              'source_commit': None,
+              'source_archive_sha256': ARCHIVE,
+              'source_archive_bytes': 122173,
+              'source_filename': 'grok-4.6-solar-system-main.zip',
+              'prompt': 'prompts/frontier-v2.md',
+              'target_path': 'runs/grok-4.6/frontier-v2',
+              'status': 'imported',
+              'notes': 'Uses the exact shared Frontier V2 prompt. The supplied ZIP contained no Git metadata, so provenance is pinned by the verified source-archive SHA-256 instead of an invented source commit.',
+              'archive_status': 'self-contained'
+          })
+          p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n')
+
+          # Root README
+          p = Path('README.md')
+          s = p.read_text()
+          s = rep(s, 'runs-3%20snapshots%20archived', 'runs-4%20snapshots%20archived', 'root run badge')
+          s = rep(s, '**Exact prompts. Exact commits. Complete project snapshots. Explicit evidence. No hidden benchmark contamination.**', '**Exact prompts. Pinned provenance. Complete project snapshots. Explicit evidence. No hidden benchmark contamination.**', 'root provenance tagline')
+          s = rep(s, '<sub>Direct Frontier V2 comparison — same master prompt.</sub>', '<sub>Direct Frontier V2 arena — Sun Max, Astra Max and Grok 4.6 use the same master prompt. Live links are shown where a deployment exists.</sub>', 'root live subtitle')
+          assert s.count('<td width="33%" valign="top">') >= 3
+          s = s.replace('<td width="33%" valign="top">', '<td width="25%" valign="top">', 3)
+          arena_end = '''**Snapshot:** `fca2ef51b4…`
+
+</td>
+</tr>
+</table>'''
+          arena_new = '''**Snapshot:** `fca2ef51b4…`
+
+</td>
+<td width="25%" valign="top">
+
+### 𝕏 Grok 4.6
+**Frontier V2 challenger**
+
+A third direct challenger generated from the same Frontier V2 input.
+
+- Complete supplied project archived
+- Same exact shared V2 prompt
+- Source ZIP integrity pinned by SHA-256
+- No source commit fabricated: the supplied archive contained no `.git` metadata
+
+**Source archive:** `5d77eeb509…`
+
+</td>
+</tr>
+</table>'''
+          s = rep(s, arena_end, arena_new, 'root arena card')
+          old_diag = '''                     exact same Frontier V2 prompt
+                    ↙                             ↘
+       GPT-5.6 Sun Max                     GPT-6 Astra Max
+              rebuild                         challenger'''
+          new_diag = '''                         exact same Frontier V2 prompt
+                    ↙                ↓                ↘
+       GPT-5.6 Sun Max       GPT-6 Astra Max         Grok 4.6
+              rebuild             challenger          challenger'''
+          s = rep(s, old_diag, new_diag, 'root comparison diagram')
+          s = rep(s, '| Used by | GPT-5.6 Sun Max rebuild + GPT-6 Astra Max |', '| Used by | GPT-5.6 Sun Max rebuild + GPT-6 Astra Max + Grok 4.6 |', 'root prompt consumers')
+          old_tree = '''        │   │   └── rebuild/          ← immutable vendored snapshot
+        │   └── gpt-6-astra-max/
+        │       └── frontier-v2/      ← immutable vendored snapshot'''
+          new_tree = '''        │   │   └── rebuild/          ← immutable vendored snapshot
+        │   ├── gpt-6-astra-max/
+        │   │   └── frontier-v2/      ← immutable vendored snapshot
+        │   └── grok-4.6/
+        │       └── frontier-v2/      ← immutable vendored snapshot'''
+          s = rep(s, old_tree, new_tree, 'root repository tree')
+          s = rep(s, '| **Exact commit SHA** | freezes the output being judged |', '| **Pinned source provenance** | freezes the output via Git commit when available, or a verified source-archive hash when Git metadata is absent |', 'root integrity requirement')
+          s = rep(s, '| Astra Max snapshot | ✅ imported — `fca2ef51…` |', '| Astra Max snapshot | ✅ imported — `fca2ef51…` |\n| Grok 4.6 snapshot | ✅ imported — source archive SHA-256 `5d77eeb509…` |', 'root status')
+          prov = 'Those legacy GitHub repositories are not required for browsing, evaluating, preserving, or extending this benchmark and may be removed without affecting the copies stored here. The public `biel.dev.br` experiences are presentation links, not archive dependencies.'
+          prov_new = prov + '\n\nThe Grok 4.6 run was supplied directly as a ZIP without `.git` metadata. Its verified source-archive SHA-256 is therefore the provenance anchor; the repository does not invent a commit SHA that was never supplied.'
+          s = rep(s, prov, prov_new, 'root Grok provenance note')
+          p.write_text(s)
+
+          # Benchmark README
+          p = Path('benchmarks/solar-system/README.md')
+          s = p.read_text()
+          s = rep(s, '<sub>Direct Frontier V2 comparison — same master prompt.</sub>', '<sub>Direct Frontier V2 arena — Sun Max, Astra Max and Grok 4.6 use the same master prompt. Live links are shown where a deployment exists.</sub>', 'benchmark live subtitle')
+          row = '| **Frontier V2 challenger** | GPT-6 Astra Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `fca2ef51b4…` | Same V2 input, different frontier model |'
+          s = rep(s, row, row + '\n| **Frontier V2 challenger** | Grok 4.6 | [`frontier-v2.md`](./prompts/frontier-v2.md) | source archive `5d77eeb509…` | Same V2 input, different frontier model |', 'benchmark Grok row')
+          s = rep(s, 'All three project snapshots and both benchmark prompt versions are now archived in this repository.', 'All four project snapshots and both benchmark prompt versions are now archived in this repository.', 'benchmark snapshot count')
+          s = rep(s, 'The direct Sun-rebuild-vs-Astra comparison uses the exact same `frontier-v2.md` input.', 'The direct Sun-rebuild-vs-Astra-vs-Grok comparison uses the exact same `frontier-v2.md` input.', 'benchmark shared comparison')
+          astra = 'The source commit imported into this hub is `fca2ef51b43dc1c7a91050fca3476dc6fbf7d3f5`.'
+          grok = astra + f'''\n\n## Grok 4.6 challenger snapshot\n\nThe Grok 4.6 run is a complete Vite/TypeScript Solar System project with its own rendering engine, orbital/science core, catalogs, learning content, localization, state and persistence layers. It is archived exactly from the supplied project ZIP.\n\nThe supplied ZIP contained no `.git` directory, so no upstream source commit can be proven. Rather than fabricate one, this archive pins the supplied source itself with SHA-256 `{ARCHIVE}`.'''
+          s = rep(s, astra, grok, 'benchmark Grok section')
+          s = rep(s, '2. **Sun Rebuild ↔ Astra Max:** model comparison under the exact same Frontier V2 prompt.', '2. **Sun Rebuild ↔ Astra Max ↔ Grok 4.6:** model comparison under the exact same Frontier V2 prompt.', 'benchmark comparison list')
+          old_tree = '''└─ gpt-6-astra-max/
+   └─ frontier-v2/'''
+          new_tree = '''├─ gpt-6-astra-max/
+│  └─ frontier-v2/
+└─ grok-4.6/
+   └─ frontier-v2/'''
+          s = rep(s, old_tree, new_tree, 'benchmark run tree')
+          s = rep(s, '- exact upstream commit SHA;', '- pinned source provenance (upstream commit SHA when available; verified archive SHA-256 otherwise);', 'benchmark reproducibility')
+          s = rep(s, 'The legacy repository names and commit SHAs are retained only to document where each snapshot originated.', 'Legacy repository names and commit SHAs are retained where available; archive hashes are used when the supplied source has no Git metadata.', 'benchmark self-contained provenance')
+          p.write_text(s)
+
+          # Scorecard
+          p = Path('benchmarks/solar-system/comparison/SCORECARD.md')
+          s = p.read_text()
+          s = rep(s, 'all three project snapshots', 'all four project snapshots', 'scorecard count')
+          row = '| GPT-6 Astra Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |'
+          s = rep(s, row, row + '\n| Grok 4.6 | archive `5d77eeb509…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready for evaluation |', 'scorecard Grok row')
+          s = rep(s, 'The two Frontier V2 runs use the same archived prompt.', 'The three Frontier V2 runs use the same archived prompt.', 'scorecard V2 count')
+          s = rep(s, '| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max |', '| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max | Grok 4.6 |', 'scorecard header')
+          s = rep(s, '| --- | ---: | ---: | ---: | ---: |', '| --- | ---: | ---: | ---: | ---: | ---: |', 'scorecard separator')
+          lines = s.splitlines()
+          in_scores = False
+          for i, line in enumerate(lines):
+              if line == '## Weighted score':
+                  in_scores = True
+                  continue
+              if line == '## Evidence checklist':
+                  in_scores = False
+              if in_scores and line.startswith('|') and 'Dimension' not in line and not line.startswith('| ---'):
+                  lines[i] = line[:-1] + ' — |'
+          s = '\n'.join(lines) + '\n'
+          marker = '## Final ranking'
+          grok_verdict = '''### Grok 4.6
+**Strengths:** pending evaluation
+
+**Weaknesses:** pending evaluation
+
+**Critical defects:** pending evaluation
+
+'''
+          s = rep(s, marker, grok_verdict + marker, 'scorecard verdict')
+          p.write_text(s)
+
+          # Prompt README
+          p = Path('benchmarks/solar-system/prompts/README.md')
+          s = p.read_text()
+          s = rep(s, '| [`frontier-v2.md`](./frontier-v2.md) | GPT-5.6 Sun Max — rebuild; GPT-6 Astra Max |', '| [`frontier-v2.md`](./frontier-v2.md) | GPT-5.6 Sun Max — rebuild; GPT-6 Astra Max; Grok 4.6 |', 'prompt table')
+          s = rep(s, '| Consumers | Sun Max rebuild + Astra Max challenger |', '| Consumers | Sun Max rebuild + Astra Max challenger + Grok 4.6 challenger |', 'prompt consumers')
+          old_diag = '''                         exact same Frontier V2 prompt
+                       ↙                               ↘
+          GPT-5.6 Sun Max rebuild              GPT-6 Astra Max'''
+          new_diag = '''                            exact same Frontier V2 prompt
+                       ↙                 ↓                 ↘
+          GPT-5.6 Sun Max rebuild      GPT-6 Astra Max         Grok 4.6'''
+          s = rep(s, old_diag, new_diag, 'prompt diagram')
+          p.write_text(s)
+
+          # Repository architecture
+          p = Path('docs/REPOSITORY-ARCHITECTURE.md')
+          s = p.read_text()
+          old_tree = '''      │  └─ gpt-6-astra-max/
+      │     └─ frontier-v2/'''
+          new_tree = '''      │  ├─ gpt-6-astra-max/
+      │  │  └─ frontier-v2/
+      │  └─ grok-4.6/
+      │     └─ frontier-v2/'''
+          s = rep(s, old_tree, new_tree, 'architecture tree')
+          s = rep(s, 'A run folder is a self-contained vendored copy of the model output captured from a pinned historical commit.', 'A run folder is a self-contained vendored copy of the model output captured from pinned source provenance: a Git commit when available, or a verified source archive when Git metadata is absent.', 'architecture snapshot provenance')
+          old_prov = '`RUNS.json` records the legacy source repository name and commit as historical provenance, alongside the model label, role, prompt reference and local archived path.'
+          new_prov = '`RUNS.json` records the strongest verifiable source provenance available — repository/commit when supplied, or source-archive SHA-256 when Git metadata is absent — alongside the model label, role, prompt reference and local archived path.'
+          s = rep(s, old_prov, new_prov, 'architecture provenance')
+          p.write_text(s)
+
+          # Sanity checks
+          assert ARCHIVE in Path('benchmarks/solar-system/RUNS.json').read_text()
+          assert 'Grok 4.6' in Path('README.md').read_text()
+          assert 'Grok 4.6' in Path('benchmarks/solar-system/README.md').read_text()
+          assert 'Grok 4.6' in Path('benchmarks/solar-system/comparison/SCORECARD.md').read_text()
+          assert 'Grok 4.6' in Path('benchmarks/solar-system/prompts/README.md').read_text()
+          assert 'grok-4.6' in Path('docs/REPOSITORY-ARCHITECTURE.md').read_text()
+          PY
+
+      - name: Validate project
+        working-directory: benchmarks/solar-system/runs/grok-4.6/frontier-v2
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Commit clean integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf benchmarks/solar-system/runs/grok-4.6/frontier-v2/node_modules
+          rm -rf benchmarks/solar-system/runs/grok-4.6/frontier-v2/dist
+          rm -rf .grok-final
+          rm -f .github/workflows/finalize-grok46.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add Grok 4.6 to Solar System Frontier V2 benchmark"
+          git push origin HEAD:add-grok-4.6-solar-system

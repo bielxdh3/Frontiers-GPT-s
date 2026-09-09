@@ -1,6 +1,6 @@
 # Solar System benchmark scorecard
 
-> Status: the four current Frontier V2 contenders are fully archived. Sun Max V2 has partial provisional evaluation values recorded; the remaining categories and contenders are still pending.
+> Status: the four current Frontier V2 contenders are fully archived. Sun Max V2 has partial provisional evaluation values recorded; the remaining category and contenders are still pending.
 
 ## Current arena
 
@@ -32,6 +32,8 @@ Required benchmark behavior drives **Feature completeness**. Optional extras can
 
 Cells show the raw 0–10 rating followed by the weighted contribution.
 
+> ***AVALIAÇÃO PESSOAL NÃO 100% CONFIÁVEL E NÃO PROFUNDA SUFICIENTE.*** As notas atuais do Sun Max V2 foram feitas principalmente por **um único usuário**, em **poucos dispositivos/ambientes**, e carregam inevitavelmente **viés pessoal e subjetividade**. Elas devem ser tratadas como uma avaliação preliminar, não como uma medição definitiva ou revisão profissional exaustiva.
+
 ## Weighted score — current Frontier V2 arena
 
 | Dimension | Weight | Sun Max V2 | Astra Max | Grok 4.6 XHIGH | Fable 5.1 Max |
@@ -39,16 +41,16 @@ Cells show the raw 0–10 rating followed by the weighted contribution.
 | Feature completeness | 20 | **9.5/10 → 19.0/20** | — | — | — |
 | Interaction / UX | 15 | **8.0/10 → 12.0/15** | — | — | — |
 | Visual execution | 15 | — | — | — | — |
-| Scientific / simulation fidelity | 15 | — | — | — | — |
-| Robustness | 10 | — | — | — | — |
+| Scientific / simulation fidelity | 15 | **4.0/10 → 6.0/15** | — | — | — |
+| Robustness | 10 | **9.5/10 → 9.5/10** | — | — | — |
 | Performance | 10 | **7.5/10 → 7.5/10** | — | — | — |
 | Code / architecture | 10 | **8.0/10 → 8.0/10*** | — | — | — |
-| Accessibility / responsive behavior | 5 | — | — | — | — |
-| **Total** | **100** | **46.5/55 scored so far** | **—** | **—** | **—** |
+| Accessibility / responsive behavior | 5 | **7.0/10 → 3.5/5** | — | — | — |
+| **Total** | **100** | **65.5/85 scored so far** | **—** | **—** | **—** |
 
 \* `Code / architecture` is a provisional technical evaluator score. The project has clear separation between data, science, tests and browser QA, no runtime dependency stack, and reproducible validation; however, much of the application/UI/rendering logic is concentrated in a very large `app.js`, which limits maintainability and modularity.
 
-The Sun Max V2 user-entered ratings currently recorded are: Feature completeness **9.5/10**, Interaction / UX **8.0/10**, and Performance **7.5/10**. Categories not explicitly rated by the user remain pending unless clearly marked as evaluator-provisional.
+The Sun Max V2 user-entered ratings currently recorded are: Feature completeness **9.5/10**, Interaction / UX **8.0/10**, Scientific / simulation fidelity **4.0/10**, Robustness **9.5/10**, Performance **7.5/10**, and Accessibility / responsive behavior **7.0/10**. `Code / architecture` is evaluator-provisional. `Visual execution` remains pending.
 
 ## Evidence checklist
 

@@ -8,7 +8,7 @@ Each model receives the intended benchmark prompt without being told about the o
 
 ## 2. Immutable run snapshots
 
-Every evaluated run is pinned to an exact source commit. A comparison must cite that commit rather than a floating branch name. If a model is asked to rebuild the same task, the rebuild is a new run even when it comes from the same model family.
+Every evaluated run is pinned to the strongest exact source provenance available. Prefer an exact source commit when Git metadata exists; when a supplied artifact contains no Git history, pin the exact source archive with a cryptographic hash instead of inventing a commit. A comparison must cite that immutable provenance rather than a floating branch name. If a model is asked to rebuild the same task, the rebuild is a new run even when it comes from the same model family.
 
 ## 3. Prompt provenance
 
@@ -69,7 +69,7 @@ An older run may remain valuable even after a stronger rebuild exists. Historica
 ## 9. Repository hygiene
 
 - keep generated runs separate from evaluator-authored files;
-- preserve historical source commit IDs while keeping the archived run self-contained;
+- preserve immutable source provenance: commit IDs where available, verified archive hashes where Git metadata is absent;
 - do not edit a model's files merely to make the archive prettier;
 - put screenshots and scorecards in evaluation directories, not inside the model snapshot unless they were originally produced by that model;
 - record missing information explicitly.

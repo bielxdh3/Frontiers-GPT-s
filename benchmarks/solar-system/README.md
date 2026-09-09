@@ -2,69 +2,52 @@
 
 # Solar System / Orbitarium Benchmark
 
-**A full-product generation test for frontier models**
+**Frontier Models · complete-product generation benchmark**
 
 `3D / Canvas` · `simulation` · `product design` · `scientific honesty` · `responsive UX` · `robustness`
 
 </div>
 
-## Live experiences
+## ⚔️ Current Frontier V2 arena
 
-<div align="center">
+| Model | Effort | Live project | Snapshot |
+| --- | --- | --- | --- |
+| ☀️ **GPT-5.6 Sun Max** | Max | [Open Sun V2](https://gpt-5.6-sun-v2.biel.dev.br) | `93d43ae62f…` |
+| ✦ **GPT-6 Astra Max** | Max | [Open Astra](https://gpt-6-astra.biel.dev.br) | `fca2ef51b4…` |
+| 𝕏 **Grok 4.6** | **XHIGH** | [Open Grok 4.6](https://grok-4-6-solar-system.vercel.app) | archive `5d77eeb509…` |
+| ◆ **Fable 5.1** | **Max** | [Open Fable 5.1](https://fable-solar-system.vercel.app) | `7e079669e41b…` |
 
-### ⚔️ Main benchmark
+All four current contenders use the exact same [`frontier-v2.md`](./prompts/frontier-v2.md) input.
 
-<a href="https://gpt-5.6-sun-v2.biel.dev.br"><strong>☀️ Open GPT-5.6 Sun Max — V2</strong></a>
-&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-<a href="https://gpt-6-astra.biel.dev.br"><strong>✦ Open GPT-6 Astra Max</strong></a>
-&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-<a href="https://grok-4-6-solar-system.vercel.app"><strong>𝕏 Open Grok 4.6</strong></a>
-&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-<a href="https://fable-solar-system.vercel.app"><strong>◆ Open Fable</strong></a>
-
-<sub>Direct Frontier V2 arena — Sun Max, Astra Max, Grok 4.6 and Fable use the same master prompt.</sub>
-
-</div>
+> Reasoning labels are preserved exactly as run metadata. `Max` and `XHIGH` are vendor/run settings and are not treated as directly equivalent compute scales.
 
 <details>
-<summary>Historical first version</summary>
+<summary><strong>Historical Sun V1 baseline</strong></summary>
 
-The original GPT-5.6 Sun Max build is preserved only as the historical baseline:  
-[GPT-5.6 Sun Max — V1](https://gpt-5.6-sun-v1.biel.dev.br)
+GPT-5.6 Sun Max V1 is preserved only for prompt-leverage history. It is deliberately excluded from the current arena because it used [`sun-original.md`](./prompts/sun-original.md), not Frontier V2.
+
+- [Open Sun V1](https://gpt-5.6-sun-v1.biel.dev.br)
+- Snapshot: `67eb9fc51f…`
+- Archive: [`runs/gpt-5.6-sun-max/original`](./runs/gpt-5.6-sun-max/original/)
 
 </details>
 
----
-
 ## What this benchmark tests
 
-This is not a small coding exercise. The task asks a model to turn a dense product specification into a complete browser-based Solar System experience: celestial bodies, orbital behavior, time controls, camera navigation, object inspection, comparison tools, guided learning, responsive UI, performance work and scientific caveats.
+The task asks a model to turn a dense product specification into a complete browser-based Solar System experience rather than a thin demo. It stresses:
 
-It therefore stresses several capabilities at once:
+- interpretation of a long product specification;
+- visual hierarchy and product judgment;
+- simulation, time and orbital state;
+- nested systems such as Earth–Moon;
+- camera, selection and navigation behavior;
+- scale, measurement and educational tools;
+- performance and reliability;
+- responsive and accessibility behavior;
+- scientific honesty and explicit approximation boundaries;
+- testing and restoration behavior.
 
-- interpreting a long product specification;
-- choosing an implementation strategy without hand-holding;
-- integrating visual design, interaction and simulation state;
-- maintaining coherence across moving nested objects such as Earth and Moon;
-- balancing scientific fidelity against usable visualization scale;
-- building a product that works beyond the happy path;
-- validating the result instead of stopping once it renders.
-
-## Run map
-
-| Generation | Model | Input | Snapshot | Role |
-| --- | --- | --- | --- | --- |
-| **Original** | GPT-5.6 Sun Max | [`sun-original.md`](./prompts/sun-original.md) | `67eb9fc51f…` | Historical baseline |
-| **Frontier V2 rebuild** | GPT-5.6 Sun Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `93d43ae62f…` | Same model, stronger shared prompt |
-| **Frontier V2 challenger** | GPT-6 Astra Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `fca2ef51b4…` | Same V2 input, different frontier model |
-| **Frontier V2 challenger** | Grok 4.6 | [`frontier-v2.md`](./prompts/frontier-v2.md) | source archive `5d77eeb509…` | Same V2 input, different frontier model |
-| **Frontier V2 challenger** | Fable | [`frontier-v2.md`](./prompts/frontier-v2.md) | `7e079669e41b…` | Same V2 input, different frontier model |
-
-All five project snapshots and both benchmark prompt versions are now archived in this repository.
-
-### Shared Frontier V2 input
-
-The direct Sun-rebuild-vs-Astra-vs-Grok-vs-Fable comparison uses the exact same `frontier-v2.md` input. The uploaded source was preserved byte-for-byte and verified before archival:
+## Shared Frontier V2 input
 
 ```text
 SHA-256  7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65
@@ -72,72 +55,48 @@ Size     115,983 bytes
 Lines    1,153
 ```
 
-See [`prompts/README.md`](./prompts/README.md) for the integrity record.
+```text
+                       EXACT SAME FRONTIER V2 PROMPT
+               ↙                ↓               ↓               ↘
+      SUN MAX V2         ASTRA MAX        GROK 4.6          FABLE 5.1
+         MAX                MAX              XHIGH               MAX
+```
 
-## Why the original Sun run is kept
+## Run map
 
-The original run is useful for more than nostalgia. It creates a control point for a different question:
+| Run | Model | Prompt | Provenance | Arena |
+| --- | --- | --- | --- | --- |
+| Historical baseline | GPT-5.6 Sun Max V1 | `sun-original.md` | commit `67eb9fc51f…` | hidden |
+| Frontier V2 | GPT-5.6 Sun Max | `frontier-v2.md` | commit `93d43ae62f…` | current |
+| Frontier V2 | GPT-6 Astra Max | `frontier-v2.md` | commit `fca2ef51b4…` | current |
+| Frontier V2 / XHIGH | Grok 4.6 | `frontier-v2.md` | archive SHA-256 `5d77eeb509…` | current |
+| Frontier V2 / Max | Fable 5.1 | `frontier-v2.md` | commit `7e079669e41b…` | current |
 
-> How much can the same model improve when the specification itself becomes substantially better?
+Machine-readable provenance lives in [`RUNS.json`](./RUNS.json).
 
-The original project was a React/TypeScript/Three.js experience with procedural planets, camera travel, exploration/relative scale modes, time controls, search, object data, comparison mode, guided tour, responsive behavior and a WebGL fallback.
+## Current snapshots
 
-The rebuild takes a dramatically different implementation route: a dependency-free local browser application with procedural Canvas rendering, a larger body catalog, UTC time semantics, approximate JPL planetary elements, a bounded Kepler solver, scale/measurement tools, tours, activities, bilingual UI, exports, accessibility features and extensive browser QA artifacts.
+### GPT-5.6 Sun Max — Frontier V2
+A complete rebuild under the stronger Frontier V2 specification. The run is archived under [`runs/gpt-5.6-sun-max/rebuild`](./runs/gpt-5.6-sun-max/rebuild/).
 
-## Astra challenger snapshot
+### GPT-6 Astra Max
+A full challenger generated from the same V2 prompt, archived under [`runs/gpt-6-astra-max/frontier-v2`](./runs/gpt-6-astra-max/frontier-v2/).
 
-The Astra run is also a full local observatory rather than a thin demo. Its archived project describes Portuguese/English interaction, 3D exploration, physical comparison tools, laboratories, five tours and twelve activities. It separates educational approximate positions from scale/measurement behavior and documents implementation plus validation in dedicated files.
+### Grok 4.6 — XHIGH
+A complete Vite/TypeScript Solar System project with rendering, science/orbit core, catalogs, learning content, localization, state and persistence. The supplied source archive had no `.git`, so the source ZIP SHA-256 is the provenance anchor. See [`GROK-4.6-PROVENANCE.md`](./GROK-4.6-PROVENANCE.md).
 
-The source commit imported into this hub is `fca2ef51b43dc1c7a91050fca3476dc6fbf7d3f5`.
-
-## Grok 4.6 challenger snapshot
-
-The Grok 4.6 run is a complete Vite/TypeScript Solar System project with its own rendering engine, orbital/science core, catalogs, learning content, localization, state and persistence layers. It is archived exactly from the supplied project ZIP.
-
-The supplied ZIP contained no `.git` directory, so no upstream source commit can be proven. Rather than fabricate one, this archive pins the supplied source itself with SHA-256 `5d77eeb509e147e40701fa7a72d7009c1a81ed3eca8f0c992d3dd6fa454cd1aa`.
-
-## Fable challenger snapshot
-
-The Fable run is a complete Vite/Preact/Three.js Solar System observatory with simulation, rendering, catalogs, tours, activities, localization, state and persistence layers. It is archived from Git commit `7e079669e41b633057dd3dc9ae2cdeca4a4d17fb`.
-
-That makes the archive capable of answering **two different comparisons**:
-
-1. **Sun Original → Sun Rebuild:** prompt/specification leverage plus another generation attempt.
-2. **Sun Rebuild ↔ Astra Max ↔ Grok 4.6 ↔ Fable:** model comparison under the exact same Frontier V2 prompt.
-
-## What changed between the prompts
-
-The historical prompt already asked for a polished Solar System product, but the Frontier V2 prompt expands the acceptance surface dramatically. It specifies, among other things:
-
-- strict fresh-account / instruction-isolation conditions;
-- P0/P1/P2 feature priorities and truthful fallbacks;
-- explicit user journeys and restoration behavior;
-- richer major-body art direction and catalog tiers;
-- curated moon systems, dwarf planets, asteroids, a comet and outer-system context;
-- deterministic simulation-time semantics and approximation boundaries;
-- explicit coordinate/transform separation between scientific and display space;
-- exploration, relative and dedicated scale-laboratory behavior;
-- camera/follow/reference-frame rules and interaction-conflict policy;
-- comparison, measurement, light-time, seasons, eclipses and orbit laboratories;
-- tours, educational activities, encyclopedia/glossary and mission history;
-- favorites, notes, bookmarks, saved viewpoints and portable local data;
-- photography, optional sensory features and capability fallbacks;
-- complete PT-BR/English localization requirements;
-- accessibility, keyboard, mobile and reduced-motion requirements;
-- numerical, browser, performance and resource validation;
-- an explicit feature acceptance matrix and definition of done.
-
-That difference is exactly why the original and rebuild are preserved as distinct experiments rather than treating the rebuild as a simple replacement.
+### Fable 5.1 — Max
+A complete Vite/Preact/Three.js observatory with simulation, rendering, catalogs, tours, activities, localization, state and persistence. It is archived from commit `7e079669e41b633057dd3dc9ae2cdeca4a4d17fb`. See [`FABLE-5.1-PROVENANCE.md`](./FABLE-5.1-PROVENANCE.md).
 
 ## Snapshot policy
 
-Model output is imported into `runs/` without evaluator edits.
+Model-produced files are preserved inside `runs/` without evaluator edits.
 
 ```text
 runs/
 ├─ gpt-5.6-sun-max/
-│  ├─ original/
-│  └─ rebuild/
+│  ├─ original/             # historical only
+│  └─ rebuild/              # current arena
 ├─ gpt-6-astra-max/
 │  └─ frontier-v2/
 ├─ grok-4.6/
@@ -146,15 +105,9 @@ runs/
    └─ frontier-v2/
 ```
 
-Evaluator material lives separately in `comparison/`.
-
-### Self-contained archive
-
-These run folders are complete vendored snapshots stored directly in `Frontiers-GPT-s`. They are not submodules and do not fetch content from the original repositories. Legacy repository names and commit SHAs are retained where available; archive hashes are used when the supplied source has no Git metadata.
+Evaluator-authored material lives outside those snapshots in `comparison/`, provenance files and repository documentation.
 
 ## Evaluation
-
-The shared scorecard uses eight weighted dimensions:
 
 | Dimension | Weight |
 | --- | ---: |
@@ -167,34 +120,16 @@ The shared scorecard uses eight weighted dimensions:
 | Code / architecture | 10 |
 | Accessibility / responsive behavior | 5 |
 
-See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for the detailed evidence checklist and [`../../docs/METHODOLOGY.md`](../../docs/METHODOLOGY.md) for repository-wide evaluation rules.
+See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for the evidence checklist and [`../../docs/METHODOLOGY.md`](../../docs/METHODOLOGY.md) for the repository-wide rules.
 
-## Scientific expectations
+## Fairness
 
-The benchmark rewards scientific honesty, not fake precision. A strong solution should clearly distinguish between real astronomical values, approximate orbital models, compressed distances, exaggerated radii and schematic educational behavior.
-
-The model is not required to build a high-precision N-body ephemeris. It is required to avoid presenting a visual convenience as physical truth.
-
-## Reproducibility
-
-Every run has or is paired with:
-
-- exact prompt text;
-- pinned source provenance (upstream commit SHA when available; verified archive SHA-256 otherwise);
-- vendored project snapshot;
-- model label / run label;
-- explicit provenance metadata;
-- evaluator scorecard and evidence structure;
-- caveats for anything the later evaluation cannot reproduce.
-
-The machine-readable provenance lives in [`RUNS.json`](./RUNS.json).
+A contender should not receive another contender's implementation, score, critique or post-hoc hints while generating its own project. The benchmark is **generation first, evaluation second**.
 
 ---
 
 <div align="center">
 
-**The model should not know the opponent's implementation or score while generating its own project.**
-
-That separation is intentional: generation first, evaluation second.
+**Frontier Models · same task, inspectable outputs, explicit evidence.**
 
 </div>

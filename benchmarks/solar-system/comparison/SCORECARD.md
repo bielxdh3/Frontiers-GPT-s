@@ -15,17 +15,17 @@ The three Frontier V2 runs use the same archived prompt. Its SHA-256 is `7c2833a
 
 ## Weighted score
 
-| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max  Grok 4.6 |
-| --- | ---: | ---: | ---: | ---:  ---: |
-| Feature completeness | 20 | — | — | —  — |
-| Interaction / UX | 15 | — | — | —  — |
-| Visual execution | 15 | — | — | —  — |
-| Scientific / simulation fidelity | 15 | — | — | —  — |
-| Robustness | 10 | — | — | —  — |
-| Performance | 10 | — | — | —  — |
-| Code / architecture | 10 | — | — | —  — |
-| Accessibility / responsive behavior | 5 | — | — | —  — |
-| **Total** | **100** | **—** | **—** | **—**  — |
+| Dimension | Weight | Sun Original | Sun Rebuild | Astra Max | Grok 4.6 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Feature completeness | 20 | — | — | — | — |
+| Interaction / UX | 15 | — | — | — | — |
+| Visual execution | 15 | — | — | — | — |
+| Scientific / simulation fidelity | 15 | — | — | — | — |
+| Robustness | 10 | — | — | — | — |
+| Performance | 10 | — | — | — | — |
+| Code / architecture | 10 | — | — | — | — |
+| Accessibility / responsive behavior | 5 | — | — | — | — |
+| **Total** | **100** | **—** | **—** | **—** | **—** |
 
 ## Evidence checklist
 

@@ -5,7 +5,7 @@ Prompts are immutable benchmark inputs. A run is only considered fully auditable
 | Prompt | Used by | Status |
 | --- | --- | --- |
 | [`sun-original.md`](./sun-original.md) | GPT-5.6 Sun Max — original run | ✅ Archived verbatim |
-| [`frontier-v2.md`](./frontier-v2.md) | GPT-5.6 Sun Max — rebuild; GPT-6 Astra Max; Grok 4.6 | ✅ Archived verbatim + integrity verified |
+| [`frontier-v2.md`](./frontier-v2.md) | GPT-5.6 Sun Max — rebuild; GPT-6 Astra Max; Grok 4.6; Fable | ✅ Archived verbatim + integrity verified |
 
 ## Frontier V2 integrity record
 
@@ -18,7 +18,7 @@ The shared Frontier V2 prompt was supplied as `solar-system-master-prompt.md` an
 | Size | `115,983 bytes` |
 | Lines | `1,153` |
 | First heading | `SOLAR SYSTEM OBSERVATORY — COMPLETE INTERACTIVE EXPERIENCE` |
-| Consumers | Sun Max rebuild + Astra Max challenger + Grok 4.6 challenger |
+| Consumers | Sun Max rebuild + Astra Max challenger + Grok 4.6 challenger + Fable challenger |
 | Integrity check | GitHub Actions byte-for-byte verification passed |
 
 The import process reconstructed the file from temporary transport chunks, compared SHA-256, byte count, and line count against the uploaded source, and committed the Markdown only after every check passed. The temporary chunks were then removed.
@@ -29,8 +29,8 @@ The import process reconstructed the file from temporary transport chunks, compa
 
 ```text
                             exact same Frontier V2 prompt
-                       ↙                 ↓                 ↘
-          GPT-5.6 Sun Max rebuild      GPT-6 Astra Max         Grok 4.6
+              ↙           ↓            ↓           ↘
+ GPT-5.6 Sun Max rebuild   GPT-6 Astra Max   Grok 4.6   Fable
 ```
 
 The older `sun-original.md` remains separately preserved because it answers a different question: how much the same model's output changed when the specification became dramatically stronger.

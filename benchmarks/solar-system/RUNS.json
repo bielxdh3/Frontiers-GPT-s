@@ -64,6 +64,18 @@
       "status": "imported",
       "notes": "Uses the exact shared Frontier V2 prompt. The supplied ZIP contained no Git metadata, so provenance is pinned by the verified source-archive SHA-256 instead of an invented source commit.",
       "archive_status": "self-contained"
+    },
+    {
+      "id": "fable-frontier-v2",
+      "model": "Fable",
+      "role": "frontier-run",
+      "source_commit": "7e079669e41b633057dd3dc9ae2cdeca4a4d17fb",
+      "prompt": "prompts/frontier-v2.md",
+      "target_path": "runs/fable/frontier-v2",
+      "status": "imported",
+      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
+      "legacy_source_repository": "JouberthAlves/fable-solar-system",
+      "archive_status": "self-contained"
     }
   ],
   "repository_mode": "self-contained",

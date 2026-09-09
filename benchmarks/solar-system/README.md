@@ -17,8 +17,12 @@
 <a href="https://gpt-5.6-sun-v2.biel.dev.br"><strong>☀️ Open GPT-5.6 Sun Max — V2</strong></a>
 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
 <a href="https://gpt-6-astra.biel.dev.br"><strong>✦ Open GPT-6 Astra Max</strong></a>
+&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+<a href="https://grok-4-6-solar-system.vercel.app"><strong>𝕏 Open Grok 4.6</strong></a>
+&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+<a href="https://fable-solar-system.vercel.app"><strong>◆ Open Fable</strong></a>
 
-<sub>Direct Frontier V2 arena — Sun Max, Astra Max and Grok 4.6 use the same master prompt. Live links are shown where a deployment exists.</sub>
+<sub>Direct Frontier V2 arena — Sun Max, Astra Max, Grok 4.6 and Fable use the same master prompt.</sub>
 
 </div>
 
@@ -54,12 +58,13 @@ It therefore stresses several capabilities at once:
 | **Frontier V2 rebuild** | GPT-5.6 Sun Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `93d43ae62f…` | Same model, stronger shared prompt |
 | **Frontier V2 challenger** | GPT-6 Astra Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `fca2ef51b4…` | Same V2 input, different frontier model |
 | **Frontier V2 challenger** | Grok 4.6 | [`frontier-v2.md`](./prompts/frontier-v2.md) | source archive `5d77eeb509…` | Same V2 input, different frontier model |
+| **Frontier V2 challenger** | Fable | [`frontier-v2.md`](./prompts/frontier-v2.md) | `7e079669e41b…` | Same V2 input, different frontier model |
 
-All four project snapshots and both benchmark prompt versions are now archived in this repository.
+All five project snapshots and both benchmark prompt versions are now archived in this repository.
 
 ### Shared Frontier V2 input
 
-The direct Sun-rebuild-vs-Astra-vs-Grok comparison uses the exact same `frontier-v2.md` input. The uploaded source was preserved byte-for-byte and verified before archival:
+The direct Sun-rebuild-vs-Astra-vs-Grok-vs-Fable comparison uses the exact same `frontier-v2.md` input. The uploaded source was preserved byte-for-byte and verified before archival:
 
 ```text
 SHA-256  7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65
@@ -91,10 +96,14 @@ The Grok 4.6 run is a complete Vite/TypeScript Solar System project with its own
 
 The supplied ZIP contained no `.git` directory, so no upstream source commit can be proven. Rather than fabricate one, this archive pins the supplied source itself with SHA-256 `5d77eeb509e147e40701fa7a72d7009c1a81ed3eca8f0c992d3dd6fa454cd1aa`.
 
+## Fable challenger snapshot
+
+The Fable run is a complete Vite/Preact/Three.js Solar System observatory with simulation, rendering, catalogs, tours, activities, localization, state and persistence layers. It is archived from Git commit `7e079669e41b633057dd3dc9ae2cdeca4a4d17fb`.
+
 That makes the archive capable of answering **two different comparisons**:
 
 1. **Sun Original → Sun Rebuild:** prompt/specification leverage plus another generation attempt.
-2. **Sun Rebuild ↔ Astra Max ↔ Grok 4.6:** model comparison under the exact same Frontier V2 prompt.
+2. **Sun Rebuild ↔ Astra Max ↔ Grok 4.6 ↔ Fable:** model comparison under the exact same Frontier V2 prompt.
 
 ## What changed between the prompts
 
@@ -131,7 +140,9 @@ runs/
 │  └─ rebuild/
 ├─ gpt-6-astra-max/
 │  └─ frontier-v2/
-└─ grok-4.6/
+├─ grok-4.6/
+│  └─ frontier-v2/
+└─ fable/
    └─ frontier-v2/
 ```
 

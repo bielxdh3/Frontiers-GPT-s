@@ -24,7 +24,9 @@ Frontiers-GPT-s/
       │  │  └─ rebuild/
       │  ├─ gpt-6-astra-max/
       │  │  └─ frontier-v2/
-      │  └─ grok-4.6/
+      │  ├─ grok-4.6/
+      │  │  └─ frontier-v2/
+      │  └─ fable/
       │     └─ frontier-v2/
       └─ comparison/
          └─ SCORECARD.md

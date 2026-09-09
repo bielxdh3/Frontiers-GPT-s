@@ -1,12 +1,12 @@
 # Solar System benchmark scorecard
 
-> Status: the four current Frontier V2 contenders are fully archived. Evaluation values remain pending until the evidence-backed pass is complete.
+> Status: the four current Frontier V2 contenders are fully archived. Sun Max V2 has partial provisional evaluation values recorded; the remaining categories and contenders are still pending.
 
 ## Current arena
 
 | Model | Effort | Snapshot | Prompt | Evaluation state |
 | --- | --- | --- | --- | --- |
-| GPT-5.6 Sun Max | Max | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
+| GPT-5.6 Sun Max | Max | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Partial evaluation |
 | GPT-6 Astra Max | Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
 | Grok 4.6 | **XHIGH** | archive `5d77eeb509…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
 | Fable 5.1 | **Max** | `7e079669e41b…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
@@ -22,19 +22,33 @@ GPT-5.6 Sun Max V1 (`67eb9fc…`) is preserved for prompt-leverage analysis, but
 
 </details>
 
+## Scoring scale
+
+Each dimension is rated from **0 to 10**, with **0.5-point increments allowed**. The rating is then converted into weighted points:
+
+`weighted points = (rating / 10) × dimension weight`
+
+Required benchmark behavior drives **Feature completeness**. Optional extras can improve polish or help in a tie-break, but they do not compensate for missing core requirements and cannot push a category above its maximum weight.
+
+Cells show the raw 0–10 rating followed by the weighted contribution.
+
 ## Weighted score — current Frontier V2 arena
 
 | Dimension | Weight | Sun Max V2 | Astra Max | Grok 4.6 XHIGH | Fable 5.1 Max |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Feature completeness | 20 | — | — | — | — |
-| Interaction / UX | 15 | — | — | — | — |
+| Feature completeness | 20 | **9.5/10 → 19.0/20** | — | — | — |
+| Interaction / UX | 15 | **8.0/10 → 12.0/15** | — | — | — |
 | Visual execution | 15 | — | — | — | — |
 | Scientific / simulation fidelity | 15 | — | — | — | — |
 | Robustness | 10 | — | — | — | — |
-| Performance | 10 | — | — | — | — |
-| Code / architecture | 10 | — | — | — | — |
+| Performance | 10 | **7.5/10 → 7.5/10** | — | — | — |
+| Code / architecture | 10 | **8.0/10 → 8.0/10*** | — | — | — |
 | Accessibility / responsive behavior | 5 | — | — | — | — |
-| **Total** | **100** | **—** | **—** | **—** | **—** |
+| **Total** | **100** | **46.5/55 scored so far** | **—** | **—** | **—** |
+
+\* `Code / architecture` is a provisional technical evaluator score. The project has clear separation between data, science, tests and browser QA, no runtime dependency stack, and reproducible validation; however, much of the application/UI/rendering logic is concentrated in a very large `app.js`, which limits maintainability and modularity.
+
+The Sun Max V2 user-entered ratings currently recorded are: Feature completeness **9.5/10**, Interaction / UX **8.0/10**, and Performance **7.5/10**. Categories not explicitly rated by the user remain pending unless clearly marked as evaluator-provisional.
 
 ## Evidence checklist
 
@@ -111,9 +125,9 @@ A feature receives credit only when the requested behavior is actually present a
 ## Qualitative verdict
 
 ### GPT-5.6 Sun Max — V2
-**Strengths:** pending evaluation
+**Strengths:** partial evaluation in progress
 
-**Weaknesses:** pending evaluation
+**Weaknesses:** partial evaluation in progress
 
 **Critical defects:** pending evaluation
 

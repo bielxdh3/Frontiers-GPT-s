@@ -1,12 +1,12 @@
 # Repository architecture
 
-The repository is organized by **benchmark → inputs → runs → evaluation**, not by branches per model.
+**Frontier Models** is organized by **benchmark → inputs → runs → evaluation**, not by permanent branches per model.
 
 ```text
-Frontiers-GPT-s/
+Frontier-Models/
 ├─ README.md
 ├─ assets/
-│  └─ frontiers-gpts-hero.svg
+│  └─ frontier-models-hero.svg
 ├─ docs/
 │  ├─ METHODOLOGY.md
 │  └─ REPOSITORY-ARCHITECTURE.md
@@ -14,37 +14,50 @@ Frontiers-GPT-s/
    └─ solar-system/
       ├─ README.md
       ├─ RUNS.json
+      ├─ GROK-4.6-PROVENANCE.md
+      ├─ FABLE-5.1-PROVENANCE.md
       ├─ prompts/
       │  ├─ README.md
       │  ├─ sun-original.md
-      │  └─ frontier-v2.md          # added only from exact source text
+      │  └─ frontier-v2.md
       ├─ runs/
       │  ├─ gpt-5.6-sun-max/
-      │  │  ├─ original/
-      │  │  └─ rebuild/
+      │  │  ├─ original/          # historical baseline; hidden from current arena
+      │  │  └─ rebuild/           # current Frontier V2 arena
       │  ├─ gpt-6-astra-max/
       │  │  └─ frontier-v2/
       │  ├─ grok-4.6/
       │  │  └─ frontier-v2/
       │  └─ fable/
-      │     └─ frontier-v2/
+      │     └─ frontier-v2/       # Fable 5.1 Max
       └─ comparison/
          └─ SCORECARD.md
 ```
 
 ## Why folders instead of model branches?
 
-Branches are development lines. Using them as permanent model categories makes the archive harder to browse, link and compare. Here, every run is visible from `main`, which gives visitors one canonical view of the benchmark corpus.
+Branches are development lines. Using them as permanent model categories makes the archive harder to browse, link and compare. Completed runs live side by side on canonical `main`; review branches are temporary.
 
-Branches remain available for normal repository work: staging a migration, reviewing a large evaluator change, or testing infrastructure.
+## Current arena vs history
+
+The current Solar System arena contains exactly four Frontier V2 contenders:
+
+- GPT-5.6 Sun Max V2;
+- GPT-6 Astra Max;
+- Grok 4.6 XHIGH;
+- Fable 5.1 Max.
+
+Sun V1 remains in the archive but is intentionally hidden from the current presentation because it used a different prompt.
 
 ## Run folders are immutable snapshots
 
-A run folder is a self-contained vendored copy of the model output captured from pinned source provenance: a Git commit when available, or a verified source archive when Git metadata is absent. It does not depend on the original repository continuing to exist. Evaluator-authored notes do not belong inside that snapshot. This keeps the boundary between **what the model produced** and **what the evaluator concluded** obvious.
+A run folder is a self-contained vendored copy of the model output captured from pinned source provenance: a Git commit when available, or a verified source archive when Git metadata is absent. Evaluator-authored notes do not belong inside model snapshots.
 
 ## Provenance
 
-`RUNS.json` records the strongest verifiable source provenance available — repository/commit when supplied, or source-archive SHA-256 when Git metadata is absent — alongside the model label, role, prompt reference and local archived path. These provenance fields are descriptive only: no benchmark operation depends on those repositories. A human-readable explanation lives in the benchmark README.
+`RUNS.json` records the strongest verifiable source provenance available alongside model label, run role, prompt reference, local archived path, presentation state and live URL when one exists.
+
+Reasoning-effort labels such as `Max` and `XHIGH` are preserved as run metadata where known. They are not normalized across model providers.
 
 ## Adding future benchmarks
 
@@ -59,4 +72,4 @@ benchmarks/
 └─ data-analysis/
 ```
 
-Each benchmark should preserve the same conceptual contract even when its rubric changes: exact input, exact run, explicit evidence, explicit comparison.
+Each benchmark should preserve the same contract: exact input, exact run, explicit provenance, explicit evidence and explicit comparison.

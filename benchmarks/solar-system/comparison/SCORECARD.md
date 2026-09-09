@@ -1,13 +1,13 @@
 # Solar System benchmark scorecard
 
-> Status: the four current Frontier V2 contenders are fully archived. Sun Max V2 has partial provisional evaluation values recorded; the remaining category and contenders are still pending.
+> Status: the four current Frontier V2 contenders are fully archived. Sun Max V2 and Astra Max now have complete preliminary weighted evaluations recorded; Grok 4.6 XHIGH and Fable 5.1 Max are still pending.
 
 ## Current arena
 
 | Model | Effort | Snapshot | Prompt | Evaluation state |
 | --- | --- | --- | --- | --- |
-| GPT-5.6 Sun Max | Max | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Partial evaluation |
-| GPT-6 Astra Max | Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
+| GPT-5.6 Sun Max | Max | `93d43ae…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Preliminary scored |
+| GPT-6 Astra Max | Max | `fca2ef51…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Preliminary scored |
 | Grok 4.6 | **XHIGH** | archive `5d77eeb509…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
 | Fable 5.1 | **Max** | `7e079669e41b…` | [`frontier-v2.md`](../prompts/frontier-v2.md) | Ready |
 
@@ -24,7 +24,7 @@ GPT-5.6 Sun Max V1 (`67eb9fc…`) is preserved for prompt-leverage analysis, but
 
 ## Scoring scale
 
-Each dimension is rated from **0 to 10**, with **0.5-point increments allowed**. The rating is then converted into weighted points:
+Each dimension is rated from **0 to 10**. Decimal ratings are allowed to preserve the evaluator's intended precision. The rating is then converted into weighted points:
 
 `weighted points = (rating / 10) × dimension weight`
 
@@ -32,25 +32,27 @@ Required benchmark behavior drives **Feature completeness**. Optional extras can
 
 Cells show the raw 0–10 rating followed by the weighted contribution.
 
-> ***AVALIAÇÃO PESSOAL NÃO 100% CONFIÁVEL E NÃO PROFUNDA SUFICIENTE.*** As notas atuais do Sun Max V2 foram feitas principalmente por **um único usuário**, em **poucos dispositivos/ambientes**, e carregam inevitavelmente **viés pessoal e subjetividade**. Elas devem ser tratadas como uma avaliação preliminar, não como uma medição definitiva ou revisão profissional exaustiva.
+> ***AVALIAÇÃO PESSOAL NÃO 100% CONFIÁVEL E NÃO PROFUNDA SUFICIENTE.*** As notas atuais de Sun Max V2 e Astra Max foram feitas principalmente por **um único usuário**, em **poucos dispositivos/ambientes**, e carregam inevitavelmente **viés pessoal e subjetividade**. Elas devem ser tratadas como avaliações preliminares, não como medições definitivas ou revisões profissionais exaustivas.
 
 ## Weighted score — current Frontier V2 arena
 
 | Dimension | Weight | Sun Max V2 | Astra Max | Grok 4.6 XHIGH | Fable 5.1 Max |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Feature completeness | 20 | **9.5/10 → 19.0/20** | — | — | — |
-| Interaction / UX | 15 | **8.0/10 → 12.0/15** | — | — | — |
-| Visual execution | 15 | — | — | — | — |
-| Scientific / simulation fidelity | 15 | **4.0/10 → 6.0/15** | — | — | — |
-| Robustness | 10 | **9.5/10 → 9.5/10** | — | — | — |
-| Performance | 10 | **7.5/10 → 7.5/10** | — | — | — |
-| Code / architecture | 10 | **8.0/10 → 8.0/10*** | — | — | — |
-| Accessibility / responsive behavior | 5 | **7.0/10 → 3.5/5** | — | — | — |
-| **Total** | **100** | **65.5/85 scored so far** | **—** | **—** | **—** |
+| Feature completeness | 20 | **8.6/10 → 17.2/20** | **10/10 → 20/20** | — | — |
+| Interaction / UX | 15 | **8.0/10 → 12.0/15** | **9.8/10 → 14.7/15** | — | — |
+| Visual execution | 15 | **6.0/10 → 9.0/15** | **9.9/10 → 14.85/15** | — | — |
+| Scientific / simulation fidelity | 15 | **4.0/10 → 6.0/15** | **9.9/10 → 14.85/15** | — | — |
+| Robustness | 10 | **8.0/10 → 8.0/10** | **10/10 → 10/10** | — | — |
+| Performance | 10 | **7.5/10 → 7.5/10** | **9.5/10 → 9.5/10** | — | — |
+| Code / architecture | 10 | **8.0/10 → 8.0/10*** | **9.2/10 → 9.2/10*** | — | — |
+| Accessibility / responsive behavior | 5 | **7.0/10 → 3.5/5** | **9.0/10 → 4.5/5** | — | — |
+| **Total** | **100** | **71.2/100** | **97.6/100** | **—** | **—** |
 
-\* `Code / architecture` is a provisional technical evaluator score. The project has clear separation between data, science, tests and browser QA, no runtime dependency stack, and reproducible validation; however, much of the application/UI/rendering logic is concentrated in a very large `app.js`, which limits maintainability and modularity.
+\* `Code / architecture` uses provisional technical evaluator scores rather than user-entered hands-on ratings. Sun Max V2 scores **8.0/10**: it has clear separation between data, science, tests and browser QA with reproducible validation, but much application/UI/rendering logic is concentrated in a very large `app.js`. Astra Max scores **9.2/10**: its implementation is split across dedicated data, model, scene, materials, tools, UI, content and storage modules and includes multiple automated test/acceptance/recovery/control paths; some major modules remain relatively large, so the architecture is strong rather than perfect.
 
-The Sun Max V2 user-entered ratings currently recorded are: Feature completeness **9.5/10**, Interaction / UX **8.0/10**, Scientific / simulation fidelity **4.0/10**, Robustness **9.5/10**, Performance **7.5/10**, and Accessibility / responsive behavior **7.0/10**. `Code / architecture` is evaluator-provisional. `Visual execution` remains pending.
+The Sun Max V2 user-entered ratings currently recorded are: Feature completeness **8.6/10**, Interaction / UX **8.0/10**, Visual execution **6.0/10**, Scientific / simulation fidelity **4.0/10**, Robustness **8.0/10**, Performance **7.5/10**, and Accessibility / responsive behavior **7.0/10**. `Code / architecture` is evaluator-provisional.
+
+The Astra Max user-entered ratings currently recorded are: Feature completeness **10/10**, Interaction / UX **9.8/10**, Visual execution **9.9/10**, Scientific / simulation fidelity **9.9/10**, Robustness **10/10**, Performance **9.5/10**, and Accessibility / responsive behavior **9.0/10**. `Code / architecture` is evaluator-provisional.
 
 ## Evidence checklist
 
@@ -127,18 +129,18 @@ A feature receives credit only when the requested behavior is actually present a
 ## Qualitative verdict
 
 ### GPT-5.6 Sun Max — V2
-**Strengths:** partial evaluation in progress
+**Strengths:** quantitative preliminary evaluation complete; qualitative summary pending
 
-**Weaknesses:** partial evaluation in progress
+**Weaknesses:** qualitative summary pending
 
-**Critical defects:** pending evaluation
+**Critical defects:** pending qualitative evaluation
 
 ### GPT-6 Astra Max
-**Strengths:** pending evaluation
+**Strengths:** quantitative preliminary evaluation complete; qualitative summary pending
 
-**Weaknesses:** pending evaluation
+**Weaknesses:** qualitative summary pending
 
-**Critical defects:** pending evaluation
+**Critical defects:** pending qualitative evaluation
 
 ### Grok 4.6 — XHIGH
 **Strengths:** pending evaluation
@@ -156,4 +158,4 @@ A feature receives credit only when the requested behavior is actually present a
 
 ## Final ranking
 
-Pending the complete evidence-backed evaluation pass. The current arena is Sun Max V2 vs Astra Max vs Grok 4.6 XHIGH vs Fable 5.1 Max.
+Pending the complete evidence-backed evaluation pass for all four contenders. Among the two currently scored runs, the preliminary weighted totals are **Astra Max 97.6/100** and **Sun Max V2 71.2/100**.

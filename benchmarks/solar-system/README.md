@@ -18,7 +18,7 @@
 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
 <a href="https://gpt-6-astra.biel.dev.br"><strong>✦ Open GPT-6 Astra Max</strong></a>
 
-<sub>Direct Frontier V2 comparison — same master prompt.</sub>
+<sub>Direct Frontier V2 arena — Sun Max, Astra Max and Grok 4.6 use the same master prompt. Live links are shown where a deployment exists.</sub>
 
 </div>
 
@@ -53,12 +53,13 @@ It therefore stresses several capabilities at once:
 | **Original** | GPT-5.6 Sun Max | [`sun-original.md`](./prompts/sun-original.md) | `67eb9fc51f…` | Historical baseline |
 | **Frontier V2 rebuild** | GPT-5.6 Sun Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `93d43ae62f…` | Same model, stronger shared prompt |
 | **Frontier V2 challenger** | GPT-6 Astra Max | [`frontier-v2.md`](./prompts/frontier-v2.md) | `fca2ef51b4…` | Same V2 input, different frontier model |
+| **Frontier V2 challenger** | Grok 4.6 | [`frontier-v2.md`](./prompts/frontier-v2.md) | source archive `5d77eeb509…` | Same V2 input, different frontier model |
 
-All three project snapshots and both benchmark prompt versions are now archived in this repository.
+All four project snapshots and both benchmark prompt versions are now archived in this repository.
 
 ### Shared Frontier V2 input
 
-The direct Sun-rebuild-vs-Astra comparison uses the exact same `frontier-v2.md` input. The uploaded source was preserved byte-for-byte and verified before archival:
+The direct Sun-rebuild-vs-Astra-vs-Grok comparison uses the exact same `frontier-v2.md` input. The uploaded source was preserved byte-for-byte and verified before archival:
 
 ```text
 SHA-256  7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65
@@ -84,10 +85,16 @@ The Astra run is also a full local observatory rather than a thin demo. Its arch
 
 The source commit imported into this hub is `fca2ef51b43dc1c7a91050fca3476dc6fbf7d3f5`.
 
+## Grok 4.6 challenger snapshot
+
+The Grok 4.6 run is a complete Vite/TypeScript Solar System project with its own rendering engine, orbital/science core, catalogs, learning content, localization, state and persistence layers. It is archived exactly from the supplied project ZIP.
+
+The supplied ZIP contained no `.git` directory, so no upstream source commit can be proven. Rather than fabricate one, this archive pins the supplied source itself with SHA-256 `5d77eeb509e147e40701fa7a72d7009c1a81ed3eca8f0c992d3dd6fa454cd1aa`.
+
 That makes the archive capable of answering **two different comparisons**:
 
 1. **Sun Original → Sun Rebuild:** prompt/specification leverage plus another generation attempt.
-2. **Sun Rebuild ↔ Astra Max:** model comparison under the exact same Frontier V2 prompt.
+2. **Sun Rebuild ↔ Astra Max ↔ Grok 4.6:** model comparison under the exact same Frontier V2 prompt.
 
 ## What changed between the prompts
 
@@ -122,7 +129,9 @@ runs/
 ├─ gpt-5.6-sun-max/
 │  ├─ original/
 │  └─ rebuild/
-└─ gpt-6-astra-max/
+├─ gpt-6-astra-max/
+│  └─ frontier-v2/
+└─ grok-4.6/
    └─ frontier-v2/
 ```
 
@@ -130,7 +139,7 @@ Evaluator material lives separately in `comparison/`.
 
 ### Self-contained archive
 
-These run folders are complete vendored snapshots stored directly in `Frontiers-GPT-s`. They are not submodules and do not fetch content from the original repositories. The legacy repository names and commit SHAs are retained only to document where each snapshot originated.
+These run folders are complete vendored snapshots stored directly in `Frontiers-GPT-s`. They are not submodules and do not fetch content from the original repositories. Legacy repository names and commit SHAs are retained where available; archive hashes are used when the supplied source has no Git metadata.
 
 ## Evaluation
 
@@ -160,7 +169,7 @@ The model is not required to build a high-precision N-body ephemeris. It is requ
 Every run has or is paired with:
 
 - exact prompt text;
-- exact upstream commit SHA;
+- pinned source provenance (upstream commit SHA when available; verified archive SHA-256 otherwise);
 - vendored project snapshot;
 - model label / run label;
 - explicit provenance metadata;

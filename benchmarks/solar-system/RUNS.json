@@ -1,6 +1,6 @@
 {
   "benchmark": "solar-system",
-  "schema_version": 3,
+  "schema_version": 4,
   "prompts": {
     "sun-original": {
       "path": "prompts/sun-original.md",
@@ -49,6 +49,20 @@
       "status": "imported",
       "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
       "legacy_source_repository": "bielxdh3/GPT6-ASTRA-MAX-SOLAR-SYSTEM",
+      "archive_status": "self-contained"
+    },
+    {
+      "id": "grok-4.6-frontier-v2",
+      "model": "Grok 4.6",
+      "role": "frontier-run",
+      "source_commit": null,
+      "source_archive_sha256": "5d77eeb509e147e40701fa7a72d7009c1a81ed3eca8f0c992d3dd6fa454cd1aa",
+      "source_archive_bytes": 122173,
+      "source_filename": "grok-4.6-solar-system-main.zip",
+      "prompt": "prompts/frontier-v2.md",
+      "target_path": "runs/grok-4.6/frontier-v2",
+      "status": "imported",
+      "notes": "Uses the exact shared Frontier V2 prompt. The supplied ZIP contained no Git metadata, so provenance is pinned by the verified source-archive SHA-256 instead of an invented source commit.",
       "archive_status": "self-contained"
     }
   ],

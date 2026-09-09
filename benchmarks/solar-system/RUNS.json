@@ -1,10 +1,11 @@
 {
   "benchmark": "solar-system",
-  "schema_version": 4,
+  "schema_version": 5,
   "prompts": {
     "sun-original": {
       "path": "prompts/sun-original.md",
-      "status": "archived-verbatim"
+      "status": "archived-verbatim",
+      "arena_visibility": "historical-hidden"
     },
     "frontier-v2": {
       "path": "prompts/frontier-v2.md",
@@ -24,18 +25,22 @@
       "prompt": "prompts/sun-original.md",
       "target_path": "runs/gpt-5.6-sun-max/original",
       "status": "imported",
+      "arena_visibility": "historical-hidden",
+      "live_url": "https://gpt-5.6-sun-v1.biel.dev.br",
       "legacy_source_repository": "bielxdh3/GPT5.6-SUN-MAX-SOLAR-SYSTEM",
       "archive_status": "self-contained"
     },
     {
       "id": "gpt-5.6-sun-max-frontier-v2",
       "model": "GPT-5.6 Sun Max",
-      "role": "frontier-rebuild",
+      "role": "frontier-run",
       "source_commit": "93d43ae62f615a37672c0d1936912160d0475ca1",
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/gpt-5.6-sun-max/rebuild",
       "status": "imported",
-      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
+      "arena_visibility": "current",
+      "live_url": "https://gpt-5.6-sun-v2.biel.dev.br",
+      "notes": "Current Frontier V2 Sun run; historical V1 is excluded from the main arena.",
       "legacy_source_repository": "bielxdh3/GPT5.6-SUN-MAX-SOLAR-SYSTEM",
       "archive_status": "self-contained"
     },
@@ -47,6 +52,8 @@
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/gpt-6-astra-max/frontier-v2",
       "status": "imported",
+      "arena_visibility": "current",
+      "live_url": "https://gpt-6-astra.biel.dev.br",
       "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
       "legacy_source_repository": "bielxdh3/GPT6-ASTRA-MAX-SOLAR-SYSTEM",
       "archive_status": "self-contained"
@@ -55,6 +62,7 @@
       "id": "grok-4.6-frontier-v2",
       "model": "Grok 4.6",
       "role": "frontier-run",
+      "reasoning_effort": "XHIGH",
       "source_commit": null,
       "source_archive_sha256": "5d77eeb509e147e40701fa7a72d7009c1a81ed3eca8f0c992d3dd6fa454cd1aa",
       "source_archive_bytes": 122173,
@@ -62,21 +70,32 @@
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/grok-4.6/frontier-v2",
       "status": "imported",
-      "notes": "Uses the exact shared Frontier V2 prompt. The supplied ZIP contained no Git metadata, so provenance is pinned by the verified source-archive SHA-256 instead of an invented source commit.",
+      "arena_visibility": "current",
+      "live_url": "https://grok-4-6-solar-system.vercel.app",
+      "notes": "Grok 4.6 was run at XHIGH, its highest available reasoning level for this run. The supplied ZIP contained no Git metadata, so provenance is pinned by the verified source-archive SHA-256.",
       "archive_status": "self-contained"
     },
     {
-      "id": "fable-frontier-v2",
-      "model": "Fable",
+      "id": "fable-5.1-frontier-v2",
+      "model": "Fable 5.1",
       "role": "frontier-run",
+      "reasoning_effort": "Max",
       "source_commit": "7e079669e41b633057dd3dc9ae2cdeca4a4d17fb",
       "prompt": "prompts/frontier-v2.md",
       "target_path": "runs/fable/frontier-v2",
       "status": "imported",
-      "notes": "Uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
+      "arena_visibility": "current",
+      "live_url": "https://fable-solar-system.vercel.app",
+      "notes": "Fable 5.1 was run at Max and uses the exact shared Frontier V2 prompt archived and SHA-256 verified in this benchmark.",
       "legacy_source_repository": "JouberthAlves/fable-solar-system",
       "archive_status": "self-contained"
     }
+  ],
+  "current_arena": [
+    "gpt-5.6-sun-max-frontier-v2",
+    "gpt-6-astra-max-frontier-v2",
+    "grok-4.6-frontier-v2",
+    "fable-5.1-frontier-v2"
   ],
   "repository_mode": "self-contained",
   "external_source_dependency": false

@@ -5,7 +5,7 @@
 <br/>
 
 [![Benchmark](https://img.shields.io/badge/benchmark-frontier%20models-7C3AED?style=for-the-badge)](./benchmarks)
-[![Runs](https://img.shields.io/badge/runs-4%20snapshots%20archived-2563EB?style=for-the-badge)](./benchmarks/solar-system/RUNS.json)
+[![Runs](https://img.shields.io/badge/runs-5%20snapshots%20archived-2563EB?style=for-the-badge)](./benchmarks/solar-system/RUNS.json)
 [![Method](https://img.shields.io/badge/method-generation%20first%20%2F%20evaluation%20second-DB2777?style=for-the-badge)](./docs/METHODOLOGY.md)
 
 ### One repository for serious, inspectable frontier-model comparisons.
@@ -25,8 +25,12 @@
 <a href="https://gpt-5.6-sun-v2.biel.dev.br"><strong>☀️ Open GPT-5.6 Sun Max — V2</strong></a>
 &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
 <a href="https://gpt-6-astra.biel.dev.br"><strong>✦ Open GPT-6 Astra Max</strong></a>
+&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+<a href="https://grok-4-6-solar-system.vercel.app"><strong>𝕏 Open Grok 4.6</strong></a>
+&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+<a href="https://fable-solar-system.vercel.app"><strong>◆ Open Fable</strong></a>
 
-<sub>Direct Frontier V2 arena — Sun Max, Astra Max and Grok 4.6 use the same master prompt. Live links are shown where a deployment exists.</sub>
+<sub>Direct Frontier V2 arena — Sun Max, Astra Max, Grok 4.6 and Fable use the same master prompt.</sub>
 
 </div>
 
@@ -69,7 +73,7 @@ That last point is important: the benchmark lives in Git, not in a temporary cha
 
 <table>
 <tr>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### ☀️ GPT-5.6 Sun Max
 **Original run**
@@ -84,7 +88,7 @@ Historical baseline built from the first Solar System prompt.
 **Snapshot:** `67eb9fc51f…`
 
 </td>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### 🌞 GPT-5.6 Sun Max
 **Frontier V2 rebuild**
@@ -99,7 +103,7 @@ The same model family gets another full attempt under the much stronger Frontier
 **Snapshot:** `93d43ae62f…`
 
 </td>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### ✦ GPT-6 Astra Max
 **Frontier V2 challenger**
@@ -114,7 +118,7 @@ The direct frontier-model challenger using the same V2 prompt as the Sun rebuild
 **Snapshot:** `fca2ef51b4…`
 
 </td>
-<td width="25%" valign="top">
+<td width="20%" valign="top">
 
 ### 𝕏 Grok 4.6
 **Frontier V2 challenger**
@@ -127,6 +131,21 @@ A third direct challenger generated from the same Frontier V2 input.
 - No source commit fabricated: the supplied archive contained no `.git` metadata
 
 **Source archive:** `5d77eeb509…`
+
+</td>
+<td width="20%" valign="top">
+
+### ◆ Fable
+**Frontier V2 challenger**
+
+A fourth direct challenger generated from the same Frontier V2 input.
+
+- Complete source project archived
+- Same exact shared V2 prompt
+- Source commit pinned
+- Full Vite/Preact/Three.js observatory vendored into this hub
+
+**Snapshot:** `7e079669e41b…`
 
 </td>
 </tr>
@@ -176,10 +195,10 @@ This comparison asks how much a model's output can improve when the specificatio
 ### B. Frontier model comparison
 
 ```text
-                         exact same Frontier V2 prompt
-                    ↙                ↓                ↘
-       GPT-5.6 Sun Max       GPT-6 Astra Max         Grok 4.6
-              rebuild             challenger          challenger
+                              exact same Frontier V2 prompt
+                 ↙            ↓            ↓            ↘
+    GPT-5.6 Sun Max    GPT-6 Astra Max    Grok 4.6     Fable
+           rebuild          challenger    challenger   challenger
 ```
 
 This is the cleaner model-vs-model comparison because the input is shared and now archived byte-for-byte.
@@ -198,7 +217,7 @@ The direct frontier comparison is grounded in the exact uploaded master prompt:
 | SHA-256 | `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65` |
 | Size | `115,983 bytes` |
 | Lines | `1,153` |
-| Used by | GPT-5.6 Sun Max rebuild + GPT-6 Astra Max + Grok 4.6 |
+| Used by | GPT-5.6 Sun Max rebuild + GPT-6 Astra Max + Grok 4.6 + Fable |
 | Verification | byte count + line count + SHA-256 passed in GitHub Actions |
 
 The file is not a reconstruction, summary or cleaned-up variant. It is the exact supplied benchmark input.
@@ -232,7 +251,9 @@ Frontiers-GPT-s/
         │   │   └── rebuild/          ← immutable vendored snapshot
         │   ├── gpt-6-astra-max/
         │   │   └── frontier-v2/      ← immutable vendored snapshot
-        │   └── grok-4.6/
+        │   ├── grok-4.6/
+        │   │   └── frontier-v2/      ← immutable vendored snapshot
+        │   └── fable/
         │       └── frontier-v2/      ← immutable vendored snapshot
         │
         └── comparison/
@@ -339,6 +360,7 @@ The design follows GitHub README conventions: make the repository immediately un
 | Sun Rebuild snapshot | ✅ imported — `93d43ae…` |
 | Astra Max snapshot | ✅ imported — `fca2ef51…` |
 | Grok 4.6 snapshot | ✅ imported — source archive SHA-256 `5d77eeb509…` |
+| Fable snapshot | ✅ imported — `7e079669e41b…` |
 | Prompt/run provenance | ✅ complete |
 | V2 head-to-head scorecard | ✅ prepared; evaluation values pending |
 | Final ranking | ⏳ requires evidence-backed evaluation |
@@ -360,6 +382,8 @@ The first runs originally lived in dedicated repositories before this unified ar
 Those legacy GitHub repositories are not required for browsing, evaluating, preserving, or extending this benchmark and may be removed without affecting the copies stored here. The public `biel.dev.br` experiences are presentation links, not archive dependencies.
 
 The Grok 4.6 run was supplied directly as a ZIP without `.git` metadata. Its verified source-archive SHA-256 is therefore the provenance anchor; the repository does not invent a commit SHA that was never supplied.
+
+The Fable run is archived from Git commit `7e079669e41b633057dd3dc9ae2cdeca4a4d17fb` of `JouberthAlves/fable-solar-system`.
 
 ---
 

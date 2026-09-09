@@ -1,15 +1,15 @@
 # Prompt archive
 
-Prompts are immutable benchmark inputs. A run is only considered fully auditable when the exact prompt used for that run is stored here verbatim and its provenance is explicit.
+Prompts are immutable benchmark inputs. A run is only fully auditable when the exact prompt used for that run is preserved verbatim and its provenance is explicit.
 
 | Prompt | Used by | Status |
 | --- | --- | --- |
-| [`sun-original.md`](./sun-original.md) | GPT-5.6 Sun Max — original run | ✅ Archived verbatim |
-| [`frontier-v2.md`](./frontier-v2.md) | GPT-5.6 Sun Max — rebuild; GPT-6 Astra Max; Grok 4.6; Fable | ✅ Archived verbatim + integrity verified |
+| [`sun-original.md`](./sun-original.md) | GPT-5.6 Sun Max V1 historical baseline | ✅ Archived verbatim |
+| [`frontier-v2.md`](./frontier-v2.md) | GPT-5.6 Sun Max V2; GPT-6 Astra Max; Grok 4.6 XHIGH; Fable 5.1 Max | ✅ Archived verbatim + integrity verified |
 
 ## Frontier V2 integrity record
 
-The shared Frontier V2 prompt was supplied as `solar-system-master-prompt.md` and archived without summarization, normalization, rewriting, or reconstruction.
+The shared Frontier V2 prompt was supplied as `solar-system-master-prompt.md` and archived without summarization, normalization, rewriting or reconstruction.
 
 | Property | Verified value |
 | --- | --- |
@@ -18,33 +18,32 @@ The shared Frontier V2 prompt was supplied as `solar-system-master-prompt.md` an
 | Size | `115,983 bytes` |
 | Lines | `1,153` |
 | First heading | `SOLAR SYSTEM OBSERVATORY — COMPLETE INTERACTIVE EXPERIENCE` |
-| Consumers | Sun Max rebuild + Astra Max challenger + Grok 4.6 challenger + Fable challenger |
-| Integrity check | GitHub Actions byte-for-byte verification passed |
-
-The import process reconstructed the file from temporary transport chunks, compared SHA-256, byte count, and line count against the uploaded source, and committed the Markdown only after every check passed. The temporary chunks were then removed.
+| Current consumers | Sun Max V2 + Astra Max + Grok 4.6 XHIGH + Fable 5.1 Max |
+| Integrity check | byte-for-byte verification passed |
 
 ## Benchmark meaning
 
-`frontier-v2.md` is the crucial shared input for the direct model comparison:
-
 ```text
-                            exact same Frontier V2 prompt
-              ↙           ↓            ↓           ↘
- GPT-5.6 Sun Max rebuild   GPT-6 Astra Max   Grok 4.6   Fable
+                       EXACT SAME FRONTIER V2 PROMPT
+               ↙                ↓               ↓               ↘
+      SUN MAX V2         ASTRA MAX        GROK 4.6          FABLE 5.1
+         MAX                MAX              XHIGH               MAX
 ```
 
-The older `sun-original.md` remains separately preserved because it answers a different question: how much the same model's output changed when the specification became dramatically stronger.
+The older `sun-original.md` remains preserved separately for historical prompt-leverage analysis and is not part of the current Frontier V2 arena.
 
 ## Integrity rule
 
-Prompt text must never be reconstructed from memory, summarized, improved after the fact, or inferred from a produced application. If an exact source cannot be recovered, the benchmark must say so rather than fabricate certainty.
+Prompt text must never be reconstructed from memory, summarized, improved after the fact or inferred from a produced application. If an exact source cannot be recovered, the benchmark must say so rather than fabricate certainty.
+
+Reasoning-effort labels are recorded independently from prompt integrity. `Max` and `XHIGH` identify the settings used for those runs; they are not normalized into a cross-vendor compute scale.
 
 ## Why prompts live outside run folders
 
 The run folders contain model-produced artifacts. Prompt inputs live here so that:
 
 - the same input can be linked to multiple runs without duplication drift;
-- comparisons can distinguish **prompt quality** from **model output quality**;
-- a later reviewer can reproduce the experiment without inspecting unrelated source files;
+- comparisons can distinguish prompt quality from model output quality;
+- later reviewers can reproduce the experiment without inspecting unrelated source files;
 - prompt revisions are explicit benchmark versions rather than hidden edits inside model code;
 - integrity metadata can be checked independently of the projects that consumed the prompt.

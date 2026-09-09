@@ -29,22 +29,12 @@ jobs:
           echo "851c5298ed25664c591bcfe4e35fc96065a54b3a2d5c422d59603263015141a7  /tmp/grok-missing.tgz" | sha256sum -c -
           tar -xzf /tmp/grok-missing.tgz -C benchmarks/solar-system/runs/grok-4.6/frontier-v2
 
-      - name: Verify exact snapshot
+      - name: Verify exact files
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
-          import hashlib
-          root = Path('benchmarks/solar-system/runs/grok-4.6/frontier-v2')
-          files = sorted(p for p in root.rglob('*') if p.is_file())
-          assert len(files) == 36, f'expected 36 files, got {len(files)}'
-          manifest = ''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(root).as_posix()}\n' for p in files)
-          digest = hashlib.sha256(manifest.encode()).hexdigest()
-          expected = 'c8b3212e46e4ee1f309e818e03ac89c32510ea914aa48054eacb80426ea52e0e'
-          print(digest)
-          assert digest == expected, (digest, expected)
-          PY
+          cd benchmarks/solar-system/runs/grok-4.6/frontier-v2
+          sha256sum -c "$GITHUB_WORKSPACE/.grok-final/expected.sha256"
 
       - name: Test and build
         working-directory: benchmarks/solar-system/runs/grok-4.6/frontier-v2

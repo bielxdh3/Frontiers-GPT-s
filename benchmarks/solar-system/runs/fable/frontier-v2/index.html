@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#05070d" />
+    <meta name="description" content="Observatório do Sistema Solar — explore, compare e aprenda com um sistema solar 3D interativo." />
+    <title>Observatório do Sistema Solar</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <div id="boot" class="boot" role="status" aria-live="polite">
+        <div class="boot-sun" aria-hidden="true"></div>
+        <p class="boot-title">Observatório do Sistema Solar</p>
+        <p id="boot-stage" class="boot-stage">Preparando a cena…</p>
+      </div>
+    </div>
+    <noscript>
+      <p style="color:#e8ecf3;font-family:system-ui;padding:2rem">
+        Este observatório precisa de JavaScript para renderizar o Sistema Solar em 3D.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

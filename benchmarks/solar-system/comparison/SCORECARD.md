@@ -43,16 +43,16 @@ Cells show the raw 0–10 rating followed by the weighted contribution.
 | Visual execution | 15 | **6.0/10 → 9.0/15** | **9.7/10 → 14.55/15** | **1.1/10 → 1.65/15** | **9.9/10 → 14.85/15** |
 | Scientific / simulation fidelity | 15 | **4.0/10 → 6.0/15** | **10/10 → 15/15** | **5.0/10 → 7.5/15** | **10/10 → 15/15** |
 | Robustness | 10 | **8.0/10 → 8.0/10** | **10/10 → 10/10** | **2.0/10 → 2.0/10** | **5.0/10 → 5.0/10** |
-| Performance | 10 | **7.5/10 → 7.5/10** | **9.5/10 → 9.5/10** | **8.0/10 → 8.0/10** | **10/10 → 10/10** |
+| Performance | 10 | **7.5/10 → 7.5/10** | **9.3/10 → 9.3/10** | **8.0/10 → 8.0/10** | **10/10 → 10/10** |
 | Code / architecture | 10 | **8.0/10 → 8.0/10*** | **9.2/10 → 9.2/10*** | **8.7/10 → 8.7/10*** | **9.1/10 → 9.1/10*** |
 | Accessibility / responsive behavior | 5 | **7.0/10 → 3.5/5** | **8.6/10 → 4.3/5** | **7.0/10 → 3.5/5** | **8.7/10 → 4.35/5** |
-| **Total** | **100** | **71.2/100** | **96.45/100** | **33.8/100** | **93.3/100** |
+| **Total** | **100** | **71.2/100** | **96.25/100** | **33.8/100** | **93.3/100** |
 
 \* `Code / architecture` uses provisional technical evaluator scores rather than user-entered hands-on ratings. Sun Max V2 scores **8.0/10**: it has clear separation between data, science, tests and browser QA with reproducible validation, but much application/UI/rendering logic is concentrated in a very large `app.js`. Astra Max scores **9.2/10**: its implementation is split across dedicated data, model, scene, materials, tools, UI, content and storage modules and includes multiple automated test/acceptance/recovery/control paths; some major modules remain relatively large, so the architecture is strong rather than perfect. Grok 4.6 XHIGH scores **8.7/10**: its TypeScript implementation is cleanly separated across core, data, rendering, simulation, state and UI layers, but `ui/app.ts` still concentrates a substantial amount of logic and its automated test coverage is more limited than Astra's. Fable 5.1 Max scores **9.1/10**: it has a strong TypeScript/Preact modular split across app, content, data, i18n, rendering and simulation layers, plus dedicated Vitest coverage; however, some renderer/controller modules remain large and its automated validation surface is less extensive than Astra's.
 
 The Sun Max V2 user-entered ratings currently recorded are: Feature completeness **8.6/10**, Interaction / UX **8.0/10**, Visual execution **6.0/10**, Scientific / simulation fidelity **4.0/10**, Robustness **8.0/10**, Performance **7.5/10**, and Accessibility / responsive behavior **7.0/10**. `Code / architecture` is evaluator-provisional.
 
-The Astra Max user-entered ratings currently recorded are: Feature completeness **9.6/10**, Interaction / UX **9.8/10**, Visual execution **9.7/10**, Scientific / simulation fidelity **10/10**, Robustness **10/10**, Performance **9.5/10**, and Accessibility / responsive behavior **8.6/10**. `Code / architecture` is evaluator-provisional.
+The Astra Max user-entered ratings currently recorded are: Feature completeness **9.6/10**, Interaction / UX **9.8/10**, Visual execution **9.7/10**, Scientific / simulation fidelity **10/10**, Robustness **10/10**, Performance **9.3/10**, and Accessibility / responsive behavior **8.6/10**. `Code / architecture` is evaluator-provisional.
 
 The Grok 4.6 XHIGH user-entered ratings currently recorded are: Feature completeness **1.0/10**, Interaction / UX **0.3/10**, Visual execution **1.1/10**, Scientific / simulation fidelity **5.0/10**, Robustness **2.0/10**, Performance **8.0/10**, and Accessibility / responsive behavior **7.0/10**. `Code / architecture` is evaluator-provisional at **8.7/10**.
 
@@ -164,4 +164,4 @@ A feature receives credit only when the requested behavior is actually present a
 
 ## Final ranking
 
-The complete preliminary weighted ranking for the current Frontier V2 arena is **1. Astra Max — 96.45/100**, **2. Fable 5.1 Max — 93.3/100**, **3. Sun Max V2 — 71.2/100**, **4. Grok 4.6 XHIGH — 33.8/100**.
+The complete preliminary weighted ranking for the current Frontier V2 arena is **1. Astra Max — 96.25/100**, **2. Fable 5.1 Max — 93.3/100**, **3. Sun Max V2 — 71.2/100**, **4. Grok 4.6 XHIGH — 33.8/100**.

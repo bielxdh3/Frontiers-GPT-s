@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/frontier-models-hero.svg" alt="Frontier Models — frontier model benchmark archive" width="100%" />
+<img src="./assets/frontier-models-hero-v2.svg" alt="Frontier Models — frontier model benchmark archive" width="100%" />
 
 <br/>
 
@@ -58,7 +58,7 @@ The exact shared prompt is [`frontier-v2.md`](./benchmarks/solar-system/prompts/
 
 <div align="center">
 
-<img src="./assets/frontier-v2-scores.svg" alt="Frontier V2 overall score chart from 0 to 100: Astra Max 95.25, Fable 5.1 Max 93.30, Sun Max V2 71.20, Grok 4.6 XHIGH 33.80" width="100%" />
+<img src="./assets/frontier-v2-scores-v2.svg" alt="Frontier V2 overall score chart from 0 to 100: Astra Max 95.25, Fable 5.1 Max 93.30, Sun Max V2 71.20, Grok 4.6 XHIGH 33.80" width="100%" />
 
 </div>
 

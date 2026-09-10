@@ -6,7 +6,7 @@
 
 `3D / Canvas` · `simulation` · `product design` · `scientific honesty` · `responsive UX` · `robustness`
 
-[Português (Brasil)](./README.pt-BR.md)
+[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md)
 
 </div>
 
@@ -36,18 +36,7 @@ GPT-5.6 Sun Max V1 is preserved only for prompt-leverage history. It is delibera
 
 ## What this benchmark tests
 
-The task asks a model to turn a dense product specification into a complete browser-based Solar System experience rather than a thin demo. It stresses:
-
-- interpretation of a long product specification;
-- visual hierarchy and product judgment;
-- simulation, time and orbital state;
-- nested systems such as Earth–Moon;
-- camera, selection and navigation behavior;
-- scale, measurement and educational tools;
-- performance and reliability;
-- responsive and accessibility behavior;
-- scientific honesty and explicit approximation boundaries;
-- testing and restoration behavior.
+The task asks a model to turn a dense product specification into a complete browser-based Solar System experience rather than a thin demo. It stresses interpretation of the specification, visual/product judgment, orbital and time state, nested systems such as Earth–Moon, camera/navigation, scale and measurement tools, performance, reliability, accessibility, scientific honesty and validation.
 
 ## Shared Frontier V2 input
 
@@ -55,13 +44,6 @@ The task asks a model to turn a dense product specification into a complete brow
 SHA-256  7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65
 Size     115,983 bytes
 Lines    1,153
-```
-
-```text
-                       EXACT SAME FRONTIER V2 PROMPT
-               ↙                ↓               ↓               ↘
-      SUN MAX V2         ASTRA MAX        GROK 4.6          FABLE 5.1
-         MAX                MAX              XHIGH               MAX
 ```
 
 ## Run map
@@ -76,59 +58,41 @@ Lines    1,153
 
 Machine-readable provenance lives in [`RUNS.json`](./RUNS.json).
 
-## Current snapshots
+## Frontier V2 scores
 
-### GPT-5.6 Sun Max — Frontier V2
-A complete rebuild under the stronger Frontier V2 specification. The run is archived under [`runs/gpt-5.6-sun-max/rebuild`](./runs/gpt-5.6-sun-max/rebuild/).
+> **Preliminary evaluation:** the scores are mainly based on one evaluator and a limited number of devices/environments.
 
-### GPT-6 Astra Max
-A full challenger generated from the same V2 prompt, archived under [`runs/gpt-6-astra-max/frontier-v2`](./runs/gpt-6-astra-max/frontier-v2/).
+<div align="center">
 
-### Grok 4.6 — XHIGH
-A complete Vite/TypeScript Solar System project with rendering, science/orbit core, catalogs, learning content, localization, state and persistence. The supplied source archive had no `.git`, so the source ZIP SHA-256 is the provenance anchor. See [`GROK-4.6-PROVENANCE.md`](./GROK-4.6-PROVENANCE.md).
+<img src="../../assets/frontier-v2-scores.svg" alt="Frontier V2 overall score chart from 0 to 100: Astra Max 95.25, Fable 5.1 Max 93.30, Sun Max V2 71.20, Grok 4.6 XHIGH 33.80" width="100%" />
 
-### Fable 5.1 — Max
-A complete Vite/Preact/Three.js observatory with simulation, rendering, catalogs, tours, activities, localization, state and persistence. It is archived from commit `7e079669e41b633057dd3dc9ae2cdeca4a4d17fb`. See [`FABLE-5.1-PROVENANCE.md`](./FABLE-5.1-PROVENANCE.md).
+</div>
+
+| Rank | Model | Score |
+| ---: | --- | ---: |
+| **1** | GPT-6 Astra Max | **95.25/100** |
+| **2** | Fable 5.1 Max | **93.30/100** |
+| **3** | GPT-5.6 Sun Max V2 | **71.20/100** |
+| **4** | Grok 4.6 XHIGH | **33.80/100** |
+
+## Evaluation criteria — summary
+
+- **Feature completeness — 20:** required features must exist and deliver the intended behavior; fake, shallow or loophole-driven implementations lose points.
+- **Interaction / UX — 15:** clarity, discoverability, ergonomics and control flow when the product works as designed; ordinary implementation bugs belong to Robustness.
+- **Visual execution — 15:** hierarchy, readability, coherence, rendering quality and polish.
+- **Scientific / simulation fidelity — 15:** orbital, temporal, scale and astronomical correctness plus honest approximation boundaries.
+- **Robustness — 10:** bugs, desynchronization, broken camera/follow state, exceptions, corrupted state and behaviors that stop working.
+- **Performance — 10:** responsiveness, frame pacing, loading and resource efficiency.
+- **Code / architecture — 10:** maintainability, modularity, state boundaries, dependency discipline, testability and validation quality.
+- **Accessibility / responsive behavior — 5:** keyboard/focus access, reduced motion, semantic usability and layout adaptation.
+
+**No double penalty:** a defect is scored in its primary category unless separate evidence proves an independent second violation. A broken Sun-follow/camera state, for example, is **Robustness**, not UX.
+
+See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for detailed evidence and per-category scores.
 
 ## Snapshot policy
 
-Model-produced files are preserved inside `runs/` without evaluator edits.
-
-```text
-runs/
-├─ gpt-5.6-sun-max/
-│  ├─ original/             # historical only
-│  └─ rebuild/              # current arena
-├─ gpt-6-astra-max/
-│  └─ frontier-v2/
-├─ grok-4.6/
-│  └─ frontier-v2/
-└─ fable/
-   └─ frontier-v2/
-```
-
-Evaluator-authored material lives outside those snapshots in `comparison/`, provenance files and repository documentation.
-
-## Evaluation
-
-Each dimension is scored from **0 to 10**, then converted to weighted points. A defect belongs in the category it actually violates, not simply where it was noticed during use.
-
-| Dimension | Weight | Objective and criterion |
-| --- | ---: | --- |
-| **Feature completeness** | 20 | **Objective:** measure whether required prompt capabilities exist and deliver the intended end-to-end behavior.<br>**Criterion:** deduct for missing, fake, shallow or loophole-driven features; ordinary breakage belongs to Robustness unless the feature is effectively absent or unusable. |
-| **Interaction / UX** | 15 | **Objective:** measure clarity, discoverability, ergonomics, navigation/control flow and feedback when the product behaves as designed.<br>**Criterion:** deduct for confusing or unnecessarily difficult interaction design, not implementation/state failures that merely appear while interacting. |
-| **Visual execution** | 15 | **Objective:** measure visual hierarchy, readability, coherence, rendering quality and overall polish of the interface and scene.<br>**Criterion:** deduct persistent visual/design defects; functional failures count here only when they independently damage the visual result. |
-| **Scientific / simulation fidelity** | 15 | **Objective:** measure correctness and coherence of orbital, time, scale and astronomical behavior, including honest approximation boundaries.<br>**Criterion:** deduct scientifically wrong data, semantics or models; runtime breakage belongs to Robustness unless the underlying scientific logic itself is wrong. |
-| **Robustness** | 10 | **Objective:** measure whether core behaviors remain reliable through normal, repeated and edge-case interaction, state changes, resets and high-speed use.<br>**Criterion:** bugs, desynchronization, broken follow/camera state, exceptions, corrupted state and behaviors that stop working are penalized here. |
-| **Performance** | 10 | **Objective:** measure responsiveness, frame pacing, loading behavior and resource efficiency in intended environments.<br>**Criterion:** deduct measurable slowness, jank, stalls or excessive resource use; confusing controls and correctness belong elsewhere. |
-| **Code / architecture** | 10 | **Objective:** measure maintainability, modularity, typing/state boundaries, dependency discipline, testability and validation quality from source evidence.<br>**Criterion:** deduct structural engineering weaknesses; a user-visible bug is not also an architecture penalty without independent source evidence. |
-| **Accessibility / responsive behavior** | 5 | **Objective:** measure keyboard/focus access, reduced-motion support, semantic usability and layout adaptation across target viewport sizes.<br>**Criterion:** deduct concrete accessibility or responsive failures; generic UX friction and unrelated functional bugs stay in their primary categories. |
-
-**Category-boundary rule:** do not double-penalize the same defect across categories unless it independently violates more than one criterion. Secondary deductions require separate evidence of a distinct failure.
-
-**Example:** if the Sun incorrectly follows the user/camera while moving around the orbitarium because follow, camera or scene state is broken, that is **Robustness**, not **Interaction / UX**. It affects UX only if the interaction design itself is confusing even when functioning correctly.
-
-See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for scores and evidence, and [`../../docs/METHODOLOGY.md`](../../docs/METHODOLOGY.md) for repository-wide rules.
+Model-produced files are preserved inside `runs/` without evaluator edits. Evaluator-authored material stays outside those snapshots.
 
 ## Fairness
 

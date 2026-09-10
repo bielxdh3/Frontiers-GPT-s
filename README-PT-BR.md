@@ -12,7 +12,9 @@
 
 **Prompts exatos. Proveniência fixada. Snapshots completos dos projetos. Evidências explícitas.**
 
-[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md) · [Abrir benchmark](./benchmarks/solar-system/) · [Metodologia](./docs/METHODOLOGY.md)
+[![English](https://img.shields.io/badge/Idioma-English-2563EB?style=for-the-badge)](./README.md)
+
+[Abrir benchmark](./benchmarks/solar-system/) · [Metodologia](./docs/METHODOLOGY.md)
 
 </div>
 

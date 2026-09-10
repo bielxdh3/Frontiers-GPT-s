@@ -42,11 +42,11 @@ Cells show the raw 0–10 rating followed by the weighted contribution.
 | Interaction / UX | 15 | **8.0/10 → 12.0/15** | **9.8/10 → 14.7/15** | **0.3/10 → 0.45/15** | **10/10 → 15/15** |
 | Visual execution | 15 | **6.0/10 → 9.0/15** | **9.7/10 → 14.55/15** | **1.1/10 → 1.65/15** | **9.9/10 → 14.85/15** |
 | Scientific / simulation fidelity | 15 | **4.0/10 → 6.0/15** | **10/10 → 15/15** | **5.0/10 → 7.5/15** | **10/10 → 15/15** |
-| Robustness | 10 | **8.0/10 → 8.0/10** | **10/10 → 10/10** | **2.0/10 → 2.0/10** | **5.0/10 → 5.0/10** |
+| Robustness | 10 | **8.0/10 → 8.0/10** | **9/10 → 9/10** | **2.0/10 → 2.0/10** | **5.0/10 → 5.0/10** |
 | Performance | 10 | **7.5/10 → 7.5/10** | **9.3/10 → 9.3/10** | **8.0/10 → 8.0/10** | **10/10 → 10/10** |
 | Code / architecture | 10 | **8.0/10 → 8.0/10*** | **9.2/10 → 9.2/10*** | **8.7/10 → 8.7/10*** | **9.1/10 → 9.1/10*** |
 | Accessibility / responsive behavior | 5 | **7.0/10 → 3.5/5** | **8.6/10 → 4.3/5** | **7.0/10 → 3.5/5** | **8.7/10 → 4.35/5** |
-| **Total** | **100** | **71.2/100** | **96.25/100** | **33.8/100** | **93.3/100** |
+| **Total** | **100** | **71.2/100** | **95.25/100** | **33.8/100** | **93.3/100** |
 
 \* `Code / architecture` uses provisional technical evaluator scores rather than user-entered hands-on ratings. Sun Max V2 scores **8.0/10**: it has clear separation between data, science, tests and browser QA with reproducible validation, but much application/UI/rendering logic is concentrated in a very large `app.js`. Astra Max scores **9.2/10**: its implementation is split across dedicated data, model, scene, materials, tools, UI, content and storage modules and includes multiple automated test/acceptance/recovery/control paths; some major modules remain relatively large, so the architecture is strong rather than perfect. Grok 4.6 XHIGH scores **8.7/10**: its TypeScript implementation is cleanly separated across core, data, rendering, simulation, state and UI layers, but `ui/app.ts` still concentrates a substantial amount of logic and its automated test coverage is more limited than Astra's. Fable 5.1 Max scores **9.1/10**: it has a strong TypeScript/Preact modular split across app, content, data, i18n, rendering and simulation layers, plus dedicated Vitest coverage; however, some renderer/controller modules remain large and its automated validation surface is less extensive than Astra's.
 

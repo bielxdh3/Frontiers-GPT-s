@@ -1,24 +1,24 @@
-# Solar System evaluation criteria
+# Critérios de avaliação do Sistema Solar
 
-This rubric defines what each weighted category is intended to measure. A defect should be scored in the category it actually violates, not wherever it happens to be noticed during use.
+Esta rubrica define o que cada categoria ponderada pretende medir. Um defeito deve ser pontuado na categoria que ele realmente viola, e não simplesmente onde ele foi percebido durante o uso.
 
-## Category objectives and scoring criteria
+## Objetivo e critério de cada categoria
 
-| Dimension | Weight | Objective and criterion |
+| Dimensão | Peso | Objetivo e critério |
 | --- | ---: | --- |
-| **Feature completeness** | 20 | **Objective:** measure whether the required prompt capabilities exist and deliver their intended end-to-end behavior.<br>**Criterion:** deduct for missing, fake, shallow or loophole-driven features; ordinary breakage belongs to Robustness unless the feature is effectively absent/unusable. |
-| **Interaction / UX** | 15 | **Objective:** measure clarity, discoverability, ergonomics, navigation/control flow and feedback when the product behaves as designed.<br>**Criterion:** deduct for confusing or unnecessarily difficult interaction design, not for implementation/state failures that merely occur while interacting. |
-| **Visual execution** | 15 | **Objective:** measure visual hierarchy, readability, coherence, rendering quality and overall polish of the interface and scene.<br>**Criterion:** deduct persistent visual/design defects; do not automatically charge functional failures here unless they independently damage the visual result. |
-| **Scientific / simulation fidelity** | 15 | **Objective:** measure correctness and coherence of orbital, time, scale and astronomical behavior, including honest approximation boundaries.<br>**Criterion:** deduct scientifically wrong data/semantics/models; runtime breakage belongs to Robustness unless the underlying scientific logic itself is incorrect. |
-| **Robustness** | 10 | **Objective:** measure whether core behaviors remain reliable through normal, repeated and edge-case interaction, state changes, resets and high-speed use.<br>**Criterion:** bugs, desynchronization, broken follow/camera state, exceptions, corrupted state and behaviors that stop working are penalized here. |
-| **Performance** | 10 | **Objective:** measure responsiveness, frame pacing, loading behavior and resource efficiency in the intended environments.<br>**Criterion:** deduct measurable slowness, jank, stalls or excessive resource use; confusing controls or functional correctness are scored elsewhere. |
-| **Code / architecture** | 10 | **Objective:** measure maintainability, modularity, typing/state boundaries, dependency discipline, testability and validation quality from source evidence.<br>**Criterion:** deduct structural/engineering weaknesses; a user-visible bug is not also an architecture penalty unless the source independently justifies it. |
-| **Accessibility / responsive behavior** | 5 | **Objective:** measure keyboard/focus access, reduced-motion support, semantic usability and layout adaptation across target viewport sizes.<br>**Criterion:** deduct concrete accessibility or responsive failures; generic UX friction and unrelated functional bugs remain in their primary categories. |
+| **Completude de recursos** | 20 | **Objetivo:** medir se as capacidades exigidas pelo prompt existem e entregam o comportamento completo pretendido.<br>**Critério:** descontar por recursos ausentes, falsos, superficiais ou feitos para contornar a intenção; quebras comuns pertencem à Robustez, salvo quando o recurso se torna efetivamente ausente ou inutilizável. |
+| **Interação / UX** | 15 | **Objetivo:** medir clareza, descobribilidade, ergonomia, fluxo de navegação/controles e qualidade do feedback quando o produto funciona como projetado.<br>**Critério:** descontar por interação confusa ou desnecessariamente difícil, não por falhas de implementação ou de estado que apenas aparecem durante a interação. |
+| **Execução visual** | 15 | **Objetivo:** medir hierarquia visual, legibilidade, coerência, qualidade de renderização e acabamento geral da interface e da cena.<br>**Critério:** descontar por defeitos visuais ou de design persistentes; não penalizar automaticamente aqui falhas funcionais, salvo quando elas também prejudicam de forma independente o resultado visual. |
+| **Fidelidade científica / da simulação** | 15 | **Objetivo:** medir a correção e a coerência do comportamento orbital, temporal, de escala e astronômico, incluindo limites de aproximação explicitados com honestidade.<br>**Critério:** descontar por dados, semântica ou modelos cientificamente incorretos; quebras em tempo de execução pertencem à Robustez, salvo quando a lógica científica subjacente também estiver errada. |
+| **Robustez** | 10 | **Objetivo:** medir se os comportamentos centrais continuam confiáveis durante uso normal, repetido e em casos-limite, incluindo mudanças de estado, resets e altas velocidades.<br>**Critério:** bugs, dessincronização, estado de câmera/seguimento quebrado, exceções, estado corrompido e comportamentos que deixam de funcionar são penalizados aqui. |
+| **Desempenho** | 10 | **Objetivo:** medir responsividade, estabilidade dos frames, carregamento e eficiência de recursos nos ambientes pretendidos.<br>**Critério:** descontar por lentidão mensurável, engasgos, travamentos ou uso excessivo de recursos; controles confusos ou correção funcional pertencem a outras categorias. |
+| **Código / arquitetura** | 10 | **Objetivo:** medir manutenibilidade, modularidade, tipagem/limites de estado, disciplina de dependências, testabilidade e qualidade da validação a partir do código-fonte.<br>**Critério:** descontar por fraquezas estruturais ou de engenharia; um bug visível ao usuário não gera também penalidade arquitetural sem evidência independente no código. |
+| **Acessibilidade / comportamento responsivo** | 5 | **Objetivo:** medir acesso por teclado/foco, suporte a movimento reduzido, usabilidade semântica e adaptação do layout aos tamanhos de tela-alvo.<br>**Critério:** descontar por falhas concretas de acessibilidade ou responsividade; atritos genéricos de UX e bugs funcionais não relacionados permanecem em suas categorias principais. |
 
-## Category-boundary rule
+## Regra de fronteira entre categorias
 
-**Do not double-penalize the same defect across categories unless it independently violates more than one criterion.** Score the primary defect where its actual failure belongs; secondary deductions require separate evidence of a distinct category failure.
+**Não penalizar duas vezes o mesmo defeito em categorias diferentes, salvo quando ele violar de forma independente mais de um critério.** O defeito principal deve ser pontuado onde a falha realmente pertence; qualquer penalidade secundária exige evidência separada de outro problema.
 
-Example: if the Sun incorrectly follows the user/camera while moving around the orbitarium because follow state, camera state or scene state is broken, that is **Robustness**, not Interaction / UX. It should affect UX only if the interaction/control design itself is confusing or poorly communicated even when functioning correctly.
+Exemplo: se o Sol seguir incorretamente o usuário ou a câmera enquanto ele se movimenta pelo orbitário por causa de um estado de seguimento, câmera ou cena quebrado, isso é **Robustez**, e não Interação / UX. Só deve afetar UX se o próprio desenho da interação ou dos controles for confuso ou mal comunicado mesmo quando estiver funcionando corretamente.
 
-Optional extras may help polish or a tie-break, but they cannot compensate for missing required behavior or push a category beyond its maximum weight.
+Recursos opcionais podem ajudar no acabamento ou em um desempate, mas não compensam comportamentos obrigatórios ausentes nem podem elevar uma categoria acima do seu peso máximo.

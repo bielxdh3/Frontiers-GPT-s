@@ -26,11 +26,12 @@
   <line x1="72" y1="100" x2="72" y2="420" stroke="#6b7280" stroke-width="1.5"/>
   <line x1="72" y1="420" x2="860" y2="420" stroke="#6b7280" stroke-width="1.5"/>
 
+  <!-- Canonical model colors: Astra purple, Fable green, Sun blue, Grok pink -->
   <g>
-    <rect x="110" y="115.2" width="120" height="304.8" fill="#7c3aed" rx="4"/>
-    <rect x="310" y="121.44" width="120" height="298.56" fill="#f97316" rx="4"/>
-    <rect x="510" y="192.16" width="120" height="227.84" fill="#fbbf24" rx="4"/>
-    <rect x="710" y="311.84" width="120" height="108.16" fill="#111827" rx="4"/>
+    <rect x="110" y="115.2" width="120" height="304.8" fill="#A78BFA" rx="4"/>
+    <rect x="310" y="121.44" width="120" height="298.56" fill="#34D399" rx="4"/>
+    <rect x="510" y="192.16" width="120" height="227.84" fill="#60A5FA" rx="4"/>
+    <rect x="710" y="311.84" width="120" height="108.16" fill="#F472B6" rx="4"/>
   </g>
 
   <g font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827" text-anchor="middle">
@@ -40,14 +41,14 @@
     <text x="770" y="302">33.80</text>
   </g>
 
-  <g font-family="Arial, sans-serif" font-size="14" fill="#111827" text-anchor="middle">
-    <text x="170" y="448" font-weight="700">Astra Max</text>
-    <text x="170" y="468">GPT-6</text>
-    <text x="370" y="448" font-weight="700">Fable 5.1</text>
-    <text x="370" y="468">Max</text>
-    <text x="570" y="448" font-weight="700">Sun Max V2</text>
-    <text x="570" y="468">GPT-5.6</text>
-    <text x="770" y="448" font-weight="700">Grok 4.6</text>
-    <text x="770" y="468">XHIGH</text>
+  <g font-family="Arial, sans-serif" font-size="14" text-anchor="middle">
+    <text x="170" y="448" font-weight="700" fill="#7C3AED">Astra Max</text>
+    <text x="170" y="468" fill="#6D28D9">GPT-6</text>
+    <text x="370" y="448" font-weight="700" fill="#059669">Fable 5.1</text>
+    <text x="370" y="468" fill="#047857">Max</text>
+    <text x="570" y="448" font-weight="700" fill="#2563EB">Sun Max V2</text>
+    <text x="570" y="468" fill="#1D4ED8">GPT-5.6</text>
+    <text x="770" y="448" font-weight="700" fill="#DB2777">Grok 4.6</text>
+    <text x="770" y="468" fill="#BE185D">XHIGH</text>
   </g>
 </svg>

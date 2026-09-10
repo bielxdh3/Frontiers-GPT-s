@@ -6,6 +6,8 @@
 
 `3D / Canvas` · `simulation` · `product design` · `scientific honesty` · `responsive UX` · `robustness`
 
+[Português (Brasil)](./README.pt-BR.md)
+
 </div>
 
 ## ⚔️ Current Frontier V2 arena
@@ -22,7 +24,7 @@ All four current contenders use the exact same [`frontier-v2.md`](./prompts/fron
 > Reasoning labels are preserved exactly as run metadata. `Max` and `XHIGH` are vendor/run settings and are not treated as directly equivalent compute scales.
 
 <details>
-<summary><strong>Historical Sun V1 baseline</strong></summary>
+<summary><strong>Historical baseline — GPT-5.6 Sun Max V1</strong></summary>
 
 GPT-5.6 Sun Max V1 is preserved only for prompt-leverage history. It is deliberately excluded from the current arena because it used [`sun-original.md`](./prompts/sun-original.md), not Frontier V2.
 
@@ -109,18 +111,24 @@ Evaluator-authored material lives outside those snapshots in `comparison/`, prov
 
 ## Evaluation
 
-| Dimension | Weight |
-| --- | ---: |
-| Feature completeness | 20 |
-| Interaction / UX | 15 |
-| Visual execution | 15 |
-| Scientific / simulation fidelity | 15 |
-| Robustness | 10 |
-| Performance | 10 |
-| Code / architecture | 10 |
-| Accessibility / responsive behavior | 5 |
+Each dimension is scored from **0 to 10**, then converted to weighted points. A defect belongs in the category it actually violates, not simply where it was noticed during use.
 
-See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for the evidence checklist and [`../../docs/METHODOLOGY.md`](../../docs/METHODOLOGY.md) for the repository-wide rules.
+| Dimension | Weight | Objective and criterion |
+| --- | ---: | --- |
+| **Feature completeness** | 20 | **Objective:** measure whether required prompt capabilities exist and deliver the intended end-to-end behavior.<br>**Criterion:** deduct for missing, fake, shallow or loophole-driven features; ordinary breakage belongs to Robustness unless the feature is effectively absent or unusable. |
+| **Interaction / UX** | 15 | **Objective:** measure clarity, discoverability, ergonomics, navigation/control flow and feedback when the product behaves as designed.<br>**Criterion:** deduct for confusing or unnecessarily difficult interaction design, not implementation/state failures that merely appear while interacting. |
+| **Visual execution** | 15 | **Objective:** measure visual hierarchy, readability, coherence, rendering quality and overall polish of the interface and scene.<br>**Criterion:** deduct persistent visual/design defects; functional failures count here only when they independently damage the visual result. |
+| **Scientific / simulation fidelity** | 15 | **Objective:** measure correctness and coherence of orbital, time, scale and astronomical behavior, including honest approximation boundaries.<br>**Criterion:** deduct scientifically wrong data, semantics or models; runtime breakage belongs to Robustness unless the underlying scientific logic itself is wrong. |
+| **Robustness** | 10 | **Objective:** measure whether core behaviors remain reliable through normal, repeated and edge-case interaction, state changes, resets and high-speed use.<br>**Criterion:** bugs, desynchronization, broken follow/camera state, exceptions, corrupted state and behaviors that stop working are penalized here. |
+| **Performance** | 10 | **Objective:** measure responsiveness, frame pacing, loading behavior and resource efficiency in intended environments.<br>**Criterion:** deduct measurable slowness, jank, stalls or excessive resource use; confusing controls and correctness belong elsewhere. |
+| **Code / architecture** | 10 | **Objective:** measure maintainability, modularity, typing/state boundaries, dependency discipline, testability and validation quality from source evidence.<br>**Criterion:** deduct structural engineering weaknesses; a user-visible bug is not also an architecture penalty without independent source evidence. |
+| **Accessibility / responsive behavior** | 5 | **Objective:** measure keyboard/focus access, reduced-motion support, semantic usability and layout adaptation across target viewport sizes.<br>**Criterion:** deduct concrete accessibility or responsive failures; generic UX friction and unrelated functional bugs stay in their primary categories. |
+
+**Category-boundary rule:** do not double-penalize the same defect across categories unless it independently violates more than one criterion. Secondary deductions require separate evidence of a distinct failure.
+
+**Example:** if the Sun incorrectly follows the user/camera while moving around the orbitarium because follow, camera or scene state is broken, that is **Robustness**, not **Interaction / UX**. It affects UX only if the interaction design itself is confusing even when functioning correctly.
+
+See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for scores and evidence, and [`../../docs/METHODOLOGY.md`](../../docs/METHODOLOGY.md) for repository-wide rules.
 
 ## Fairness
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/frontier-models-hero.svg" alt="Frontier Models — frontier model benchmark archive" width="100%" />
+<img src="./assets/frontier-models-hero-v2.svg" alt="Frontier Models — frontier model benchmark archive" width="100%" />
 
 <br/>
 
@@ -12,7 +12,9 @@
 
 **Exact prompts. Pinned provenance. Complete project snapshots. Explicit evidence.**
 
-[Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md) · [Architecture](./docs/REPOSITORY-ARCHITECTURE.md)
+[![Português (Brasil)](https://img.shields.io/badge/Idioma-Portugu%C3%AAs%20(BR)-2563EB?style=for-the-badge)](./README-PT-BR.md)
+
+[Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md)
 
 </div>
 
@@ -25,20 +27,7 @@
 | 𝕏 **Grok 4.6** | Frontier V2 / **XHIGH** | [Open Grok 4.6](https://grok-4-6-solar-system.vercel.app) | [`runs/grok-4.6/frontier-v2`](./benchmarks/solar-system/runs/grok-4.6/frontier-v2/) |
 | ◆ **Fable 5.1** | Frontier V2 / **Max** | [Open Fable 5.1](https://fable-solar-system.vercel.app) | [`runs/fable/frontier-v2`](./benchmarks/solar-system/runs/fable/frontier-v2/) |
 
-All four current contenders use the **same exact Frontier V2 master prompt**. Grok is recorded at **XHIGH**, its highest available reasoning level for this run; Fable 5.1 is recorded at **Max**.
-
-<details>
-<summary><strong>Historical baseline — GPT-5.6 Sun Max V1</strong></summary>
-
-The original Sun build is preserved for prompt-leverage history, but it is intentionally **hidden from the current Frontier V2 arena** because it used a different prompt.
-
-- [Open historical Sun V1](https://gpt-5.6-sun-v1.biel.dev.br)
-- Archived snapshot: [`runs/gpt-5.6-sun-max/original`](./benchmarks/solar-system/runs/gpt-5.6-sun-max/original/)
-- Input: [`sun-original.md`](./benchmarks/solar-system/prompts/sun-original.md)
-
-</details>
-
----
+All four current contenders use the **same exact Frontier V2 master prompt**. Reasoning labels are preserved as run metadata and are not normalized across vendors.
 
 ## What is Frontier Models?
 
@@ -48,29 +37,9 @@ The original Sun build is preserved for prompt-leverage history, but it is inten
 PROMPT → MODEL RUN → PROJECT SNAPSHOT → EVIDENCE → SCORECARD → VERDICT
 ```
 
-The archive is built so a reviewer can verify what each model received, what it produced, which immutable source is being judged, and what was added later by the evaluator.
-
 ## Benchmark 001 — Solar System / Orbitarium
 
-The first benchmark asks each model to build a complete interactive Solar System product from a dense product specification. It stresses:
-
-- visual/product design;
-- simulation and orbital logic;
-- camera and navigation behavior;
-- time state and celestial hierarchy;
-- responsive and accessibility behavior;
-- performance and robustness;
-- scientific honesty and caveats;
-- onboarding, learning tools and QA.
-
-The current comparison is intentionally simple: **same Frontier V2 prompt, four current contenders**.
-
-```text
-                         EXACT SAME FRONTIER V2 PROMPT
-                ↙                 ↓                ↓                 ↘
-      GPT-5.6 SUN MAX      GPT-6 ASTRA MAX     GROK 4.6         FABLE 5.1
-           MAX                  MAX              XHIGH               MAX
-```
+The first benchmark asks each model to build a complete interactive Solar System product from a dense product specification. It stresses product design, simulation and orbital logic, camera/navigation, time state, accessibility, performance, robustness, scientific honesty, learning tools and QA.
 
 ## Current run provenance
 
@@ -81,73 +50,45 @@ The current comparison is intentionally simple: **same Frontier V2 prompt, four 
 | Grok 4.6 XHIGH | source ZIP SHA-256 `5d77eeb509…` | archived |
 | Fable 5.1 Max | commit `7e079669e41b…` | archived |
 
-The exact shared prompt is [`frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md):
+The exact shared prompt is [`frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md), SHA-256 `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
 
-| Property | Value |
-| --- | --- |
-| SHA-256 | `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65` |
-| Size | `115,983 bytes` |
-| Lines | `1,153` |
+## Frontier V2 scores
 
-## Repository map
+> **Preliminary evaluation:** the current scores are mainly based on one evaluator and a limited number of devices/environments. Treat them as comparative benchmark results, not definitive professional measurements.
 
-```text
-Frontier-Models/
-├── README.md
-├── assets/
-│   └── frontier-models-hero.svg
-├── docs/
-│   ├── METHODOLOGY.md
-│   └── REPOSITORY-ARCHITECTURE.md
-└── benchmarks/
-    └── solar-system/
-        ├── README.md
-        ├── RUNS.json
-        ├── GROK-4.6-PROVENANCE.md
-        ├── FABLE-5.1-PROVENANCE.md
-        ├── prompts/
-        │   ├── sun-original.md
-        │   └── frontier-v2.md
-        ├── runs/
-        │   ├── gpt-5.6-sun-max/
-        │   │   ├── original/        ← historical only
-        │   │   └── rebuild/         ← current arena
-        │   ├── gpt-6-astra-max/
-        │   │   └── frontier-v2/
-        │   ├── grok-4.6/
-        │   │   └── frontier-v2/
-        │   └── fable/
-        │       └── frontier-v2/
-        └── comparison/
-            └── SCORECARD.md
-```
+<div align="center">
 
-## Fairness rule
+<img src="./assets/frontier-v2-scores-v2.svg" alt="Frontier V2 overall score chart from 0 to 100: Astra Max 95.25, Fable 5.1 Max 93.30, Sun Max V2 71.20, Grok 4.6 XHIGH 33.80" width="100%" />
 
-The competing model should not receive another contender's implementation, score, critique, or post-hoc hints while generating its own project. Generation comes first; evaluation comes afterward.
+</div>
 
-Reasoning-level labels are preserved as run metadata and are **not normalized across vendors**. `Max` and `XHIGH` describe the settings actually used, not a claim that those labels represent identical compute budgets.
+| Rank | Model | Score |
+| ---: | --- | ---: |
+| **1** | GPT-6 Astra Max | **95.25/100** |
+| **2** | Fable 5.1 Max | **93.30/100** |
+| **3** | GPT-5.6 Sun Max V2 | **71.20/100** |
+| **4** | Grok 4.6 XHIGH | **33.80/100** |
 
-## Evaluation model
+## Evaluation criteria — summary
 
-| Dimension | Weight |
-| --- | ---: |
-| Feature completeness | 20 |
-| Interaction / UX | 15 |
-| Visual execution | 15 |
-| Correctness / domain fidelity | 15 |
-| Robustness | 10 |
-| Performance | 10 |
-| Code / architecture | 10 |
-| Accessibility / responsive behavior | 5 |
+- **Feature completeness — 20 pts:** required features must actually exist and deliver the intended behavior; fake, shallow or loophole-driven implementations lose credit.
+- **Interaction / UX — 15 pts:** clarity, discoverability, ergonomics and control flow when the product is working as designed; implementation bugs do **not** automatically count as UX problems.
+- **Visual execution — 15 pts:** hierarchy, readability, coherence, rendering quality and polish.
+- **Scientific / simulation fidelity — 15 pts:** orbital, temporal, scale and astronomical correctness, including honest approximation boundaries.
+- **Robustness — 10 pts:** bugs, state desynchronization, broken camera/follow behavior, exceptions, corrupted state and features that stop working.
+- **Performance — 10 pts:** responsiveness, frame pacing, loading and resource efficiency.
+- **Code / architecture — 10 pts:** maintainability, modularity, state boundaries, dependencies, testability and validation quality.
+- **Accessibility / responsive behavior — 5 pts:** keyboard/focus access, reduced motion, semantic usability and layout adaptation across target viewports.
 
-See the full [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md). Scores remain pending until the evidence-backed evaluation is completed.
+**No double penalty:** one defect should be charged to its primary category unless independent evidence shows a separate violation. Example: if the Sun follows the camera/user because scene or follow state is broken, that is **Robustness**, not UX.
+
+See the detailed evidence and per-category scores in [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md).
 
 ## Archive policy
 
 - model output stays untouched inside `runs/`;
 - evaluator material stays outside run snapshots;
-- exact prompts are archived separately;
+- exact prompts are archived separately and verbatim;
 - Git commits are used when source Git metadata exists;
 - cryptographic source-archive hashes are used when it does not;
 - historical runs remain preserved without cluttering the current arena.

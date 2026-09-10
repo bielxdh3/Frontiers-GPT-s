@@ -12,7 +12,7 @@
 
 **Exact prompts. Pinned provenance. Complete project snapshots. Explicit evidence.**
 
-[Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md) · [Architecture](./docs/REPOSITORY-ARCHITECTURE.md)
+[Português (Brasil)](./README.pt-BR.md) · [Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md) · [Architecture](./docs/REPOSITORY-ARCHITECTURE.md)
 
 </div>
 
@@ -52,25 +52,7 @@ The archive is built so a reviewer can verify what each model received, what it 
 
 ## Benchmark 001 — Solar System / Orbitarium
 
-The first benchmark asks each model to build a complete interactive Solar System product from a dense product specification. It stresses:
-
-- visual/product design;
-- simulation and orbital logic;
-- camera and navigation behavior;
-- time state and celestial hierarchy;
-- responsive and accessibility behavior;
-- performance and robustness;
-- scientific honesty and caveats;
-- onboarding, learning tools and QA.
-
-The current comparison is intentionally simple: **same Frontier V2 prompt, four current contenders**.
-
-```text
-                         EXACT SAME FRONTIER V2 PROMPT
-                ↙                 ↓                ↓                 ↘
-      GPT-5.6 SUN MAX      GPT-6 ASTRA MAX     GROK 4.6         FABLE 5.1
-           MAX                  MAX              XHIGH               MAX
-```
+The first benchmark asks each model to build a complete interactive Solar System product from a dense product specification. It stresses visual/product design, simulation and orbital logic, camera/navigation, time state, accessibility, performance, robustness, scientific honesty, learning tools and QA.
 
 ## Current run provenance
 
@@ -81,73 +63,32 @@ The current comparison is intentionally simple: **same Frontier V2 prompt, four 
 | Grok 4.6 XHIGH | source ZIP SHA-256 `5d77eeb509…` | archived |
 | Fable 5.1 Max | commit `7e079669e41b…` | archived |
 
-The exact shared prompt is [`frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md):
-
-| Property | Value |
-| --- | --- |
-| SHA-256 | `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65` |
-| Size | `115,983 bytes` |
-| Lines | `1,153` |
-
-## Repository map
-
-```text
-Frontier-Models/
-├── README.md
-├── assets/
-│   └── frontier-models-hero.svg
-├── docs/
-│   ├── METHODOLOGY.md
-│   └── REPOSITORY-ARCHITECTURE.md
-└── benchmarks/
-    └── solar-system/
-        ├── README.md
-        ├── RUNS.json
-        ├── GROK-4.6-PROVENANCE.md
-        ├── FABLE-5.1-PROVENANCE.md
-        ├── prompts/
-        │   ├── sun-original.md
-        │   └── frontier-v2.md
-        ├── runs/
-        │   ├── gpt-5.6-sun-max/
-        │   │   ├── original/        ← historical only
-        │   │   └── rebuild/         ← current arena
-        │   ├── gpt-6-astra-max/
-        │   │   └── frontier-v2/
-        │   ├── grok-4.6/
-        │   │   └── frontier-v2/
-        │   └── fable/
-        │       └── frontier-v2/
-        └── comparison/
-            └── SCORECARD.md
-```
-
-## Fairness rule
-
-The competing model should not receive another contender's implementation, score, critique, or post-hoc hints while generating its own project. Generation comes first; evaluation comes afterward.
-
-Reasoning-level labels are preserved as run metadata and are **not normalized across vendors**. `Max` and `XHIGH` describe the settings actually used, not a claim that those labels represent identical compute budgets.
+The exact shared prompt is [`frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md), SHA-256 `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
 
 ## Evaluation model
 
-| Dimension | Weight |
-| --- | ---: |
-| Feature completeness | 20 |
-| Interaction / UX | 15 |
-| Visual execution | 15 |
-| Correctness / domain fidelity | 15 |
-| Robustness | 10 |
-| Performance | 10 |
-| Code / architecture | 10 |
-| Accessibility / responsive behavior | 5 |
+Each dimension is rated from **0 to 10** and converted into weighted points. The same defect should not be charged twice unless independent evidence shows that it genuinely violates two separate criteria.
 
-See the full [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md). Scores remain pending until the evidence-backed evaluation is completed.
+| Dimension | Weight | Objective and criterion |
+| --- | ---: | --- |
+| **Feature completeness** | 20 | **Objective:** verify that required capabilities exist and deliver the intended end-to-end behavior.<br>**Criterion:** deduct for missing, fake, shallow or loophole-driven features; ordinary breakage belongs to Robustness unless the feature is effectively unusable. |
+| **Interaction / UX** | 15 | **Objective:** measure clarity, discoverability, ergonomics, navigation/control flow and feedback when behavior works as designed.<br>**Criterion:** deduct confusing interaction design, not implementation or state failures that merely surface during interaction. |
+| **Visual execution** | 15 | **Objective:** measure hierarchy, readability, coherence, rendering quality and overall polish.<br>**Criterion:** deduct persistent visual/design defects; functional failures count only when they independently damage the visual result. |
+| **Scientific / simulation fidelity** | 15 | **Objective:** measure correctness of orbital, temporal, scale and astronomical behavior and honest approximation boundaries.<br>**Criterion:** deduct wrong data, semantics or models; runtime breakage belongs to Robustness unless the underlying scientific logic is also wrong. |
+| **Robustness** | 10 | **Objective:** measure reliability through normal, repeated and edge-case interaction, state changes, resets and high-speed use.<br>**Criterion:** bugs, desynchronization, broken follow/camera state, exceptions, corrupted state and behaviors that stop working belong here. |
+| **Performance** | 10 | **Objective:** measure responsiveness, frame pacing, loading and resource efficiency.<br>**Criterion:** deduct measurable slowness, jank, stalls or excessive resource use; correctness and control design belong elsewhere. |
+| **Code / architecture** | 10 | **Objective:** measure maintainability, modularity, state boundaries, dependency discipline, testability and validation quality.<br>**Criterion:** deduct structural engineering weaknesses; a user-visible bug is not also an architecture penalty without independent source evidence. |
+| **Accessibility / responsive behavior** | 5 | **Objective:** measure keyboard/focus access, reduced motion, semantic usability and layout adaptation across target viewports.<br>**Criterion:** deduct concrete accessibility/responsive failures; generic UX friction and unrelated bugs stay in their primary categories. |
+
+**Boundary example:** if the Sun incorrectly follows the user/camera while moving around the orbitarium because follow, camera or scene state is broken, that is **Robustness**, not **Interaction / UX**. UX is penalized only if the interaction itself is confusing even when working correctly.
+
+See the full [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md) and the benchmark [`README`](./benchmarks/solar-system/README.md).
 
 ## Archive policy
 
 - model output stays untouched inside `runs/`;
 - evaluator material stays outside run snapshots;
-- exact prompts are archived separately;
+- exact prompts are archived separately and verbatim;
 - Git commits are used when source Git metadata exists;
 - cryptographic source-archive hashes are used when it does not;
 - historical runs remain preserved without cluttering the current arena.

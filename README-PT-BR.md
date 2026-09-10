@@ -1,0 +1,104 @@
+<div align="center">
+
+<img src="./assets/frontier-models-hero.svg" alt="Frontier Models — arquivo de benchmarks de modelos frontier" width="100%" />
+
+<br/>
+
+[![Benchmark](https://img.shields.io/badge/benchmark-frontier%20models-7C3AED?style=for-the-badge)](./benchmarks)
+[![Arena](https://img.shields.io/badge/Frontier%20V2-4%20modelos-2563EB?style=for-the-badge)](./benchmarks/solar-system/RUNS.json)
+[![Arquivo](https://img.shields.io/badge/arquivo-5%20snapshots-DB2777?style=for-the-badge)](./benchmarks/solar-system/RUNS.json)
+
+# Frontier Models
+
+**Prompts exatos. Proveniência fixada. Snapshots completos dos projetos. Evidências explícitas.**
+
+[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md) · [Abrir benchmark](./benchmarks/solar-system/) · [Metodologia](./docs/METHODOLOGY.md)
+
+</div>
+
+## ⚔️ Arena Frontier V2 atual
+
+| Modelo | Execução / esforço | Projeto ao vivo | Execução arquivada |
+| --- | --- | --- | --- |
+| ☀️ **GPT-5.6 Sun Max** | Frontier V2 / Max | [Abrir Sun V2](https://gpt-5.6-sun-v2.biel.dev.br) | [`runs/gpt-5.6-sun-max/rebuild`](./benchmarks/solar-system/runs/gpt-5.6-sun-max/rebuild/) |
+| ✦ **GPT-6 Astra Max** | Frontier V2 / Max | [Abrir Astra](https://gpt-6-astra.biel.dev.br) | [`runs/gpt-6-astra-max/frontier-v2`](./benchmarks/solar-system/runs/gpt-6-astra-max/frontier-v2/) |
+| 𝕏 **Grok 4.6** | Frontier V2 / **XHIGH** | [Abrir Grok 4.6](https://grok-4-6-solar-system.vercel.app) | [`runs/grok-4.6/frontier-v2`](./benchmarks/solar-system/runs/grok-4.6/frontier-v2/) |
+| ◆ **Fable 5.1** | Frontier V2 / **Max** | [Abrir Fable 5.1](https://fable-solar-system.vercel.app) | [`runs/fable/frontier-v2`](./benchmarks/solar-system/runs/fable/frontier-v2/) |
+
+Os quatro concorrentes atuais usam **exatamente o mesmo prompt mestre Frontier V2**. Os rótulos de raciocínio são preservados como metadados da execução e não são normalizados entre fornecedores.
+
+## O que é Frontier Models?
+
+**Frontier Models** é um arquivo independente de benchmarks para comparar sistemas de IA frontier em projetos completos e inspecionáveis, em vez de capturas isoladas ou pontuações sintéticas.
+
+```text
+PROMPT → EXECUÇÃO DO MODELO → SNAPSHOT DO PROJETO → EVIDÊNCIAS → SCORECARD → VEREDITO
+```
+
+## Benchmark 001 — Sistema Solar / Orbitário
+
+O primeiro benchmark pede a cada modelo que construa um produto completo e interativo do Sistema Solar a partir de uma especificação extensa. Ele testa design de produto, simulação e lógica orbital, câmera/navegação, estado temporal, acessibilidade, desempenho, robustez, honestidade científica, ferramentas educacionais e QA.
+
+## Proveniência das execuções atuais
+
+| Modelo | Proveniência | Status |
+| --- | --- | --- |
+| GPT-5.6 Sun Max V2 | commit `93d43ae62f…` | arquivado |
+| GPT-6 Astra Max | commit `fca2ef51b4…` | arquivado |
+| Grok 4.6 XHIGH | SHA-256 do ZIP `5d77eeb509…` | arquivado |
+| Fable 5.1 Max | commit `7e079669e41b…` | arquivado |
+
+O prompt compartilhado exato é [`frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md), SHA-256 `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
+
+## Pontuações Frontier V2
+
+> **Avaliação preliminar:** as notas atuais foram feitas principalmente por um único avaliador e em poucos dispositivos/ambientes. Devem ser tratadas como resultados comparativos do benchmark, não como medições profissionais definitivas.
+
+<div align="center">
+
+<img src="./assets/frontier-v2-scores.svg" alt="Gráfico geral Frontier V2 de 0 a 100: Astra Max 95,25; Fable 5.1 Max 93,30; Sun Max V2 71,20; Grok 4.6 XHIGH 33,80" width="100%" />
+
+</div>
+
+| Posição | Modelo | Nota |
+| ---: | --- | ---: |
+| **1** | GPT-6 Astra Max | **95,25/100** |
+| **2** | Fable 5.1 Max | **93,30/100** |
+| **3** | GPT-5.6 Sun Max V2 | **71,20/100** |
+| **4** | Grok 4.6 XHIGH | **33,80/100** |
+
+## Critérios de avaliação — resumo
+
+- **Completude de recursos — 20 pts:** os recursos exigidos precisam existir de verdade e entregar o comportamento pretendido; implementações falsas, superficiais ou feitas para contornar a intenção perdem pontos.
+- **Interação / UX — 15 pts:** clareza, descobribilidade, ergonomia e fluxo dos controles quando o produto funciona como projetado; bugs de implementação **não** viram automaticamente problemas de UX.
+- **Execução visual — 15 pts:** hierarquia, legibilidade, coerência, qualidade de renderização e acabamento.
+- **Fidelidade científica / da simulação — 15 pts:** correção orbital, temporal, de escala e astronômica, incluindo limites de aproximação explicados com honestidade.
+- **Robustez — 10 pts:** bugs, dessincronização de estado, câmera/seguimento quebrados, exceções, estado corrompido e recursos que deixam de funcionar.
+- **Desempenho — 10 pts:** responsividade, estabilidade dos frames, carregamento e eficiência de recursos.
+- **Código / arquitetura — 10 pts:** manutenibilidade, modularidade, limites de estado, dependências, testabilidade e qualidade da validação.
+- **Acessibilidade / responsividade — 5 pts:** teclado/foco, movimento reduzido, usabilidade semântica e adaptação do layout aos tamanhos de tela-alvo.
+
+**Sem dupla penalização:** um defeito deve perder pontos na categoria principal à qual pertence, salvo quando houver evidência independente de outra violação. Exemplo: se o Sol seguir a câmera/usuário por estado de cena ou seguimento quebrado, isso é **Robustez**, não UX.
+
+Veja as evidências detalhadas e notas por categoria em [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md).
+
+## Política do arquivo
+
+- resultados dos modelos permanecem intocados dentro de `runs/`;
+- material do avaliador fica fora dos snapshots;
+- prompts exatos são arquivados separadamente e sem alterações;
+- commits Git são usados quando existem metadados Git da fonte;
+- hashes criptográficos são usados quando não existem;
+- execuções históricas continuam preservadas sem poluir a arena atual.
+
+---
+
+<div align="center">
+
+### Frontier Models
+
+**Entrada · resultado · evidência · comparação — tudo em um só lugar.**
+
+<sub>Arquivo independente de benchmark. Os nomes dos modelos identificam os sistemas usados em cada execução.</sub>
+
+</div>

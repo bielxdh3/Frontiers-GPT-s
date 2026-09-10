@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/frontier-models-hero.svg" alt="Frontier Models — arquivo de benchmarks de modelos frontier" width="100%" />
+<img src="./assets/frontier-models-hero-v2.svg" alt="Frontier Models — arquivo de benchmarks de modelos frontier" width="100%" />
 
 <br/>
 
@@ -58,7 +58,7 @@ O prompt compartilhado exato é [`frontier-v2.md`](./benchmarks/solar-system/pro
 
 <div align="center">
 
-<img src="./assets/frontier-v2-scores.svg" alt="Gráfico geral Frontier V2 de 0 a 100: Astra Max 95,25; Fable 5.1 Max 93,30; Sun Max V2 71,20; Grok 4.6 XHIGH 33,80" width="100%" />
+<img src="./assets/frontier-v2-scores-v2.svg" alt="Gráfico geral Frontier V2 de 0 a 100: Astra Max 95,25; Fable 5.1 Max 93,30; Sun Max V2 71,20; Grok 4.6 XHIGH 33,80" width="100%" />
 
 </div>
 

@@ -6,7 +6,7 @@
 
 `3D / Canvas` · `simulation` · `product design` · `scientific honesty` · `responsive UX` · `robustness`
 
-[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md)
+[![Português (Brasil)](https://img.shields.io/badge/Idioma-Portugu%C3%AAs%20(BR)-2563EB?style=for-the-badge)](./README-PT-BR.md)
 
 </div>
 

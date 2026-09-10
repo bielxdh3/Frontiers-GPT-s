@@ -12,7 +12,7 @@
 
 **Exact prompts. Pinned provenance. Complete project snapshots. Explicit evidence.**
 
-[Português (Brasil)](./README.pt-BR.md) · [Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md) · [Architecture](./docs/REPOSITORY-ARCHITECTURE.md)
+[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md) · [Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md)
 
 </div>
 
@@ -25,20 +25,7 @@
 | 𝕏 **Grok 4.6** | Frontier V2 / **XHIGH** | [Open Grok 4.6](https://grok-4-6-solar-system.vercel.app) | [`runs/grok-4.6/frontier-v2`](./benchmarks/solar-system/runs/grok-4.6/frontier-v2/) |
 | ◆ **Fable 5.1** | Frontier V2 / **Max** | [Open Fable 5.1](https://fable-solar-system.vercel.app) | [`runs/fable/frontier-v2`](./benchmarks/solar-system/runs/fable/frontier-v2/) |
 
-All four current contenders use the **same exact Frontier V2 master prompt**. Grok is recorded at **XHIGH**, its highest available reasoning level for this run; Fable 5.1 is recorded at **Max**.
-
-<details>
-<summary><strong>Historical baseline — GPT-5.6 Sun Max V1</strong></summary>
-
-The original Sun build is preserved for prompt-leverage history, but it is intentionally **hidden from the current Frontier V2 arena** because it used a different prompt.
-
-- [Open historical Sun V1](https://gpt-5.6-sun-v1.biel.dev.br)
-- Archived snapshot: [`runs/gpt-5.6-sun-max/original`](./benchmarks/solar-system/runs/gpt-5.6-sun-max/original/)
-- Input: [`sun-original.md`](./benchmarks/solar-system/prompts/sun-original.md)
-
-</details>
-
----
+All four current contenders use the **same exact Frontier V2 master prompt**. Reasoning labels are preserved as run metadata and are not normalized across vendors.
 
 ## What is Frontier Models?
 
@@ -48,11 +35,9 @@ The original Sun build is preserved for prompt-leverage history, but it is inten
 PROMPT → MODEL RUN → PROJECT SNAPSHOT → EVIDENCE → SCORECARD → VERDICT
 ```
 
-The archive is built so a reviewer can verify what each model received, what it produced, which immutable source is being judged, and what was added later by the evaluator.
-
 ## Benchmark 001 — Solar System / Orbitarium
 
-The first benchmark asks each model to build a complete interactive Solar System product from a dense product specification. It stresses visual/product design, simulation and orbital logic, camera/navigation, time state, accessibility, performance, robustness, scientific honesty, learning tools and QA.
+The first benchmark asks each model to build a complete interactive Solar System product from a dense product specification. It stresses product design, simulation and orbital logic, camera/navigation, time state, accessibility, performance, robustness, scientific honesty, learning tools and QA.
 
 ## Current run provenance
 
@@ -65,24 +50,37 @@ The first benchmark asks each model to build a complete interactive Solar System
 
 The exact shared prompt is [`frontier-v2.md`](./benchmarks/solar-system/prompts/frontier-v2.md), SHA-256 `7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65`.
 
-## Evaluation model
+## Frontier V2 scores
 
-Each dimension is rated from **0 to 10** and converted into weighted points. The same defect should not be charged twice unless independent evidence shows that it genuinely violates two separate criteria.
+> **Preliminary evaluation:** the current scores are mainly based on one evaluator and a limited number of devices/environments. Treat them as comparative benchmark results, not definitive professional measurements.
 
-| Dimension | Weight | Objective and criterion |
-| --- | ---: | --- |
-| **Feature completeness** | 20 | **Objective:** verify that required capabilities exist and deliver the intended end-to-end behavior.<br>**Criterion:** deduct for missing, fake, shallow or loophole-driven features; ordinary breakage belongs to Robustness unless the feature is effectively unusable. |
-| **Interaction / UX** | 15 | **Objective:** measure clarity, discoverability, ergonomics, navigation/control flow and feedback when behavior works as designed.<br>**Criterion:** deduct confusing interaction design, not implementation or state failures that merely surface during interaction. |
-| **Visual execution** | 15 | **Objective:** measure hierarchy, readability, coherence, rendering quality and overall polish.<br>**Criterion:** deduct persistent visual/design defects; functional failures count only when they independently damage the visual result. |
-| **Scientific / simulation fidelity** | 15 | **Objective:** measure correctness of orbital, temporal, scale and astronomical behavior and honest approximation boundaries.<br>**Criterion:** deduct wrong data, semantics or models; runtime breakage belongs to Robustness unless the underlying scientific logic is also wrong. |
-| **Robustness** | 10 | **Objective:** measure reliability through normal, repeated and edge-case interaction, state changes, resets and high-speed use.<br>**Criterion:** bugs, desynchronization, broken follow/camera state, exceptions, corrupted state and behaviors that stop working belong here. |
-| **Performance** | 10 | **Objective:** measure responsiveness, frame pacing, loading and resource efficiency.<br>**Criterion:** deduct measurable slowness, jank, stalls or excessive resource use; correctness and control design belong elsewhere. |
-| **Code / architecture** | 10 | **Objective:** measure maintainability, modularity, state boundaries, dependency discipline, testability and validation quality.<br>**Criterion:** deduct structural engineering weaknesses; a user-visible bug is not also an architecture penalty without independent source evidence. |
-| **Accessibility / responsive behavior** | 5 | **Objective:** measure keyboard/focus access, reduced motion, semantic usability and layout adaptation across target viewports.<br>**Criterion:** deduct concrete accessibility/responsive failures; generic UX friction and unrelated bugs stay in their primary categories. |
+<div align="center">
 
-**Boundary example:** if the Sun incorrectly follows the user/camera while moving around the orbitarium because follow, camera or scene state is broken, that is **Robustness**, not **Interaction / UX**. UX is penalized only if the interaction itself is confusing even when working correctly.
+<img src="./assets/frontier-v2-scores.svg" alt="Frontier V2 overall score chart from 0 to 100: Astra Max 95.25, Fable 5.1 Max 93.30, Sun Max V2 71.20, Grok 4.6 XHIGH 33.80" width="100%" />
 
-See the full [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md) and the benchmark [`README`](./benchmarks/solar-system/README.md).
+</div>
+
+| Rank | Model | Score |
+| ---: | --- | ---: |
+| **1** | GPT-6 Astra Max | **95.25/100** |
+| **2** | Fable 5.1 Max | **93.30/100** |
+| **3** | GPT-5.6 Sun Max V2 | **71.20/100** |
+| **4** | Grok 4.6 XHIGH | **33.80/100** |
+
+## Evaluation criteria — summary
+
+- **Feature completeness — 20 pts:** required features must actually exist and deliver the intended behavior; fake, shallow or loophole-driven implementations lose credit.
+- **Interaction / UX — 15 pts:** clarity, discoverability, ergonomics and control flow when the product is working as designed; implementation bugs do **not** automatically count as UX problems.
+- **Visual execution — 15 pts:** hierarchy, readability, coherence, rendering quality and polish.
+- **Scientific / simulation fidelity — 15 pts:** orbital, temporal, scale and astronomical correctness, including honest approximation boundaries.
+- **Robustness — 10 pts:** bugs, state desynchronization, broken camera/follow behavior, exceptions, corrupted state and features that stop working.
+- **Performance — 10 pts:** responsiveness, frame pacing, loading and resource efficiency.
+- **Code / architecture — 10 pts:** maintainability, modularity, state boundaries, dependencies, testability and validation quality.
+- **Accessibility / responsive behavior — 5 pts:** keyboard/focus access, reduced motion, semantic usability and layout adaptation across target viewports.
+
+**No double penalty:** one defect should be charged to its primary category unless independent evidence shows a separate violation. Example: if the Sun follows the camera/user because scene or follow state is broken, that is **Robustness**, not UX.
+
+See the detailed evidence and per-category scores in [`SCORECARD.md`](./benchmarks/solar-system/comparison/SCORECARD.md).
 
 ## Archive policy
 

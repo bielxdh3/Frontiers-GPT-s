@@ -1,0 +1,107 @@
+<div align="center">
+
+# Solar System / Orbitarium Benchmark
+
+**Frontier Models · complete-product generation benchmark**
+
+`3D / Canvas` · `simulation` · `product design` · `scientific honesty` · `responsive UX` · `robustness`
+
+[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md)
+
+</div>
+
+## ⚔️ Current Frontier V2 arena
+
+| Model | Effort | Live project | Snapshot |
+| --- | --- | --- | --- |
+| ☀️ **GPT-5.6 Sun Max** | Max | [Open Sun V2](https://gpt-5.6-sun-v2.biel.dev.br) | `93d43ae62f…` |
+| ✦ **GPT-6 Astra Max** | Max | [Open Astra](https://gpt-6-astra.biel.dev.br) | `fca2ef51b4…` |
+| 𝕏 **Grok 4.6** | **XHIGH** | [Open Grok 4.6](https://grok-4-6-solar-system.vercel.app) | archive `5d77eeb509…` |
+| ◆ **Fable 5.1** | **Max** | [Open Fable 5.1](https://fable-solar-system.vercel.app) | `7e079669e41b…` |
+
+All four current contenders use the exact same [`frontier-v2.md`](./prompts/frontier-v2.md) input.
+
+> Reasoning labels are preserved exactly as run metadata. `Max` and `XHIGH` are vendor/run settings and are not treated as directly equivalent compute scales.
+
+<details>
+<summary><strong>Historical baseline — GPT-5.6 Sun Max V1</strong></summary>
+
+GPT-5.6 Sun Max V1 is preserved only for prompt-leverage history. It is deliberately excluded from the current arena because it used [`sun-original.md`](./prompts/sun-original.md), not Frontier V2.
+
+- [Open Sun V1](https://gpt-5.6-sun-v1.biel.dev.br)
+- Snapshot: `67eb9fc51f…`
+- Archive: [`runs/gpt-5.6-sun-max/original`](./runs/gpt-5.6-sun-max/original/)
+
+</details>
+
+## What this benchmark tests
+
+The task asks a model to turn a dense product specification into a complete browser-based Solar System experience rather than a thin demo. It stresses interpretation of the specification, visual/product judgment, orbital and time state, nested systems such as Earth–Moon, camera/navigation, scale and measurement tools, performance, reliability, accessibility, scientific honesty and validation.
+
+## Shared Frontier V2 input
+
+```text
+SHA-256  7c2833a0486938c38671139807bd4a8c16371c3740175376ad02a6c0c3c06d65
+Size     115,983 bytes
+Lines    1,153
+```
+
+## Run map
+
+| Run | Model | Prompt | Provenance | Arena |
+| --- | --- | --- | --- | --- |
+| Historical baseline | GPT-5.6 Sun Max V1 | `sun-original.md` | commit `67eb9fc51f…` | hidden |
+| Frontier V2 | GPT-5.6 Sun Max | `frontier-v2.md` | commit `93d43ae62f…` | current |
+| Frontier V2 | GPT-6 Astra Max | `frontier-v2.md` | commit `fca2ef51b4…` | current |
+| Frontier V2 / XHIGH | Grok 4.6 | `frontier-v2.md` | archive SHA-256 `5d77eeb509…` | current |
+| Frontier V2 / Max | Fable 5.1 | `frontier-v2.md` | commit `7e079669e41b…` | current |
+
+Machine-readable provenance lives in [`RUNS.json`](./RUNS.json).
+
+## Frontier V2 scores
+
+> **Preliminary evaluation:** the scores are mainly based on one evaluator and a limited number of devices/environments.
+
+<div align="center">
+
+<img src="../../assets/frontier-v2-scores.svg" alt="Frontier V2 overall score chart from 0 to 100: Astra Max 95.25, Fable 5.1 Max 93.30, Sun Max V2 71.20, Grok 4.6 XHIGH 33.80" width="100%" />
+
+</div>
+
+| Rank | Model | Score |
+| ---: | --- | ---: |
+| **1** | GPT-6 Astra Max | **95.25/100** |
+| **2** | Fable 5.1 Max | **93.30/100** |
+| **3** | GPT-5.6 Sun Max V2 | **71.20/100** |
+| **4** | Grok 4.6 XHIGH | **33.80/100** |
+
+## Evaluation criteria — summary
+
+- **Feature completeness — 20:** required features must exist and deliver the intended behavior; fake, shallow or loophole-driven implementations lose points.
+- **Interaction / UX — 15:** clarity, discoverability, ergonomics and control flow when the product works as designed; ordinary implementation bugs belong to Robustness.
+- **Visual execution — 15:** hierarchy, readability, coherence, rendering quality and polish.
+- **Scientific / simulation fidelity — 15:** orbital, temporal, scale and astronomical correctness plus honest approximation boundaries.
+- **Robustness — 10:** bugs, desynchronization, broken camera/follow state, exceptions, corrupted state and behaviors that stop working.
+- **Performance — 10:** responsiveness, frame pacing, loading and resource efficiency.
+- **Code / architecture — 10:** maintainability, modularity, state boundaries, dependency discipline, testability and validation quality.
+- **Accessibility / responsive behavior — 5:** keyboard/focus access, reduced motion, semantic usability and layout adaptation.
+
+**No double penalty:** a defect is scored in its primary category unless separate evidence proves an independent second violation. A broken Sun-follow/camera state, for example, is **Robustness**, not UX.
+
+See [`comparison/SCORECARD.md`](./comparison/SCORECARD.md) for detailed evidence and per-category scores.
+
+## Snapshot policy
+
+Model-produced files are preserved inside `runs/` without evaluator edits. Evaluator-authored material stays outside those snapshots.
+
+## Fairness
+
+A contender should not receive another contender's implementation, score, critique or post-hoc hints while generating its own project. The benchmark is **generation first, evaluation second**.
+
+---
+
+<div align="center">
+
+**Frontier Models · same task, inspectable outputs, explicit evidence.**
+
+</div>

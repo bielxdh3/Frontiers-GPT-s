@@ -12,7 +12,9 @@
 
 **Exact prompts. Pinned provenance. Complete project snapshots. Explicit evidence.**
 
-[README-EN](./README-EN.md) · [README-PT-BR](./README-PT-BR.md) · [Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md)
+[![Português (Brasil)](https://img.shields.io/badge/Idioma-Portugu%C3%AAs%20(BR)-2563EB?style=for-the-badge)](./README-PT-BR.md)
+
+[Open benchmark](./benchmarks/solar-system/) · [Methodology](./docs/METHODOLOGY.md)
 
 </div>
 
